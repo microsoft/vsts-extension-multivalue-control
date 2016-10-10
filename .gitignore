@@ -1,0 +1,7 @@
+dist
+.tscache
+node_modules
+extension-*.json
+settings.vset.json
+*.vsix
+typings

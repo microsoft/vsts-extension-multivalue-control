@@ -1,0 +1,45 @@
+{
+  "main": "webpack.config.js",
+  "scripts": {
+    "clean": "rimraf dist *.vsix vss-extension-release.json src/*js libs",
+    "dev": "webpack-dev-server --hot --progress --colors --content-base ./src --https --port 8888",
+    "dev:http": "webpack-dev-server --hot --progress --colors --content-base ./src --http --port 8888",
+    "package:dev": "node ./scripts/packageDev",
+    "package:dev:http": "node ./scripts/packageDevHttp",
+    "package:release": "node ./scripts/packageRelease",
+    "package:beta": "node ./scripts/packageBeta",
+    "publish:dev": "npm run package:dev && node ./scripts/publishDev",
+    "build:release": "npm run clean && mkdir dist && webpack --progress --colors --output-path ./dist -p",
+    "publish:release": "npm run build:release && node ./scripts/publishRelease",
+    "test": "karma start --single-run",
+    "postinstall": "typings install"
+  },
+  "devDependencies": {
+    "grunt": "~1.0.1",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-copy": "~1.0.0",
+    "grunt-exec": "~0.4.7",
+    "grunt-ts": "^5.5.1",
+    "tfx-cli": "^0.3.13",
+    "typescript": "^1.8.10",
+    "typings": "^1.0.4",
+    "vss-web-extension-sdk": "^1.100.0",
+    "copy-webpack-plugin": "^3.0.0",
+    "style-loader": "^0.13.1",
+    "css-loader": "^0.23.1",
+    "ts-loader": "^0.8.2",
+    "rimraf": "^2.5.2",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "dependencies": {
+    "vss-web-extension-sdk": "^1.100.0"
+  },
+  "name": "multivalue-control-extension",
+  "license": "MIT",
+  "description": "VSTS Work Item Form Multi Value Control Extension",
+  "repository": "",
+  "private": false,
+  "version": "0.0.0"
+}

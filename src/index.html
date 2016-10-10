@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Multi Values Control</title>
+    <link rel="stylesheet" href="multi-selection.css"/>
+</head>
+
+<body tabindex="0">
+    <script src="libs/VSS.SDK.min.js"></script>
+    
+    <script>
+        VSS.init({
+            explicitNotifyLoaded: true,
+            usePlatformScripts: true
+        });
+        
+        // Load main entry point for extension
+        VSS.require(["dist/src/app"], function () {
+            // Loading succeeded
+            VSS.notifyLoadSucceeded();
+        });
+    </script>
+    <div class="container">
+        
+    </div>
+</body>
+
+</html>

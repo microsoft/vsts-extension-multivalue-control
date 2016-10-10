@@ -1,0 +1,144 @@
+.container {
+    border: 1px transparent solid;
+    margin-right: 4px;
+}
+
+html:focus, body:focus, div:focus {
+    outline: none;
+}
+
+input, label, .container {
+    cursor: pointer;
+}
+
+.container:hover, .container:active, .container.expanded {
+    border: 1px #e6e6e6 solid;
+}
+
+.container .selected {
+    margin: 5px 5px 0 0;
+    display: inline-block;
+    max-width: 110px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 2px 6px;
+    font-size: 12px;
+    color: #4F4F4F;
+    border: solid 1px #e5e5e5;
+    background-color: #fafafa;
+}
+
+.container .selectedValuesContainer .noSelection {
+    margin:5px 5px 0 0;
+    font-size: 14px;
+    display:inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    color: grey;
+}
+
+.container .checkboxLabel {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    width: 180px;
+}
+
+input[type=checkbox]:checked + label {
+    font-weight: bold;
+}
+
+.container .selectedValuesContainer {
+    padding-left:2px;
+}    
+
+.container .selectAllControlContainer {
+    margin-top: 5px;
+}
+
+.container .selectedValuesWrapper {
+    padding-right: 20px;
+    padding-bottom:2px;
+    position: relative;
+}
+
+.container.expanded .selectedValuesWrapper {
+    border-bottom: 1px #e6e6e6 solid;
+}
+
+.container .selectedValuesWrapper .bowtie-icon {
+    margin: -8px 2px 0 2px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 20px;
+    visibility: hidden;
+}
+
+.container .selectedValuesWrapper:hover .bowtie-icon, .container .selectedValuesWrapper:active .bowtie-icon,
+.container.expanded .selectedValuesWrapper .bowtie-icon {
+    visibility: visible;
+}
+
+.container .checkboxValuesContainer {
+    overflow-y: auto;
+    display: none;
+}
+
+.container .errorPane {
+    background-color: red;
+    margin:5px;
+    padding:5px;
+    display:none;
+}
+
+.container .checkboxContainer {
+    margin-top:5px;
+    margin-bottom:5px;
+    font-size:12px;
+}
+
+.container .checkboxContainer:hover  {
+    background-color: #dce6f4;
+}
+
+.container.identity-picker-container {
+    border: none;
+    height: 100%;
+}
+
+.container .search-control-container {
+    border: 1px #e6e6e6 solid;
+}
+
+.container .identity-list-container {
+    margin-top: 5px;
+    overflow-y: auto;
+    position: absolute;
+    top: 20px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    overflow-x: hidden;
+}
+
+.container .identity-list-container .identity-container {
+    width: 150px;    
+    display: inline-block;
+    background-color: #d7e6f3;
+    margin: 1px;
+    padding: 1px;
+}
+
+.container .identity-list-container .identity-container > div {
+    width: 130px;
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.container .identity-list-container .identity-container .remove-identity {
+    cursor: pointer;
+}

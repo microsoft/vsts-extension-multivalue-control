@@ -1,0 +1,78 @@
+{
+    "manifestVersion": 1.0,
+    "id": "vsts-extensions-multi-values-control",
+    "version": "2.0.31",
+    "name": "Multi Value Control",
+    "description": "A work item form control which allows selection of multiple values.",
+    "publisher": "ms-devlabs",
+    "icons": {
+        "default": "img/multi-values-control.png"
+    },
+    "categories": [
+        "Plan and track"
+    ],
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],
+    "files": [
+        {
+            "path": "dist",
+            "addressable": true
+        }
+    ],
+    "tags": [
+        "Work Items",
+        "Extensions",
+        "Work Item Control",
+        "Sample",
+        "Multivalue Control"
+    ],
+    "content": {
+        "details": {
+            "path": "readme.md"
+        }
+    },
+    "scopes": [
+        "vso.work",
+        "vso.identitypicker"
+    ],
+    "contributions": [
+		{
+            "id": "multi-values-form-control",
+            "type": "ms.vss-work-web.work-item-form-control",
+            "targets": [
+                "ms.vss-work-web.work-item-form"
+            ],
+            "properties": {
+                "name": "Multi Value",
+                "uri": "dist/index.html",
+                "height": 50,
+				"inputs": [
+				    {
+                        "id":"FieldName",
+                        "name": "Field name",
+                        "type": "WorkItemField",
+                        "properties": {
+                            "workItemFieldTypes": ["String", "PlainText", "HTML"]
+                        },
+                        "validation": {
+                            "dataType": "String",
+                            "isRequired": true
+                        }
+                    },
+                    {
+                        "id":"Values",
+                        "name": "Values to select from, ';' seperated",
+                        "description": "Values can be user provided or from suggested values of the backing field",
+                        "validation": {
+                            "dataType": "String",
+                            "isRequired": false
+                        }
+                    }
+				]
+            }
+        }
+    ]
+}
