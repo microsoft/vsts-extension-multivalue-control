@@ -1,41 +1,40 @@
-> This is currently only available on Visual Studio Team Services and TFS "15" or later.
+> Currently only available on TFS "15" or later and Visual Studio Team Services. 
 
-## Customize your work item form with a multi value control ##
+![Work Item Form](img/form.png)
 
-In our old extensibility model, the multi-value control found on CodePlex was widely used by our customers to bring custom business logic to their work items. Given the importance of this control we've decided to bring it to the new extensibility framework.
+# Select multiple values for your fields
+![Control](img/operatingSystem.png)
 
-With this extension you can represent Text (single line) and Text (multiple lines) fields with an easy-to-use multi value control on the work item form.  
+# Expand the control only when needed
+![Control Collapsed](img/operatingSystemCollapsed.png)
 
-![Field Types](dist/img/fieldtypes.png)
+![Control Expanded](img/operatingSystemExpanded.png)
 
-## Quick steps to get started ##
+# How to get started
+## Visual Studio Team Services
 
-Navigate to your work item type layout page of the process you want to customize and click "Add Custom Control"
+1. Navigate to your work item form customization page and add a Multivalue Control.
 
-![Add Custom Control](dist/img/addcustomcontrol.png)
+![Layout Customization](img/layoutCustomization.png)
 
-Select the multi value control on the "Definition" tab
+2. Edit the control so it can use the right field to store your selection and the right set of values to be displayed.
 
-![Definition](dist/img/definition.png)
+![Options](img/options.png)
 
-On the "Options" tab enter the field name to be backed by the multi value control, and enter in the list of values to be displayed
+## TFS On-Premise
+We recommend TFS 2015 RC2 and higher when running this extension.
 
-![Options](dist/img/options.png)
+[Learn more](https://github.com/Microsoft/vsts-extension-color-control/blob/master/README.md) about how to customize the color control directly on XML.
 
-## Querying ##
+# How to query
 
 The selected values are stored in a semicolon seperated format.  To search for items that have a specific value use the contains words operator.  If searching for multiple values use multipe contains words clauses for that field.
 
-## Supported browsers ##
-
-* Internet Explorer
-* Microsoft Edge
-* Google Chrome 
-* Firefox
-
-## Feedback ##
+# Feedback 
 
 We appreciate your feedback! Here are some ways to connect with us:
 
 * Add a review below.
 * Send us an [email](mailto://witiq@microsoft.com).
+
+> Microsoft DevLabs is an outlet for experiments from Microsoft, experiments that represent some of the latest ideas around developer tools. Solutions in this category are designed for broad usage, and you are encouraged to use and provide feedback on them; however, these extensions are not supported nor are any commitments made as to their longevity.
