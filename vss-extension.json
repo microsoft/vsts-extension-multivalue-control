@@ -26,6 +26,17 @@
             "addressable": true
         }
     ],
+    "links": {
+        "home": {
+            "uri": "https://github.com/Microsoft/vsts-extension-multivalue-control"
+        },
+        "repository": {
+            "uri": "https://github.com/Microsoft/vsts-extension-multivalue-control"
+        },
+        "issues": {
+            "uri": "https://github.com/Microsoft/vsts-extension-multivalue-control/issues"
+        }
+    },
     "tags": [
         "Work Items",
         "Extensions",
