@@ -20,6 +20,10 @@
         {
             "path": "dist",
             "addressable": true
+        },
+        {
+            "path": "img",
+            "addressable": true
         }
     ],
     "tags": [
