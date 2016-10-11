@@ -24,7 +24,7 @@
 ## TFS On-Premise
 We recommend TFS 2015 RC2 and higher when running this extension.
 
-[Learn more](https://github.com/Microsoft/vsts-extension-color-control/blob/master/README.md) about how to customize the color control directly on XML.
+[Learn more](https://github.com/Microsoft/vsts-extension-multivalue-control/blob/master/xmldetails.md) about how to customize the multivalue control directly on XML.
 
 # How to query
 
