@@ -1,8 +1,8 @@
 {
     "manifestVersion": 1.0,
-    "id": "vsts-extensions-multi-values-control",
+    "id": "vsts-extensions-multivalue-control",
     "version": "2.0.31",
-    "name": "Multi Value Control",
+    "name": "Multivalue Control",
     "description": "A work item form control which allows selection of multiple values.",
     "publisher": "ms-devlabs",
     "icons": {
@@ -55,13 +55,13 @@
     ],
     "contributions": [
 		{
-            "id": "multi-values-form-control",
+            "id": "multivalue-form-control",
             "type": "ms.vss-work-web.work-item-form-control",
             "targets": [
                 "ms.vss-work-web.work-item-form"
             ],
             "properties": {
-                "name": "Multi Value",
+                "name": "Multivalue",
                 "uri": "dist/index.html",
                 "height": 50,
 				"inputs": [
@@ -79,7 +79,7 @@
                     },
                     {
                         "id":"Values",
-                        "name": "Values to select from, ';' seperated",
+                        "name": "Values to select from, ';' separated",
                         "description": "Values can be user provided or from suggested values of the backing field",
                         "validation": {
                             "dataType": "String",

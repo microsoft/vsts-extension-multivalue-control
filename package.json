@@ -38,7 +38,7 @@
   },
   "name": "multivalue-control-extension",
   "license": "MIT",
-  "description": "VSTS Work Item Form Multi Value Control Extension",
+  "description": "VSTS Work Item Form Multivalue Control Extension",
   "repository": "",
   "private": false,
   "version": "0.0.0"
