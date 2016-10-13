@@ -79,7 +79,7 @@
                     },
                     {
                         "id":"Values",
-                        "name": "Values to select from, ';' seperated",
+                        "name": "Values to select from, ';' separated",
                         "description": "Values can be user provided or from suggested values of the backing field",
                         "validation": {
                             "dataType": "String",
