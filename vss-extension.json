@@ -6,7 +6,7 @@
     "description": "A work item form control which allows selection of multiple values.",
     "publisher": "ms-devlabs",
     "icons": {
-        "default": "img/operatingSystemExpanded.png"
+        "default": "img/logo.png"
     },
     "categories": [
         "Plan and track"
