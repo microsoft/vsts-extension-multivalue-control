@@ -30,7 +30,7 @@ input, label, .container {
 }
 
 .container .selectedValuesContainer .noSelection {
-    margin: 6px 6px 2px 0;
+    margin: 6px 6px 2px 4px;
     font-size: 14px;
     display:inline-block;
     text-overflow: ellipsis;
