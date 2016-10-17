@@ -2,7 +2,7 @@
     "manifestVersion": 1.0,
     "id": "vsts-extensions-multivalue-control",
     "version": "2.0.31",
-    "name": "Multivalue Control",
+    "name": "Multivalue control",
     "description": "A work item form control which allows selection of multiple values.",
     "publisher": "ms-devlabs",
     "icons": {
@@ -57,17 +57,18 @@
 		{
             "id": "multivalue-form-control",
             "type": "ms.vss-work-web.work-item-form-control",
+            "description": "A work item form control which allows selection of multiple values.",
             "targets": [
                 "ms.vss-work-web.work-item-form"
             ],
             "properties": {
-                "name": "Multivalue",
+                "name": "Multivalue control",
                 "uri": "dist/index.html",
                 "height": 50,
 				"inputs": [
 				    {
                         "id":"FieldName",
-                        "name": "Field name",
+                        "name": "Select the field for this control. This is the only input needed if the field is a picklist field with suggested values.",
                         "type": "WorkItemField",
                         "properties": {
                             "workItemFieldTypes": ["String", "PlainText", "HTML"]
@@ -79,7 +80,7 @@
                     },
                     {
                         "id":"Values",
-                        "name": "Values to select from, ';' separated",
+                        "name": "Choose values for the control. This is only required if you're not using a picklist field. Example: Windows; IOS; Linux",
                         "description": "Values can be user provided or from suggested values of the backing field",
                         "validation": {
                             "dataType": "String",
