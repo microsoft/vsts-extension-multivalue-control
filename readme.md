@@ -30,11 +30,17 @@ We recommend TFS 2015 RC2 and higher when running this extension.
 
 The selected values are stored in a semicolon seperated format.  To search for items that have a specific value use the contains words operator.  If searching for multiple values use multipe contains words clauses for that field.
 
+# Source code 
+
+The [source](https://github.com/Microsoft/vsts-extension-multivalue-control) for this extension can be found on Github - feel free to take, fork and extend. 
+
+You can also learn how to build your own custom control extension for the work item form [here](https://www.visualstudio.com/en-us/docs/integrate/extensions/develop/custom-control). 
+
 # Feedback 
 
 We appreciate your feedback! Here are some ways to connect with us:
 
-* Add a review below.
-* Send us an [email](mailto://witiq@microsoft.com).
+* Add a review.
+* Report issues in [GitHub](https://github.com/Microsoft/vsts-extension-multivalue-control/issues).
 
 > Microsoft DevLabs is an outlet for experiments from Microsoft, experiments that represent some of the latest ideas around developer tools. Solutions in this category are designed for broad usage, and you are encouraged to use and provide feedback on them; however, these extensions are not supported nor are any commitments made as to their longevity.
