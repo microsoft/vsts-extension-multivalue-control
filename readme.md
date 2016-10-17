@@ -13,7 +13,7 @@
 # How to get started
 ## Visual Studio Team Services
 
-1. Navigate to your work item form customization page and add a Multivalue Control.
+1. Navigate to your work item form customization page and add a multivalue control.
 
 ![Layout Customization](img/layoutCustomization.png)
 
@@ -28,7 +28,7 @@ We recommend TFS 2015 RC2 and higher when running this extension.
 
 # How to query
 
-The selected values are stored in a semicolon seperated format.  To search for items that have a specific value use the contains words operator.  If searching for multiple values use multipe contains words clauses for that field.
+The selected values are stored in a semicolon separated format.  To search for items that have a specific value use the "Contains Words" operator.  If searching for multiple values, use multipe "Contains Words" clauses for that field.
 
 # Source code 
 
