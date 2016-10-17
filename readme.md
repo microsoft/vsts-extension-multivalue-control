@@ -13,11 +13,11 @@
 # How to get started
 ## Visual Studio Team Services
 
-1. Navigate to your work item form customization page and add a multivalue control.
+Navigate to your work item form customization page and add a multivalue control.
 
 ![Layout Customization](img/layoutCustomization.png)
 
-2. Edit the control so it can use the right field to store your selection and the right set of values to be displayed.
+Edit the control so it can use the right field to store your selection and the right set of values to be displayed.
 
 ![Options](img/options.png)
 
