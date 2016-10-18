@@ -35,6 +35,9 @@
         },
         "issues": {
             "uri": "https://github.com/Microsoft/vsts-extension-multivalue-control/issues"
+        },
+        "support": {
+            "uri": "https://github.com/Microsoft/vsts-extension-multivalue-control/issues"
         }
     },
     "tags": [
