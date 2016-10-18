@@ -16,6 +16,7 @@ input, label, .container {
 }
 
 .container .selected {
+    height: 21px;
     margin: 5px 5px 0 0;
     display: inline-block;
     max-width: 110px;
