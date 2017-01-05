@@ -26,6 +26,10 @@
             "addressable": true
         }
     ],
+    "repository": {
+        "type": "git",
+        "uri": "https://github.com/Microsoft/vsts-extension-multivalue-control"
+    },
     "links": {
         "home": {
             "uri": "https://github.com/Microsoft/vsts-extension-multivalue-control"
