@@ -35,10 +35,12 @@ var provider = () => {
             ensureControl();
         },
         onUnloaded: (args: WitExtensionContracts.IWorkItemChangedArgs) => {
-            control.clear();
+            if (control) {
+                control.clear();
+            }
         },
         onFieldChanged: (args: WitExtensionContracts.IWorkItemFieldChangedArgs) => {
-            if (args.changedFields[control.fieldName] !== undefined && args.changedFields[control.fieldName] !== null) {
+            if (control && args.changedFields[control.fieldName] !== undefined && args.changedFields[control.fieldName] !== null) {
                 control.invalidate();
             }
         }
