@@ -18,7 +18,7 @@ input, label, .container {
 .container .selected {
     margin: 5px 5px 0 0;
     display: inline-block;
-    max-width: 110px;
+    max-width: 100%;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -44,7 +44,7 @@ input, label, .container {
     white-space: nowrap;
     overflow: hidden;
     display: inline-block;
-    width: 180px;
+    width: calc(100% - 20px);
 }
 
 input[type=checkbox]:checked + label {
