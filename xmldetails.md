@@ -12,30 +12,31 @@ Learn more about WebLayout XML [here](https://www.visualstudio.com/docs/work/ref
 
     ```xml
         <!--**********************Work Item Extensions**********************
-        Extension:
-          Name: vsts-extensions-multi-values-control
-          Id: ms-vsts-witiq.vsts-extensions-multi-values-control
 
-          Control contribution:
-            Id: ms-vsts-witiq.vsts-extensions-multi-values-control.multi-values-form-control
-            Description: 
-            Inputs:
-              Id: FieldName
-              Description: 
-              Type: WorkItemField
-              Field Type: String; PlainText; HTML
-              Data Type: String
-              IsRequired: true
+Extension:
+	Name: vsts-extensions-multivalue-control
+	Id: ms-devlabs.vsts-extensions-multivalue-control
 
-              Id: Values
-              Description: Values can be user provided or from suggested values of the backing field
-              Data Type: String
-              IsRequired: false
+	Control contribution:
+		Id: ms-devlabs.vsts-extensions-multivalue-control.multivalue-form-control
+		Description: A work item form control which allows selection of multiple values.
+		Inputs:
+			Id: FieldName
+			Description: 
+			Type: WorkItemField
+			Field Type: String; PlainText; HTML
+			Data Type: String
+			IsRequired: true
+
+			Id: Values
+			Description: Values can be user provided or from suggested values of the backing field
+			Data Type: String
+			IsRequired: false
 
 
-        Note: For more information on work item extensions use the following topic:
-        http://go.microsoft.com/fwlink/?LinkId=816513
-      -->
+Note: For more information on work item extensions use the following topic:
+http://go.microsoft.com/fwlink/?LinkId=816513
+-->
     ```
 
 4. Add an Extension tag to make the control available to the work item form. 
@@ -49,7 +50,7 @@ Learn more about WebLayout XML [here](https://www.visualstudio.com/docs/work/ref
         -->
 
         <Extensions>
-            <Extension Id="ms-vsts-witiq.vsts-extensions-multi-values-control" />
+            <Extension Id="ms-devlabs.vsts-extensions-multivalue-control" />
         </Extensions>
      ```
 
@@ -59,8 +60,8 @@ Learn more about WebLayout XML [here](https://www.visualstudio.com/docs/work/ref
         <!--**********************************Work Item Extensions***************************
 
     Extension:
-        Name: vsts-extensions-multi-values-control
-        Id: ms-vsts-witiq.vsts-extensions-multi-values-control
+        Name: vsts-extensions-multivalue-control
+        Id: ms-devlabs.vsts-extensions-multivalue-control
         ...
     ```
 
@@ -72,7 +73,7 @@ Learn more about WebLayout XML [here](https://www.visualstudio.com/docs/work/ref
         ...
             <Group Id="Planning">
             ...
-                <ControlContribution Label="Label" Id="ms-vsts-witiq.vsts-extensions-multi-values-control.multi-values-form-control"
+                <ControlContribution Label="Label" Id="ms-devlabs.vsts-extensions-multivalue-control.multivalue-form-control"
                     <Inputs>
                         <Input Id="FieldName" Value="RefNameOfTheField" />
                     </Inputs>
@@ -87,21 +88,21 @@ Learn more about WebLayout XML [here](https://www.visualstudio.com/docs/work/ref
         <!--**********************************Work Item Extensions***************************
      ...
 
-     Control contribution:
-            Id: ms-vsts-witiq.vsts-extensions-multi-values-control.multi-values-form-control
-            Description: 
-            Inputs:
-              Id: FieldName
-              Description: 
-              Type: WorkItemField
-              Field Type: String; PlainText; HTML
-              Data Type: String
-              IsRequired: true
+	Control contribution:
+		Id: ms-devlabs.vsts-extensions-multivalue-control.multivalue-form-control
+		Description: A work item form control which allows selection of multiple values.
+		Inputs:
+			Id: FieldName
+			Description: 
+			Type: WorkItemField
+			Field Type: String; PlainText; HTML
+			Data Type: String
+			IsRequired: true
 
-              Id: Values
-              Description: Values can be user provided or from suggested values of the backing field
-              Data Type: String
-              IsRequired: false
+			Id: Values
+			Description: Values can be user provided or from suggested values of the backing field
+			Data Type: String
+			IsRequired: false
     ```
 
 6. Re-import the *.xml* file, using witadmin. 
