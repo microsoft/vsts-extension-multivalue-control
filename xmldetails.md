@@ -73,7 +73,7 @@ http://go.microsoft.com/fwlink/?LinkId=816513
         ...
             <Group Id="Planning">
             ...
-                <ControlContribution Label="Label" Id="ms-devlabs.vsts-extensions-multivalue-control.multivalue-form-control"
+                <ControlContribution Label="Label" Id="ms-devlabs.vsts-extensions-multivalue-control.multivalue-form-control">
                     <Inputs>
                         <Input Id="FieldName" Value="RefNameOfTheField" />
                     </Inputs>
