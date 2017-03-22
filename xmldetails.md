@@ -39,7 +39,7 @@ http://go.microsoft.com/fwlink/?LinkId=816513
 -->
 ```
 
-4. Add an Extension tag to make the control available to the work item form. 
+3. Add an Extension tag to make the control available to the work item form. 
 
 ```xml
         <!--**********************************Work Item Extensions***************************
@@ -65,7 +65,7 @@ http://go.microsoft.com/fwlink/?LinkId=816513
         ...
 ```
 
-5. Add the ControlContribution tag for your Multivalue control. This example adds it to the "Planning" group.
+4. Add the ControlContribution tag for your Multivalue control. This example adds it to the "Planning" group.
 
 ```xml
     <Page Id="Details">
@@ -83,7 +83,7 @@ http://go.microsoft.com/fwlink/?LinkId=816513
                 <Control Label="Risk" Type="FieldControl" FieldName="Microsoft.VSTS.Common.Risk" />
 ```
 
-     You can find the contribution ID and input information within the commented blob for "Work Item Extensions": 
+You can find the contribution ID and input information within the commented blob for "Work Item Extensions": 
 
 ```XML
         <!--**********************************Work Item Extensions***************************
@@ -106,7 +106,7 @@ http://go.microsoft.com/fwlink/?LinkId=816513
 			IsRequired: false
 ```
 
-6. Re-import the *.xml* file, using witadmin. 
+5. Re-import the *.xml* file, using witadmin. 
 ```
     witadmin importwitd /collection:CollectionURL /p:Project /f:FileName
 ``` 
