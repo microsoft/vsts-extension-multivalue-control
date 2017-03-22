@@ -37,7 +37,7 @@ Extension:
 Note: For more information on work item extensions use the following topic:
 http://go.microsoft.com/fwlink/?LinkId=816513
 -->
-    ```
+```
 
 4. Add an Extension tag to make the control available to the work item form. 
 
