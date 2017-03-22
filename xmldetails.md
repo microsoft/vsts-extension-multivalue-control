@@ -10,7 +10,7 @@ Learn more about WebLayout XML [here](https://www.visualstudio.com/docs/work/ref
 
 2. This will create a file in the directory that you specified.  Open this file and search for "Work Item Extensions".
 
-    ```xml
+```xml
         <!--**********************Work Item Extensions**********************
 
 Extension:
@@ -41,7 +41,7 @@ http://go.microsoft.com/fwlink/?LinkId=816513
 
 4. Add an Extension tag to make the control available to the work item form. 
 
-     ```xml
+```xml
         <!--**********************************Work Item Extensions***************************
         ...
 
@@ -63,10 +63,11 @@ http://go.microsoft.com/fwlink/?LinkId=816513
         Name: vsts-extensions-multivalue-control
         Id: ms-devlabs.vsts-extensions-multivalue-control
         ...
-    ```
+```
 
 5. Add the ControlContribution tag for your Multivalue control. This example adds it to the "Planning" group.
-    ```xml
+
+```xml
     <Page Id="Details">
     ...
         <Section>
@@ -80,11 +81,11 @@ http://go.microsoft.com/fwlink/?LinkId=816513
                 </ControlContribution>
 
                 <Control Label="Risk" Type="FieldControl" FieldName="Microsoft.VSTS.Common.Risk" />
-    ```
+```
 
      You can find the contribution ID and input information within the commented blob for "Work Item Extensions": 
 
-    ```XML
+```XML
         <!--**********************************Work Item Extensions***************************
      ...
 
@@ -103,10 +104,10 @@ http://go.microsoft.com/fwlink/?LinkId=816513
 			Description: Values can be user provided or from suggested values of the backing field
 			Data Type: String
 			IsRequired: false
-    ```
+```
 
 6. Re-import the *.xml* file, using witadmin. 
-    ```
+```
     witadmin importwitd /collection:CollectionURL /p:Project /f:FileName
-    ``` 
+``` 
 
