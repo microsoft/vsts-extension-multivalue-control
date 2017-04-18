@@ -112,7 +112,7 @@ export class MultiValueCombo extends BaseMultiValueControl {
         var selectedCheckboxes: JQuery = $("input.valueOption:checked", this._checkboxValuesContainer);
         var selectedValues: string[] = [];
 
-        $.each(selectedCheckboxes, (i: number, elem: HTMLElement) => {
+        selectedCheckboxes.each((i: number, elem: HTMLElement) => {
             selectedValues.push($(elem).attr("value"));
         });
 

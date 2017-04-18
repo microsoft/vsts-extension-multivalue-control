@@ -1,9 +1,5 @@
-import * as VSSService from "VSS/Service";
 import * as WitService from "TFS/WorkItemTracking/Services";
 import * as VSSUtilsCore from "VSS/Utils/Core";
-import * as Controls from "VSS/Controls";
-import * as Combos from "VSS/Controls/Combos";
-import * as ExtensionContracts  from "TFS/WorkItemTracking/ExtensionContracts";
 import Q = require("q");
 
 export class BaseMultiValueControl {
