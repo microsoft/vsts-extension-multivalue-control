@@ -1,5 +1,4 @@
 import {MultiValueCombo} from "./MultiValueCombo";
-import {IdentityPicker} from "./IdentityPicker";
 import {BaseMultiValueControl} from "./BaseMultiValueControl";
 import * as WitExtensionContracts  from "TFS/WorkItemTracking/ExtensionContracts";
 import { WorkItemFormService } from "TFS/WorkItemTracking/Services";
@@ -21,19 +20,7 @@ var provider = () => {
         if (!control) {
             var inputs: IDictionaryStringTo<string> = VSS.getConfiguration().witInputs;
             var controlType: string = inputs["InputMode"];
-            if (controlType) {
-                switch(controlType.toUpperCase()) {
-                    case "IDENTITY":
-                        control = new IdentityPicker();
-                        break;
-                    default:
-                        control = new MultiValueCombo();
-                        break;
-                }
-            }
-            else {
-                control = new MultiValueCombo();
-            }
+             control = new MultiValueCombo();
 
             control.initialize();
         }
