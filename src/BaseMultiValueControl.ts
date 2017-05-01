@@ -139,6 +139,6 @@ export class BaseMultiValueControl {
         this._bodyElement = <HTMLBodyElement>document.getElementsByTagName("body").item(0);
 
         // Cast as any until declarations are updated
-        (VSS as any).resize(null, this._bodyElement.offsetHeight);  
+        VSS.resize(null, this._bodyElement.offsetHeight);  
     }
 }
