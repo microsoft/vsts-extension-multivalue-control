@@ -12,7 +12,7 @@ export class BaseMultiValueControl {
      * The container to hold the control
      */
     protected containerElement: JQuery;
-    
+
     /**
      * The container for error message display
      */
@@ -21,6 +21,10 @@ export class BaseMultiValueControl {
     private _flushing: boolean;
     private _bodyElement: HTMLBodyElement;
 
+    /* Inherits from initalConfig to control if always show field border
+     */
+    private _showFieldBorder: boolean;
+
     /**
      * Store the last recorded window width to know
      * when we have been shrunk and should resize
@@ -28,17 +32,24 @@ export class BaseMultiValueControl {
     private _windowWidth: number;
     private _minWindowWidthDelta: number = 10; // Minum change in window width to react to
     private _windowResizeThrottleDelegate: Function;
-    
+
     constructor() {
+        let initialConfig = VSS.getConfiguration();
+        this._showFieldBorder = !!initialConfig.fieldBorder;
+
         this.containerElement = $(".container");
+        if (this._showFieldBorder) {
+            this.containerElement.addClass("fieldBorder")
+        }
+
         this._errorPane = $("<div>").addClass("errorPane").appendTo(this.containerElement);
 
-        var inputs: IDictionaryStringTo<string> = VSS.getConfiguration().witInputs;
+        var inputs: IDictionaryStringTo<string> = initialConfig.witInputs;
 
         this.fieldName = inputs["FieldName"];
         if (!this.fieldName) {
             this.showError("FieldName input has not been specified");
-        }  
+        }
 
         this._windowResizeThrottleDelegate = VSSUtilsCore.throttledDelegate(this, 50, () => {
             this._windowWidth = window.innerWidth;
@@ -47,8 +58,8 @@ export class BaseMultiValueControl {
 
         this._windowWidth = window.innerWidth;
         $(window).resize(() => {
-            if(Math.abs(this._windowWidth - window.innerWidth) > this._minWindowWidthDelta) {
-               this._windowResizeThrottleDelegate.call(this);
+            if (Math.abs(this._windowWidth - window.innerWidth) > this._minWindowWidthDelta) {
+                this._windowResizeThrottleDelegate.call(this);
             }
         });
     }
@@ -58,7 +69,7 @@ export class BaseMultiValueControl {
      */
     public initialize(): void {
         this.invalidate();
-    }   
+    }
 
     /**
      * Invalidate the control's value
@@ -76,8 +87,8 @@ export class BaseMultiValueControl {
     }
 
     public clear(): void {
-        
-    }    
+
+    }
 
     /**
      * Flushes the control's value to the field
@@ -104,9 +115,9 @@ export class BaseMultiValueControl {
     }
 
     protected setValue(value: string): void {
-        
+
     }
-    
+
     protected showError(error: string): void {
         this._errorPane.text(error);
         this._errorPane.show();
@@ -139,6 +150,6 @@ export class BaseMultiValueControl {
         this._bodyElement = <HTMLBodyElement>document.getElementsByTagName("body").item(0);
 
         // Cast as any until declarations are updated
-        VSS.resize(null, this._bodyElement.offsetHeight);  
+        VSS.resize(null, this._bodyElement.offsetHeight);
     }
 }
