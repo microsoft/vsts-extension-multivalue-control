@@ -11,7 +11,7 @@ input, label, .container {
     cursor: pointer;
 }
 
-.container:hover, .container:active, .container.expanded {
+.container:hover, .container:active, .container.expanded, .container.fieldBorder {
     border: 1px #e6e6e6 solid;
 }
 
