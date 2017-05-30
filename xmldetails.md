@@ -106,6 +106,28 @@ You can find the contribution ID and input information within the commented blob
 			IsRequired: false
 ```
 
+For the input tag, the content of the `Id` attribute can be either `FieldName` or `Values`.
+
+If the Id is FieldName, the content of the `Value` attribute should be the name of the field that you want to fill. Suppose you have a field called `MyNamespace.MyField`, the input tag becomes:
+
+```XML
+<Input Id="FieldName" Value="MyNamespace.MyField" />
+```
+
+To provide a list of value from a global list, you should add `SUGGESTEDVALUES` tag in the field definition.
+
+```XML
+<WORKITEMTYPE name="MyWIT">
+    ...
+    <FIELDS>
+        ...
+        <FIELD name="MyField" refname="MyNamespace.MyField" type="String">
+            <SUGGESTEDVALUES expanditems="true">
+                <GLOBALLIST name="MyGlobalList" />
+            </SUGGESTEDVALUES>
+        </FIELD>
+```
+
 5. Re-import the *.xml* file, using witadmin. 
 ```
     witadmin importwitd /collection:CollectionURL /p:Project /f:FileName
