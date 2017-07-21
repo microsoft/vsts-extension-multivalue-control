@@ -129,12 +129,12 @@ export class BaseMultiValueControl {
     }
 
     private _getCurrentFieldValue(): IPromise<string> {
-        var defer = Q.defer();
+        var defer = Q.defer<string>();
         WitService.WorkItemFormService.getService().then(
             (service) => {
                 service.getFieldValues([this.fieldName]).then(
                     (values) => {
-                        defer.resolve(values[this.fieldName]);
+                        defer.resolve(values[this.fieldName] as string);
                     },
                     () => {
                         this.showError("Error loading values for field: " + this.fieldName)
