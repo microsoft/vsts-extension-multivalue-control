@@ -18,10 +18,7 @@ var control: BaseMultiValueControl;
 var provider = () => {
     var ensureControl = () => {
         if (!control) {
-            var inputs: IDictionaryStringTo<string> = VSS.getConfiguration().witInputs;
-            var controlType: string = inputs["InputMode"];
-             control = new MultiValueCombo();
-
+            control = new MultiValueCombo();
             control.initialize();
         }
 
