@@ -126,7 +126,21 @@ To provide a list of value from a global list, you should add `SUGGESTEDVALUES` 
             </SUGGESTEDVALUES>
         </FIELD>
 ```
-**NOTE:** This only works if your field type is String. However, if you want to be able to store more than 255 character you should use the PlainText field type. In this case you should specify the value inline using the **Values** input:
+**NOTE:** This only works if your field type is String. However, if you want to be able to store more than 255 character you should use the PlainText field type. In this case you have two options. First, is to specify the list items individually:
+```XML
+<WORKITEMTYPE name="MyWIT">
+    ...
+    <FIELDS>
+        ...
+        <FIELD name="MyField" refname="MyNamespace.MyField" type="String">
+            <SUGGESTEDVALUES expanditems="true">
+                <LISTITEM value="ValueOne" />
+                <LISTITEM value="ValueTwo" />
+            </SUGGESTEDVALUES>
+        </FIELD>
+```
+
+Second, is to specify the value inline using the **Values** input:
 ```XML
 <ControlContribution Label="Label" Id="ms-devlabs.vsts-extensions-multivalue-control.multivalue-form-control">
                     <Inputs>
