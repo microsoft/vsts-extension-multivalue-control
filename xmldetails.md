@@ -114,8 +114,7 @@ If the Id is FieldName, the content of the `Value` attribute should be the name 
 <Input Id="FieldName" Value="MyNamespace.MyField" />
 ```
 
-To provide a list of value from a global list, you should add `SUGGESTEDVALUES` tag in the field definition.
-
+To provide a list of value from a global list, you should add `SUGGESTEDVALUES` tag in the field definition. 
 ```XML
 <WORKITEMTYPE name="MyWIT">
     ...
@@ -127,6 +126,16 @@ To provide a list of value from a global list, you should add `SUGGESTEDVALUES` 
             </SUGGESTEDVALUES>
         </FIELD>
 ```
+**NOTE:** This only works if your field type is String. However, if you want to be able to store more than 255 character you should use the PlainText field type. In this case you should specify the value inline using the **Values** input:
+```XML
+<ControlContribution Label="Label" Id="ms-devlabs.vsts-extensions-multivalue-control.multivalue-form-control">
+                    <Inputs>
+                        <Input Id="FieldName" Value="RefNameOfTheField" />
+                        <Input Id="Values" Value="ValueOne;ValueTwo;ValueThree;ValueFour" />
+                    </Inputs>
+                </ControlContribution>
+```
+
 
 5. Re-import the *.xml* file, using witadmin. 
 ```
