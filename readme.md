@@ -21,7 +21,7 @@ Edit the control so it can use the right field to store your selection and the r
 
 ![Options](img/options.png)
 
-## TFS On-Premise
+## TFS On-Premises
 We recommend TFS 2017 RC2 or later when running this extension.
 
 [Learn more](https://github.com/Microsoft/vsts-extension-multivalue-control/blob/master/xmldetails.md) about how to customize the multivalue control directly on XML.
