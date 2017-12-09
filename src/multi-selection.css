@@ -99,6 +99,7 @@ input[type=checkbox]:checked + label {
     margin-top:5px;
     margin-bottom:5px;
     font-size:12px;
+    display:flex;
 }
 
 .container .checkboxContainer:hover  {
