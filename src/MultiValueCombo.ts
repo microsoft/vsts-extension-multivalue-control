@@ -9,10 +9,10 @@ export class MultiValueCombo extends BaseMultiValueControl {
     /*
     * UI elements for the control.
     */
-    private _selectedValuesWrapper: JQuery;
-    private _selectedValuesContainer: JQuery;
-    private _checkboxValuesContainer: JQuery;
-    private _chevron: JQuery;
+   private _selectedValuesWrapper: JQuery;
+   private _selectedValuesContainer: JQuery;
+   private _checkboxValuesContainer: JQuery;
+   private _chevron: JQuery;
 
     private _suggestedValues: string[];
     private _valueToCheckboxMap: IDictionaryStringTo<JQuery>;
@@ -35,14 +35,19 @@ export class MultiValueCombo extends BaseMultiValueControl {
         this._valueToCheckboxMap = {};
         this._valueToLabelMap = {};
 
+        this.setMessage("getting suggested values");
+
         this._getSuggestedValues().then(
             (values: string[]) => {
                 this._suggestedValues = values.filter((s: string): boolean => {
                     return s.trim() !== "";
                 });
+                this.setMessage("populating check boxes");
 
                 this._populateCheckBoxes();
+                this.setMessage("parent intializing");
                 super.initialize();
+                this.setMessage("");
             },
         );
 
@@ -311,9 +316,11 @@ export class MultiValueCombo extends BaseMultiValueControl {
         if (valuesString) {
             defer.resolve(valuesString.split(";"));
         } else {
+            this.setMessage("getting form service");
             // if the values input were not specified as an input, get the suggested values for the field.
             WitService.WorkItemFormService.getService().then(
                 (service: any) => {
+                    this.setMessage("getting allowed field values");
                     service.getAllowedFieldValues(this.fieldName).then(
                         (values: string[]) => {
                             defer.resolve(values);

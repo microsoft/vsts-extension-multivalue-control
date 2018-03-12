@@ -12,6 +12,7 @@ export class BaseMultiValueControl {
      * The container to hold the control
      */
     protected containerElement: JQuery;
+    private _message: JQuery;
 
     /**
      * The container for error message display
@@ -43,6 +44,7 @@ export class BaseMultiValueControl {
         }
 
         this._errorPane = $("<div>").addClass("errorPane").appendTo(this.containerElement);
+        this._message = $("<div>").addClass("message").appendTo(this.containerElement);
 
         const inputs: IDictionaryStringTo<string> = initialConfig.witInputs;
 
@@ -76,6 +78,7 @@ export class BaseMultiValueControl {
      */
     public invalidate(): void {
         if (!this._flushing) {
+            this.setMessage("getting current value");
             this._getCurrentFieldValue().then(
                 (value: string) => {
                     this.setValue(value);
@@ -126,6 +129,10 @@ export class BaseMultiValueControl {
     protected clearError() {
         this._errorPane.text("");
         this._errorPane.hide();
+    }
+
+    protected setMessage(message: string) {
+        this._message.text(message);
     }
 
     private _getCurrentFieldValue(): IPromise<string> {
