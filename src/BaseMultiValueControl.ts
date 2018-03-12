@@ -1,6 +1,6 @@
+import Q = require("q");
 import * as WitService from "TFS/WorkItemTracking/Services";
 import * as VSSUtilsCore from "VSS/Utils/Core";
-import Q = require("q");
 
 export class BaseMultiValueControl {
     /**
@@ -31,22 +31,22 @@ export class BaseMultiValueControl {
      */
     private _windowWidth: number;
     private _minWindowWidthDelta: number = 10; // Minum change in window width to react to
-    private _windowResizeThrottleDelegate: Function;
+    private _windowResizeThrottleDelegate: () => void;
 
     constructor() {
-        let initialConfig = VSS.getConfiguration();
+        const initialConfig = VSS.getConfiguration();
         this._showFieldBorder = !!initialConfig.fieldBorder;
 
         this.containerElement = $(".container");
         if (this._showFieldBorder) {
-            this.containerElement.addClass("fieldBorder")
+            this.containerElement.addClass("fieldBorder");
         }
 
         this._errorPane = $("<div>").addClass("errorPane").appendTo(this.containerElement);
 
-        var inputs: IDictionaryStringTo<string> = initialConfig.witInputs;
+        const inputs: IDictionaryStringTo<string> = initialConfig.witInputs;
 
-        this.fieldName = inputs["FieldName"];
+        this.fieldName = inputs.FieldName;
         if (!this.fieldName) {
             this.showError("FieldName input has not been specified");
         }
@@ -79,7 +79,7 @@ export class BaseMultiValueControl {
             this._getCurrentFieldValue().then(
                 (value: string) => {
                     this.setValue(value);
-                }
+                },
             );
         }
 
@@ -87,7 +87,7 @@ export class BaseMultiValueControl {
     }
 
     public clear(): void {
-
+        // noop
     }
 
     /**
@@ -104,9 +104,9 @@ export class BaseMultiValueControl {
                     () => {
                         this._flushing = false;
                         this.showError("Error storing the field value");
-                    }
-                )
-            }
+                    },
+                );
+            },
         );
     }
 
@@ -115,7 +115,7 @@ export class BaseMultiValueControl {
     }
 
     protected setValue(value: string): void {
-
+        // noop
     }
 
     protected showError(error: string): void {
@@ -129,7 +129,7 @@ export class BaseMultiValueControl {
     }
 
     private _getCurrentFieldValue(): IPromise<string> {
-        var defer = Q.defer<string>();
+        const defer = Q.defer<string>();
         WitService.WorkItemFormService.getService().then(
             (service) => {
                 service.getFieldValues([this.fieldName]).then(
@@ -137,17 +137,17 @@ export class BaseMultiValueControl {
                         defer.resolve(values[this.fieldName] as string);
                     },
                     () => {
-                        this.showError("Error loading values for field: " + this.fieldName)
-                    }
-                )
-            }
+                        this.showError("Error loading values for field: " + this.fieldName);
+                    },
+                );
+            },
         );
 
         return defer.promise;
     }
 
     protected resize() {
-        this._bodyElement = <HTMLBodyElement>document.getElementsByTagName("body").item(0);
+        this._bodyElement = document.getElementsByTagName("body").item(0) as HTMLBodyElement;
 
         // Cast as any until declarations are updated
         VSS.resize(null, this._bodyElement.offsetHeight);
