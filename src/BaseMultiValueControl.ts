@@ -81,6 +81,7 @@ export class BaseMultiValueControl {
             this.setMessage("getting current value");
             this._getCurrentFieldValue().then(
                 (value: string) => {
+                    this.setMessage("");
                     this.setValue(value);
                 },
             );
