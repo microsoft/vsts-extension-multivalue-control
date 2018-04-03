@@ -86,6 +86,7 @@ input[type=checkbox]:checked + label {
 .container .checkboxValuesContainer {
     overflow-y: auto;
     display: none;
+    max-height: 290px; /* 10 items max in view */
 }
 
 .container .errorPane {

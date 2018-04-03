@@ -3,7 +3,7 @@
   "scripts": {
     "clean": "rimraf dist *.vsix vss-extension-release.json src/*js libs",
     "dev": "webpack-dev-server --hot --progress --colors --content-base ./src --https --port 8888",
-    "dev:http": "webpack-dev-server --hot --progress --colors --content-base ./src --http --port 8888",
+    "dev:http": "webpack-dev-server -d --hot --progress --colors --content-base ./src --port 8888",
     "package:dev": "node ./scripts/packageDev",
     "package:dev:http": "node ./scripts/packageDevHttp",
     "package:release": "node ./scripts/packageRelease",
@@ -15,8 +15,8 @@
     "postinstall": "typings install"
   },
   "devDependencies": {
-    "@types/react": "^15.0.21",
-    "@types/react-dom": "^0.14.23",
+    "@types/react": "^16.0.9",
+    "@types/react-dom": "^16.0.0",
     "@types/jquery": "^2.0.41",
     "@types/q": "^1.0.0",
     "webpack": "^2.3.3",
@@ -26,13 +26,13 @@
     "css-loader": "^0.28.0",
     "ts-loader": "^2.0.3",
     "tfx-cli": "^0.4.5",
-    "typescript": "2.3.4",
+    "typescript": "2.7.2",
     "typings": "^2.1.0",
     "uglifyjs-webpack-plugin": "^0.4.2",
     "copy-webpack-plugin": "^4.0.1"
   },
   "dependencies": {
-    "vss-web-extension-sdk": "2.114.0"
+    "vss-web-extension-sdk": "5.127.0"
   },
   "name": "multivalue-control-extension",
   "license": "MIT",
