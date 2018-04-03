@@ -21,6 +21,7 @@ export class MultiValueCombo extends BaseMultiValueControl {
     private _maxSelectedToShow = 100;
     private _chevronDownClass = "bowtie-chevron-down-light";
     private _chevronUpClass = "bowtie-chevron-up-light";
+    private _windowFocussed = false;
 
     private _toggleThrottleDelegate: () => void;
     /**
@@ -60,13 +61,19 @@ export class MultiValueCombo extends BaseMultiValueControl {
             return false;
         });
 
-        $(window).focus(() => {
+        $(window).focus((e) => {
+            this._windowFocussed = true;
+            setTimeout(() => {
+                this._windowFocussed = false;
+            }, 500);
             this._toggleThrottleDelegate.call(this);
             return false;
         });
 
         this._selectedValuesWrapper.click(() => {
-            this._toggleThrottleDelegate.call(this);
+            if (!this._windowFocussed) {
+                this._toggleThrottleDelegate.call(this);
+            }
             return false;
         });
 
