@@ -315,8 +315,8 @@ export class MultiValueCombo extends BaseMultiValueControl {
         return checkbox;
     }
 
-    private _getSuggestedValues(): IPromise<string[]> {
-        const defer = Q.defer<any>();
+    private _getSuggestedValues(): Q.IPromise<string[]> {
+        const defer = Q.defer<string[]>();
         const inputs: IDictionaryStringTo<string> = VSS.getConfiguration().witInputs;
 
         const valuesString: string = inputs.Values;
