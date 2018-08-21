@@ -1,21 +1,23 @@
 {
     "compilerOptions": {
         "module": "amd",
-        "sourceMap": false,
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "target": "es5",
+        "strictNullChecks": true,
+        "noUnusedLocals": true,
         "jsx": "react",
         "types": [
-            "q",
             "knockout",
             "requirejs",
             "jquery",
             "react",
             "react-dom"
         ],
-        "typeRoots": [
-            "../node_modules/@types"
+        "lib": [
+            "es2015.promise",
+            "dom",
+            "es5"
         ]
-    },
-    "exclude": [
-        "node_modules"
-    ]
+    }
 }

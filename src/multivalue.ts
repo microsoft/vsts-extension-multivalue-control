@@ -1,7 +1,6 @@
 import * as WitExtensionContracts from "TFS/WorkItemTracking/ExtensionContracts";
 import { WorkItemFormService } from "TFS/WorkItemTracking/Services";
-import {BaseMultiValueControl} from "./BaseMultiValueControl";
-import {MultiValueCombo} from "./MultiValueCombo";
+import { MultiValueEvents } from "./MultiValueEvents";
 
 // save on ctr + s
 $(window).bind("keydown", (event: JQueryEventObject) => {
@@ -13,30 +12,30 @@ $(window).bind("keydown", (event: JQueryEventObject) => {
     }
 });
 
-let control: BaseMultiValueControl;
+const provider = () => {
+    let control: MultiValueEvents;
 
-const provider = (): Partial<WitExtensionContracts.IWorkItemNotificationListener> => {
     const ensureControl = () => {
         if (!control) {
-            control = new MultiValueCombo();
-            control.initialize();
+            control = new MultiValueEvents();
         }
-
-        control.invalidate();
+        control.refresh();
     };
 
     return {
         onLoaded: (args: WitExtensionContracts.IWorkItemLoadedArgs) => {
             ensureControl();
         },
-        onUnloaded: (args: WitExtensionContracts.IWorkItemChangedArgs) => {
-            if (control) {
-                control.clear();
-            }
-        },
+        // onUnloaded: (args: WitExtensionContracts.IWorkItemChangedArgs) => {
+        //     if (control) {
+        //         control.clear();
+        //     }
+        // },
         onFieldChanged: (args: WitExtensionContracts.IWorkItemFieldChangedArgs) => {
-            if (control && args.changedFields[control.fieldName] !== undefined && args.changedFields[control.fieldName] !== null) {
-                control.invalidate();
+            if (control && args.changedFields[control.fieldName] !== undefined &&
+                args.changedFields[control.fieldName] !== null
+            ) {
+                control.refresh();
             }
         },
     };
