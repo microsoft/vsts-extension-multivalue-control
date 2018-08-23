@@ -1,8 +1,14 @@
+#container .multi-value-control .tag-picker [role=list] {
+    border-color: rgba( var(--palette-neutral-8,234, 234, 234) , 1 );
+}
 #container .multi-value-control .tag-picker [role=list]:not(:hover) {
     border-color: transparent;
 }
 #container .multi-value-control.focused .tag-picker input {
     display: none;
+}
+#container .multi-value-control.focused .tag-picker .ms-BasePicker-text:hover {
+    border-color: rgba( var(--palette-neutral-8,234, 234, 234) , 1 );
 }
 #container .multi-value-control .options button {
     width: 100%;
