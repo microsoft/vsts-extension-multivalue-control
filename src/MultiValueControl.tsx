@@ -103,7 +103,7 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
             return;
         }
 
-        if (e.keyCode === 13) {
+        if (e.keyCode === 13 /* enter */) {
             const filtered = this._filteredOptions();
             if (filtered.length !== 1) {
                 return;
@@ -112,6 +112,20 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
             e.stopPropagation();
             this._toggleOption(filtered[0]);
             this.setState({filter: ""});
+        }
+        if (e.keyCode === 37 /* left arrow */) {
+            const input: HTMLInputElement = e.currentTarget;
+            if (input.selectionStart !== input.selectionEnd || input.selectionStart !== 0) {
+                return;
+            }
+            const tags = document.querySelectorAll("#container .multi-value-control .tag-picker [data-selection-index]");
+            if (tags.length === 0) {
+                return;
+            }
+            const lastTag = tags.item(tags.length - 1) as HTMLDivElement;
+            lastTag.focus();
+            e.preventDefault();
+            e.stopPropagation();
         }
     }
     private _toggleSelectAll = () => {

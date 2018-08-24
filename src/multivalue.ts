@@ -26,11 +26,6 @@ const provider = () => {
         onLoaded: (args: WitExtensionContracts.IWorkItemLoadedArgs) => {
             ensureControl();
         },
-        // onUnloaded: (args: WitExtensionContracts.IWorkItemChangedArgs) => {
-        //     if (control) {
-        //         control.clear();
-        //     }
-        // },
         onFieldChanged: (args: WitExtensionContracts.IWorkItemFieldChangedArgs) => {
             if (control && args.changedFields[control.fieldName] !== undefined &&
                 args.changedFields[control.fieldName] !== null
