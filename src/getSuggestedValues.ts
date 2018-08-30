@@ -6,8 +6,7 @@ export async function getSuggestedValues(): Promise<string[]> {
     if (valuesString) {
         return valuesString.split(";");
     }
-    this.setMessage("getting form service");
     // if the values input were not specified as an input, get the suggested values for the field.
     const service = await WorkItemFormService.getService();
-    return await service.getAllowedFieldValues(this.fieldName) as string[];
+    return await service.getAllowedFieldValues(VSS.getConfiguration().witInputs.FieldName) as string[];
 }
