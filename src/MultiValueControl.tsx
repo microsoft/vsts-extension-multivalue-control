@@ -128,6 +128,20 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
             e.stopPropagation();
         }
     }
+
+    private getCustom() {
+        const optionLkp: {[opt: string]: boolean} = {};
+        for (const op of this.props.options) {
+            optionLkp[op] = true;
+        }
+        const custom: string[] = [];
+        for (const item of this.props.selected || []) {
+            if (!optionLkp.hasOwnProperty(item)) {
+                custom.push(item);
+            }
+        }
+        return custom;
+    }
     private _toggleSelectAll = () => {
         const options = this.props.options;
         const selected = this.props.selected || [];
@@ -159,7 +173,7 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
         if (!this.props.onSelectionChanged) {
             return;
         }
-        await this.props.onSelectionChanged(selected);
+        await this.props.onSelectionChanged([...selected, ...this.getCustom()]);
     }
     private _toggleOption = (option: string): boolean => {
         const selectedMap: {[k: string]: boolean} = {};
