@@ -72,8 +72,8 @@ export class MultiValueEvents {
         const inv = await formService.getInvalidFields();
         if (inv.length > 0 && inv.some((f) => f.referenceName === this.fieldName)) {
             const field = await getClient().getField(this.fieldName);
-            if (field.isPicklist && VSS.getConfiguration().witInputs.Values) {
-                return `Set the field ${this.fieldName} to use suggested values rather than allowed values`;
+            if (field.isPicklist) {
+                return `Set the field ${field.name} to use suggested values rather than allowed values`;
             }
         }
         return "";
