@@ -19,3 +19,6 @@
 #container .multi-value-control .options .checkboxes {
     padding: 3px;
 }
+#container .multi-value-control .error {
+    color: red;
+}
