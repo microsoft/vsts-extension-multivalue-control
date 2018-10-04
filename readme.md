@@ -11,7 +11,7 @@
 ![Control Expanded](img/operatingSystemExpanded.png)
 
 # How to get started
-## Visual Studio Team Services
+## Azure Devops Services
 
 Navigate to your work item form customization page and add a multivalue control.
 
@@ -21,7 +21,11 @@ Edit the control so it can use the right field to store your selection and the r
 
 ![Options](img/options.png)
 
-## TFS On-Premises
+Be sure to allow user inputed values if a picklisk (string) field is used to back the extension.
+
+![check the box to allow users to enter their own values](img/allowedValues.png)
+
+## Azure Devops Server
 We recommend TFS 2017 RC2 or later when running this extension.
 
 [Learn more](https://github.com/Microsoft/vsts-extension-multivalue-control/blob/master/xmldetails.md) about how to customize the multivalue control directly on XML.

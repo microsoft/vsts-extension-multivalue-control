@@ -16,7 +16,7 @@ interface IMultiValueControlProps {
     onSelectionChanged?: (selection: string[]) => Promise<void>;
     forceValue?: boolean;
     options: string[];
-    error: string;
+    error: JSX.Element;
     onBlurred?: () => void;
     onResize?: () => void;
 }

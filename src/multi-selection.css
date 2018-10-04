@@ -22,3 +22,6 @@
 #container .multi-value-control .error {
     color: red;
 }
+#container {
+    padding-bottom: 3px;
+}

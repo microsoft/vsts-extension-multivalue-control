@@ -7,6 +7,8 @@ import { getSuggestedValues } from "./getSuggestedValues";
 import { MultiValueControl } from "./MultiValueControl";
 
 initializeIcons();
+const HELP_URL = "https://github.com/Microsoft/vsts-extension-multivalue-control#azure-devops-services";
+
 export class MultiValueEvents {
     public readonly fieldName = VSS.getConfiguration().witInputs.FieldName;
     private readonly _container = document.getElementById("container") as HTMLElement;
@@ -15,7 +17,7 @@ export class MultiValueEvents {
     private _fired: number = 0;
 
     public async refresh(selected?: string[]): Promise<void> {
-        let error = "";
+        let error = <></>;
         if (!selected) {
             if (this._fired) {
                 this._fired--;
@@ -67,15 +69,18 @@ export class MultiValueEvents {
             this._onRefreshed = resolve;
         });
     }
-    private async _checkFieldType(): Promise<string> {
+    private async _checkFieldType(): Promise<JSX.Element> {
         const formService = await WorkItemFormService.getService();
         const inv = await formService.getInvalidFields();
         if (inv.length > 0 && inv.some((f) => f.referenceName === this.fieldName)) {
             const field = await getClient().getField(this.fieldName);
             if (field.isPicklist) {
-                return `Set the field ${field.name} to use suggested values rather than allowed values`;
+                return <div>
+                    {`Set the field ${field.name} to use suggested values rather than allowed values. `}
+                    <a href={HELP_URL} target="_blank">{"See documentation"}</a>
+                </div>;
             }
         }
-        return "";
+        return <></>;
     }
 }
