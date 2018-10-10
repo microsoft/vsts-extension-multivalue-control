@@ -16,6 +16,7 @@ interface IMultiValueControlProps {
     onSelectionChanged?: (selection: string[]) => Promise<void>;
     forceValue?: boolean;
     options: string[];
+    error: JSX.Element;
     onBlurred?: () => void;
     onResize?: () => void;
 }
@@ -36,6 +37,7 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
     }
     public render() {
         const {focused} = this.state;
+
         return <div className={`multi-value-control ${focused ? "focused" : ""}`}>
             <TagPicker
                 className="tag-picker"
@@ -48,8 +50,9 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
                 }}
                 onChange={this._onTagsChanged}
                 onResolveSuggestions={() => []}
-            />
+                />
             {focused ? this._getOptions() : null}
+            <div className="error">{this.props.error}</div>
         </div>;
     }
     public componentDidUpdate() {
