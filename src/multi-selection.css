@@ -8,19 +8,41 @@
     display: none;
 }
 #container .multi-value-control.focused .tag-picker .ms-BasePicker-text:hover {
-    border-color: rgba( var(--palette-neutral-8,234, 234, 234) , 1 );
+    border-color: rgba( var(--palette-neutral-8, 234, 234, 234) , 1 );
 }
 #container .multi-value-control .options button {
     width: 100%;
 }
 #container .multi-value-control .options button:hover {
-    background-color: aliceblue;
+    background-color: rgba(var(--palette-primary-tint-40, 239, 246, 252));
+}
+#container .multi-value-control .options button .ms-Checkbox-text {
+    color: rgba(var(--palette-neutral-100, 0, 0, 0));
 }
 #container .multi-value-control .options .checkboxes {
     padding: 3px;
 }
+#container .multi-value-control .options input {
+    color: rgba(var(--palette-neutral-100, 0, 0, 0));
+    background-color: rgba(var(--palette-neutral-0, 255, 255, 255));
+}
+.ms-Fabric--isFocusVisible .ms-TagItem:focus:after {
+    border-color: rgba(var(--palette-neutral-100, 0, 0, 0));
+}
+#container .multi-value-control .tag-picker .ms-TagItem {
+    background-color: rgba(var(--palette-neutral-4, 244, 244, 244));
+}
+#container .multi-value-control .tag-picker .ms-TagItem:hover {
+    background-color: rgba(var(--palette-neutral-8, 234, 234, 234));
+}
+#container .multi-value-control .tag-picker .ms-TagItem.is-selected {
+    background-color: rgba(var(--palette-neutral-20, 200, 200, 200));
+}
+#container .multi-value-control .tag-picker .ms-TagItem .ms-TagItem-close {
+    color: rgba(var(--palette-neutral-60, 102, 102, 102));
+}
 #container .multi-value-control .error {
-    color: red;
+    color: rgba(var(--palette-accent1, 218, 10, 0));
 }
 #container {
     padding-bottom: 3px;
