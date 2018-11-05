@@ -16,6 +16,9 @@
     padding-bottom: 3px;
     padding-right: 3px;
     .multi-value-control {
+        .tag-picker input {
+            @include color(--palette-neutral-100, 0, 0, 0);
+        }
         .tag-picker [role=list] {
             @include border-color(--palette-neutral-8, 234, 234, 234);
             &:not(:hover) {
