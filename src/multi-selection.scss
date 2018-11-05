@@ -1,15 +1,15 @@
 // ie does not support variables, use mixins as workaround
 @mixin border-color($varName, $defaultR, $defaultG, $defaultB) {
     border-color: rgb($defaultR, $defaultG, $defaultB);
-    border-color: rgb(var($varName, defaultR, $defaultG, $defaultB));
+    border-color: rgb(var($varName, $defaultR, $defaultG, $defaultB));
 }
 @mixin background-color($varName, $defaultR, $defaultG, $defaultB) {
     background-color: rgb($defaultR, $defaultG, $defaultB);
-    background-color: rgb(var($varName, defaultR, $defaultG, $defaultB));
+    background-color: rgb(var($varName, $defaultR, $defaultG, $defaultB));
 }
 @mixin color($varName, $defaultR, $defaultG, $defaultB) {
     color: rgb($defaultR, $defaultG, $defaultB);
-    color: rgb(var($varName, defaultR, $defaultG, $defaultB));
+    color: rgb(var($varName, $defaultR, $defaultG, $defaultB));
 }
 
 #container {
@@ -23,7 +23,7 @@
             }
         }
         .tag-picker .ms-TagItem {
-            @include background-color(--pallet-neutral-4, 244, 244, 244);
+            @include background-color(--palette-neutral-4, 244, 244, 244);
             &:hover {
                 @include background-color(--palette-neutral-8, 234, 234, 234);
             }
