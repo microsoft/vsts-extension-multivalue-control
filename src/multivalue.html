@@ -20,7 +20,15 @@
         });
         
         // Load main entry point for extension
-        VSS.require(["dist/src/multivalue"], function () {
+        VSS.require([
+            "TFS/WorkItemTracking/Services",
+            "TFS/WorkItemTracking/ExtensionContracts",
+            "TFS/WorkItemTracking/Services",
+            "TFS/WorkItemTracking/RestClient",
+            "VSS/Utils/Core",
+            "VSS/Utils/UI",
+            "dist/src/multivalue"
+        ], function () {
             // Loading succeeded
             VSS.notifyLoadSucceeded();
         });
