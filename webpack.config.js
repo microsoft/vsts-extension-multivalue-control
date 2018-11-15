@@ -35,6 +35,11 @@ module.exports = {
     },
     mode: "development",
     plugins: [
+        new BundleAnalyzerPlugin({
+          openAnalyzer: false,
+          reportFilename: "bundle-analysis.html",
+          analyzerMode: "static"
+        }),
         new CopyWebpackPlugin([
             { from: "./node_modules/vss-web-extension-sdk/lib/VSS.SDK.min.js", to: "libs/VSS.SDK.min.js" },
             { from: "./src/multivalue.html", to: "./" },

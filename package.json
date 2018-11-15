@@ -36,6 +36,7 @@
     "typings": "^2.1.1",
     "vss-web-extension-sdk": "^5.141.0",
     "webpack": "^4.16.5",
+    "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^2.4.2"
   },
