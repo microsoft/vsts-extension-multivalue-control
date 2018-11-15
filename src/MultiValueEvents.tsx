@@ -3,6 +3,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { getClient } from "TFS/WorkItemTracking/RestClient";
 import { WorkItemFormService } from "TFS/WorkItemTracking/Services";
+
 import { getSuggestedValues } from "./getSuggestedValues";
 import { MultiValueControl } from "./MultiValueControl";
 
@@ -48,7 +49,7 @@ export class MultiValueEvents {
         });
     }
     private _resize = () => {
-        VSS.resize(this._container.scrollWidth, this._container.scrollHeight);
+        VSS.resize(this._container.scrollWidth || 200, this._container.scrollHeight || 40);
     }
     private async _getSelected(): Promise<string[]> {
         const formService = await WorkItemFormService.getService();
