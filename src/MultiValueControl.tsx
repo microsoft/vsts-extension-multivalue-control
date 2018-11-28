@@ -28,6 +28,7 @@ interface IMultiValueControlState {
 
 export class MultiValueControl extends React.Component<IMultiValueControlProps, IMultiValueControlState> {
     private readonly _unfocusedTimeout = BrowserCheckUtils.isSafari() ? 2000 : 1;
+    private readonly _allowCustom: boolean = VSS.getConfiguration().witInputs.AllowCustom;
     private _setUnfocused = new DelayedFunction(null, this._unfocusedTimeout, "", () => {
         this.setState({focused: false, filter: ""});
     });
@@ -148,7 +149,7 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
             ...opts.filter((o) => o.toLocaleLowerCase().indexOf(filter) === 0),
             ...opts.filter((o) => o.toLocaleLowerCase().indexOf(filter) > 0),
         ];
-        return filtered.length > 0 ? filtered : [filter];
+        return filtered.length === 0 && this._allowCustom ? [filter] : filtered;
     }
     private _onInputChange = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
         this.setState({filter: newValue || ""});
