@@ -131,20 +131,6 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
             e.stopPropagation();
         }
     }
-
-    private getCustom() {
-        const optionLkp: {[opt: string]: boolean} = {};
-        for (const op of this.props.options) {
-            optionLkp[op] = true;
-        }
-        const custom: string[] = [];
-        for (const item of this.props.selected || []) {
-            if (!optionLkp.hasOwnProperty(item)) {
-                custom.push(item);
-            }
-        }
-        return custom;
-    }
     private _toggleSelectAll = () => {
         const options = this.props.options;
         const selected = this.props.selected || [];
@@ -155,13 +141,14 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
         }
         this._ifSafariCloseDropdown();
     }
-    private _filteredOptions = () => {
+    private _filteredOptions = (): string[] => {
         const filter = this.state.filter.toLocaleLowerCase();
-        const opts = this.props.options;
-        return [
+        const opts = this._mergeStrArrays([this.props.options, this.props.selected || []]);
+        const filtered =  [
             ...opts.filter((o) => o.toLocaleLowerCase().indexOf(filter) === 0),
             ...opts.filter((o) => o.toLocaleLowerCase().indexOf(filter) > 0),
         ];
+        return filtered.length > 0 ? filtered : [filter];
     }
     private _onInputChange = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
         this.setState({filter: newValue || ""});
@@ -176,7 +163,20 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
         if (!this.props.onSelectionChanged) {
             return;
         }
-        await this.props.onSelectionChanged([...selected, ...this.getCustom()]);
+        await this.props.onSelectionChanged(selected);
+    }
+    private _mergeStrArrays = (arrs: string[][]): string[] => {
+        const seen: {[str: string]: boolean} = {};
+        const merged: string[] = [];
+        for (const arr of arrs) {
+            for (const ele of arr) {
+                if (!seen[ele]) {
+                    seen[ele] = true;
+                    merged.push(ele);
+                }
+            }
+        }
+        return merged;
     }
     private _toggleOption = (option: string): boolean => {
         const selectedMap: {[k: string]: boolean} = {};
@@ -185,7 +185,7 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
         }
         const change = option in selectedMap || this.props.options.indexOf(option) >= 0;
         selectedMap[option] = !selectedMap[option];
-        const selected = this.props.options.filter((o) => selectedMap[o]);
+        const selected = this._mergeStrArrays([this.props.options, this.props.selected || [], [option]]).filter((o) => selectedMap[o]);
         this._setSelected(selected);
         this._ifSafariCloseDropdown();
         return change;
