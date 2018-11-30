@@ -7,9 +7,9 @@ module.exports = {
     target: "web",
     entry: {
         multivalue: "./src/multivalue.ts",
-        multivalue_picker: "office-ui-fabric-react/lib/components/pickers",
     },
     output: {
+        chunkFilename: "src/[name]_chunk.js",
         filename: "src/[name].js",
         libraryTarget: "amd"
     },
@@ -43,6 +43,9 @@ module.exports = {
     },
     mode: "development",
     plugins: [
+        new webpack.optimize.LimitChunkCountPlugin({
+          maxChunks: 3
+        }),
         new BundleAnalyzerPlugin({
           openAnalyzer: false,
           reportFilename: "bundle-analysis.html",
