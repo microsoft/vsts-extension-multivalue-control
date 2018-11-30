@@ -22,11 +22,6 @@ module.exports = {
         extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js"],
         moduleExtensions: ["-loader"],
     },
-    optimization: {
-        splitChunks: {
-            chunks: 'all'
-        }
-    },
     module: {
         rules: [
             {
