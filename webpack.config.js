@@ -1,7 +1,5 @@
-var path = require("path");
 var webpack = require("webpack");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     target: "web",
@@ -50,12 +48,6 @@ module.exports = {
           openAnalyzer: false,
           reportFilename: "bundle-analysis.html",
           analyzerMode: "static"
-        }),
-        new CopyWebpackPlugin([
-            { from: "./node_modules/vss-web-extension-sdk/lib/VSS.SDK.min.js", to: "libs/VSS.SDK.min.js" },
-            { from: "./src/multivalue.html", to: "./" },
-            { from: "./img", to: "img" },
-            { from: "./readme.md", to: "readme.md" }
-        ])
+        })
     ]
 }
