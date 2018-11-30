@@ -37,7 +37,7 @@ gulp.task('copy', gulp.parallel(() => {
 }));
 
 gulp.task('build', gulp.series(gulp.parallel('styles', 'tslint', 'copy'), () => {
-    const option = yargs.argv.release ? "-p" : "-d";
+    const option = yargs.argv.release || yargs.argv.buildRelease ? "-p" : "-d";
     execSync(`node ./node_modules/webpack-cli/bin/cli.js ${option} --progress --colors --output-path ./dist`, {
         stdio: [null, process.stdout, process.stderr]
     });
