@@ -1,3 +1,4 @@
+import "promise-polyfill/src/polyfill";
 import * as WitExtensionContracts from "TFS/WorkItemTracking/ExtensionContracts";
 import { WorkItemFormService } from "TFS/WorkItemTracking/Services";
 import { MultiValueEvents } from "./MultiValueEvents";
