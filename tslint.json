@@ -8,7 +8,8 @@
         "member-ordering": false,
         "object-literal-sort-keys": false,
         "variable-name": false,
-        "max-line-length": [true, 180]
+        "max-line-length": [true, 180],
+        "no-invalid-this": true
     },
     "rulesDirectory": []
 }

@@ -6,7 +6,8 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
     target: "web",
     entry: {
-        multivalue: "./src/multivalue.ts"
+        multivalue: "./src/multivalue.ts",
+        multivalue_picker: "office-ui-fabric-react/lib/components/pickers"
     },
     output: {
         filename: "src/[name].js",
@@ -14,6 +15,8 @@ module.exports = {
     },
     externals: [
         {
+            react: true,
+            "react-dom": true
         },
         /^VSS\/.*/, /^TFS\/.*/, /^q$/
     ],

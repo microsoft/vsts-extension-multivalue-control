@@ -16,6 +16,23 @@
     padding-bottom: 3px;
     padding-right: 3px;
     .multi-value-control {
+        input.empty-input {
+            @include color(--palette-neutral-100, 0, 0, 0);
+            @include background-color(--palette-neutral-0, 255, 255, 255);
+            height: 34px;
+            border: none;
+            -webkit-box-flex: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1;
+            outline: none;
+            padding: 0 6px 0px;
+            width: 100%;
+            border: 1px solid;
+            @include border-color(--palette-neutral-0, 255, 255, 255);
+            &:hover, &:focus {
+                @include border-color(--palette-neutral-8, 234, 234, 234);
+            }
+        }
         .tag-picker input {
             @include color(--palette-neutral-100, 0, 0, 0);
         }

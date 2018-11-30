@@ -1,13 +1,12 @@
-import { initializeIcons } from "office-ui-fabric-react/lib/Icons";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { getClient } from "TFS/WorkItemTracking/RestClient";
 import { WorkItemFormService } from "TFS/WorkItemTracking/Services";
 
+import { getPickerLib } from "./getMultiValueLibraries";
 import { getSuggestedValues } from "./getSuggestedValues";
 import { MultiValueControl } from "./MultiValueControl";
 
-initializeIcons();
 const HELP_URL = "https://github.com/Microsoft/vsts-extension-multivalue-control#azure-devops-services";
 
 export class MultiValueEvents {
@@ -41,6 +40,7 @@ export class MultiValueEvents {
             placeholder={selected.length ? "Click to Add" : "No selection made"}
             onResize={this._resize}
             error={error}
+            pickerLib = {selected && selected.length ? await getPickerLib() : null}
         />, this._container, () => {
             this._resize();
             if (this._onRefreshed) {
