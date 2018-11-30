@@ -7,7 +7,7 @@ module.exports = {
     target: "web",
     entry: {
         multivalue: "./src/multivalue.ts",
-        multivalue_picker: "office-ui-fabric-react/lib/components/pickers"
+        multivalue_picker: "office-ui-fabric-react/lib/components/pickers",
     },
     output: {
         filename: "src/[name].js",
@@ -23,6 +23,11 @@ module.exports = {
     resolve: {
         extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js"],
         moduleExtensions: ["-loader"],
+    },
+    optimization: {
+        splitChunks: {
+            chunks: 'all'
+        }
     },
     module: {
         rules: [

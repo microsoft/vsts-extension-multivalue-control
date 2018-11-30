@@ -1,9 +1,11 @@
 let pickerLib: Promise<typeof import ("office-ui-fabric-react/lib/components/pickers")>;
 export async function getPickerLib() {
     if (!pickerLib) {
-        pickerLib = import (/* webpackChunkName: "multivalue_picker" */ "office-ui-fabric-react/lib/components/pickers").then(async (pickers) => {
-            const { initializeIcons } = await import (/* webpackChunkName: "multivalue_picker" */ "office-ui-fabric-react/lib/Icons");
-            initializeIcons();
+        pickerLib = Promise.all([
+            import (/* webpackChunkName: "multivalue_picker" */ "office-ui-fabric-react/lib/components/pickers"),
+            import (/* webpackChunkName: "multivalue_picker" */ "office-ui-fabric-react/lib/Icons"),
+        ]).then(async ([pickers, icons]) => {
+            icons.initializeIcons();
             return pickers;
         });
     }
