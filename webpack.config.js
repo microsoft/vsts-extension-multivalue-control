@@ -36,9 +36,6 @@ module.exports = {
     },
     mode: "development",
     plugins: [
-        new webpack.optimize.LimitChunkCountPlugin({
-          maxChunks: 1
-        }),
         new BundleAnalyzerPlugin({
           openAnalyzer: false,
           reportFilename: "bundle-analysis.html",

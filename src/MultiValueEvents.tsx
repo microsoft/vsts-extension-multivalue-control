@@ -3,7 +3,6 @@ import * as ReactDOM from "react-dom";
 import { getClient } from "TFS/WorkItemTracking/RestClient";
 import { WorkItemFormService } from "TFS/WorkItemTracking/Services";
 
-import { getPickerLib } from "./getMultiValueLibraries";
 import { getSuggestedValues } from "./getSuggestedValues";
 import { MultiValueControl } from "./MultiValueControl";
 
@@ -40,7 +39,6 @@ export class MultiValueEvents {
             placeholder={selected.length ? "Click to Add" : "No selection made"}
             onResize={this._resize}
             error={error}
-            pickerLib = {selected && selected.length ? await getPickerLib() : null}
         />, this._container, () => {
             this._resize();
             if (this._onRefreshed) {

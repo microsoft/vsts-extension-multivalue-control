@@ -1,7 +1,10 @@
+import { Checkbox } from "office-ui-fabric-react/lib/components/Checkbox";
+import { TagPicker } from "office-ui-fabric-react/lib/components/pickers";
+import { TextField } from "office-ui-fabric-react/lib/components/TextField";
+import { FocusZone, FocusZoneDirection } from "office-ui-fabric-react/lib/FocusZone";
 import * as React from "react";
 import { DelayedFunction } from "VSS/Utils/Core";
 import { BrowserCheckUtils } from "VSS/Utils/UI";
-import { getCheckboxLib, getFocusZoneLib, getTextFieldLib } from "./getMultiValueLibraries";
 
 export interface IMultiValueControlProps {
     selected?: string[];
@@ -16,14 +19,10 @@ export interface IMultiValueControlProps {
     error: JSX.Element;
     onBlurred?: () => void;
     onResize?: () => void;
-    pickerLib: typeof import ("office-ui-fabric-react/lib/components/pickers") | null;
 }
 
 interface IMultiValueControlState {
     focused: boolean;
-    checkBoxLib: typeof import ("office-ui-fabric-react/lib/components/Checkbox");
-    focusZoneLib: typeof import ("office-ui-fabric-react/lib/FocusZone");
-    textFieldLib: typeof import ("office-ui-fabric-react/lib/components/TextField");
     filter: string;
 }
 
@@ -40,17 +39,13 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
     public render() {
         const {focused} = this.state;
         const onFocus = async () => {
-            const [checkBoxLib, focusZoneLib, textFieldLib ] = await Promise.all([getCheckboxLib(), getFocusZoneLib(), getTextFieldLib()]);
             this.setState({
                 focused: true,
-                checkBoxLib,
-                focusZoneLib,
-                textFieldLib,
             });
         };
 
-        const content = this.props.selected && this.props.selected.length && this.props.pickerLib ?
-            <this.props.pickerLib.TagPicker
+        const content = this.props.selected && this.props.selected.length ?
+            <TagPicker
                 className="tag-picker"
                 selectedItems={(this.props.selected || []).map((t) => ({ key: t, name: t }))}
                 inputProps={{
@@ -86,9 +81,6 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
         const options = this.props.options;
         const selected = (this.props.selected || []).slice(0);
         const filteredOpts = this._filteredOptions();
-        const { Checkbox } = this.state.checkBoxLib;
-        const { FocusZone, FocusZoneDirection } = this.state.focusZoneLib;
-        const { TextField } = this.state.textFieldLib;
 
         return <div className="options">
             <TextField value={this.state.filter}
