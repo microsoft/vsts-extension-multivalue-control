@@ -37,12 +37,8 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
         this.state = { focused: false, filter: ""} as IMultiValueControlState;
     }
     public render() {
-        const {focused} = this.state;
-        const onFocus = async () => {
-            this.setState({
-                focused: true,
-            });
-        };
+        const { focused } = this.state;
+        const onFocus = () => this.setState({ focused: true });
 
         const content = this.props.selected && this.props.selected.length ?
             <TagPicker
