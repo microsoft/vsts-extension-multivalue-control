@@ -41,7 +41,9 @@
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^2.11.5"
   },
-  "dependencies": {},
+  "dependencies": {
+    "es6-promise": "^4.2.8"
+  },
   "name": "multivalue-control-extension",
   "license": "MIT",
   "description": "VSTS Work Item Form Multivalue Control Extension",
