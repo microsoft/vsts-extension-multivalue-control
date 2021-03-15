@@ -1,15 +1,16 @@
 {
     "manifestVersion": 1.0,
-    "id": "vsts-extensions-multivalue-control",
-    "version": "2.2.26",
-    "name": "Multivalue control",
+    "id": "vsts-extensions-multivalue-control-long-values",
+    "version": "1.0.4",
+    "name": "Multivalue control for long values",
     "description": "A work item form control which allows selection of multiple values.",
-    "publisher": "ms-devlabs",
+    "public": false,
+    "publisher": "daria-kiritseva",
     "icons": {
         "default": "img/logo.png"
     },
     "categories": [
-        "Plan and track"
+        "Azure Boards"
     ],
     "targets": [
         {
@@ -28,23 +29,17 @@
     ],
     "repository": {
         "type": "git",
-        "uri": "https://github.com/Microsoft/vsts-extension-multivalue-control"
+        "uri": "https://github.com/programaka/vsts-extension-multivalue-control"
     },
     "links": {
         "home": {
-            "uri": "https://github.com/Microsoft/vsts-extension-multivalue-control"
+            "uri": "https://github.com/programaka/vsts-extension-multivalue-control"
         },
         "learn": {
-            "uri": "https://github.com/Microsoft/vsts-extension-multivalue-control"
+            "uri": "https://github.com/programaka/vsts-extension-multivalue-control"
         },
         "repository": {
-            "uri": "https://github.com/Microsoft/vsts-extension-multivalue-control"
-        },
-        "issues": {
-            "uri": "https://github.com/Microsoft/vsts-extension-multivalue-control/issues"
-        },
-        "support": {
-            "uri": "https://github.com/Microsoft/vsts-extension-multivalue-control/issues"
+            "uri": "https://github.com/programaka/vsts-extension-multivalue-control"
         }
     },
     "tags": [
@@ -71,7 +66,7 @@
                 "ms.vss-work-web.work-item-form"
             ],
             "properties": {
-                "name": "Multivalue control",
+                "name": "Multivalue control for long values",
                 "uri": "dist/multivalue.html",
                 "height": 50,
 				"inputs": [
