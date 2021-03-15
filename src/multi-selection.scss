@@ -50,10 +50,13 @@
                     @include background-color(--palette-primary-tint-40, 239, 246, 252);
                 }
                 .ms-Checkbox-text {
+                    white-space: nowrap;
                     @include color(--palette-neutral-100, 0, 0, 0);
                 }
             }
             .checkboxes {
+                overflow: auto;
+                height: 250px;
                 padding: 3px;
             }
             input {
