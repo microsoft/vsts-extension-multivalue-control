@@ -25,7 +25,7 @@
     "copy-webpack-plugin": "^4.5.2",
     "css-loader": "^3.2.0",
     "jsonpath": "^1.0.2",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "office-ui-fabric-react": "^6.47.1",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
