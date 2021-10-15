@@ -2,7 +2,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "clean": "rimraf dist *.vsix vss-extension-release.json src/*js libs",
-    "dev": "webpack-dev-server --hot --progress --colors --content-base ./src --https --port 8888",
+    "dev": "webpack-dev-server --hot --mode development --progress --colors --content-base ./src --https --port 8888",
     "dev:http": "webpack-dev-server --hot --progress --colors --content-base ./src --http --port 8888",
     "package:dev": "node ./scripts/packageDev",
     "package:dev:http": "node ./scripts/packageDevHttp",
@@ -39,7 +39,7 @@
     "webpack": "^4.16.5",
     "webpack-bundle-analyzer": "^3.6.0",
     "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^2.11.5"
+    "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
     "es6-promise": "^4.2.8"

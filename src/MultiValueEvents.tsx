@@ -3,7 +3,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { getClient } from "TFS/WorkItemTracking/RestClient";
 import { WorkItemFormService } from "TFS/WorkItemTracking/Services";
-
+import { WorkItemOptions } from "TFS/WorkItemTracking/UIContracts";
 import { getSuggestedValues } from "./getSuggestedValues";
 import { MultiValueControl } from "./MultiValueControl";
 
@@ -53,7 +53,8 @@ export class MultiValueEvents {
     }
     private async _getSelected(): Promise<string[]> {
         const formService = await WorkItemFormService.getService();
-        const value = await formService.getFieldValue(this.fieldName);
+        var options: WorkItemOptions = {returnOriginalValue: false};
+        const value = await formService.getFieldValue(this.fieldName,options);
         if (typeof value !== "string") {
             return [];
         }

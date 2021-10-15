@@ -9,7 +9,7 @@
         "default": "img/logo.png"
     },
     "categories": [
-        "Plan and track"
+        "Azure Boards"
     ],
     "targets": [
         {
@@ -72,7 +72,7 @@
             ],
             "properties": {
                 "name": "Multivalue control",
-                "uri": "dist/multivalue.html",
+                "uri": "multivalue.html",
                 "height": 50,
 				"inputs": [
 				    {
