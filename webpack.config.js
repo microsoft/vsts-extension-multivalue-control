@@ -18,8 +18,7 @@ module.exports = {
         /^VSS\/.*/, /^TFS\/.*/, /^q$/
     ],
     resolve: {
-        extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js"],
-        moduleExtensions: ["-loader"],
+        extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
     },
     module: {
         rules: [
@@ -40,12 +39,13 @@ module.exports = {
           reportFilename: "bundle-analysis.html",
           analyzerMode: "static"
         }),
-        new CopyWebpackPlugin([
-            { from: "./node_modules/es6-promise/dist/es6-promise.min.js", to: "libs/es6-promise.min.js" },
-            { from: "./node_modules/vss-web-extension-sdk/lib/VSS.SDK.min.js", to: "libs/VSS.SDK.min.js" },
-            { from: "./src/multivalue.html", to: "./" },
-            { from: "./img", to: "img" },
-            { from: "./readme.md", to: "readme.md" }
-        ])
+        new CopyWebpackPlugin({
+                patterns: [
+                    { from: "./node_modules/es6-promise/dist/es6-promise.min.js", to: "libs/es6-promise.min.js" },
+                    { from: "./node_modules/vss-web-extension-sdk/lib/VSS.SDK.min.js", to: "libs/VSS.SDK.min.js" },
+                    { from: "./src/multivalue.html", to: "./" },
+                    { from: "./img", to: "img" },
+                    { from: "./readme.md", to: "readme.md" }
+        ]})
     ]
 }
