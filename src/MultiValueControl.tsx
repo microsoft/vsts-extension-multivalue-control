@@ -159,7 +159,7 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
             ...opts.filter((o) => o.toLocaleLowerCase().indexOf(filter) === 0),
             ...opts.filter((o) => o.toLocaleLowerCase().indexOf(filter) > 0),
         ];
-        return filtered.length === 0 && this._allowCustom ? [filter] : filtered;
+        return filtered.length === 0 && this._allowCustom ? [this.state.filter] : filtered;
     }
     private _onInputChange = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
         let isMultiline = this.state.multiline;
