@@ -2,11 +2,11 @@
 
 var exec = require("child_process").exec;
 
-var manifest = require("../vss-extension.json");
+var manifest = require("../azure-devops-extension.json");
 var extensionId = manifest.id;
 
 // Package extension
-var command = `tfx extension create --extension-id ${extensionId}-beta --overrides-file configs/beta.json --manifest-globs vss-extension.json --no-prompt --json`;
+var command = `tfx extension create --extension-id ${extensionId}-beta --overrides-file configs/beta.json --manifest-globs azure-devops-extension.json --no-prompt --json`;
 exec(command, (error, stdout) => {
     if (error) {
         console.error(`Could not create package: '${error}'`);
