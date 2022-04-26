@@ -11,7 +11,7 @@
 ![Control Expanded](img/operatingSystemExpanded.png)
 
 # How to get started
-## Azure Devops Services
+## Azure DevOps Services
 
 Navigate to your work item form customization page and add a multivalue control.
 
@@ -25,7 +25,7 @@ Be sure to allow user inputed values if a picklisk (string) field is used to bac
 
 ![check the box to allow users to enter their own values](img/allowedValues.png)
 
-## Azure Devops Server
+## Azure DevOps Server
 We recommend TFS 2017 RC2 or later when running this extension.
 
 [Learn more](https://github.com/Microsoft/vsts-extension-multivalue-control/blob/master/xmldetails.md) about how to customize the multivalue control directly on XML.
