@@ -104,7 +104,7 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
                     }}
                     onChange={() => this._toggleOption(o)}
                     label={o}
-                    style={{whiteSpace: "nowwarp",overflow:"hidden",textOverflow: "ellipsis"}} 
+                    // style={{ whiteSpace: "nowwarp",overflow:"hidden",textOverflow: "ellipsis"}} 
                     className = "test"
                 />)}
             </FocusZone>
