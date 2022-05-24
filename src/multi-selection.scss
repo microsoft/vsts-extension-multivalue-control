@@ -72,3 +72,8 @@
 .ms-Fabric--isFocusVisible .ms-TagItem:focus:after {
     @include border-color(--palette-neutral-100, 0, 0, 0);
 }
+.test {
+    white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
