@@ -43,7 +43,7 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
 
         return <div className={`multi-value-control ${focused ? "focused" : ""}`}>
             <TagPicker
-                className="tag-picker wrap-text-dots"
+                className="tag-picker"
                 selectedItems={(this.props.selected || []).map((t) => ({ key: t, name: t }))}
                 inputProps={{
                     placeholder: this.props.placeholder,

@@ -28,6 +28,9 @@
         .tag-picker .ms-TagItem {
             @include background-color(--palette-neutral-4, 244, 244, 244);
             &:hover {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
                 @include background-color(--palette-neutral-8, 234, 234, 234);
             }
             &.is-selected {
@@ -71,8 +74,3 @@
     @include border-color(--palette-neutral-100, 0, 0, 0);
 }
 
-.wrap-text-dots {
-    white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
