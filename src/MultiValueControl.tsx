@@ -103,10 +103,14 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
                         onFocus: this._onFocus,
                     }}
                     onChange={() => this._toggleOption(o)}
-                    label={o}
+                    label={this._wrapText(o)}
                 />)}
             </FocusZone>
         </div>;
+    }
+
+    private _wrapText(text: string){
+        return text.length > 8 ? `${text.slice(0.7)}...` : text;
     }
     private _onInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.altKey || e.shiftKey || e.ctrlKey) {
