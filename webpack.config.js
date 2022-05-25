@@ -33,9 +33,6 @@ module.exports = {
         ]
     },
     devtool: 'inline-source-map',
-    devServer: {
-        https: true,
-    },
     mode: "development",
     plugins: [
         new BundleAnalyzerPlugin({
