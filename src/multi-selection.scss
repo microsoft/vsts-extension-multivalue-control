@@ -68,12 +68,12 @@
             @include color(--palette-accent1, 218, 10, 0);
         }
     }
+    .wrap-text-dots {
+        white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 }
 .ms-Fabric--isFocusVisible .ms-TagItem:focus:after {
     @include border-color(--palette-neutral-100, 0, 0, 0);
-}
-.test {
-    white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }

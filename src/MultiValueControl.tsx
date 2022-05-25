@@ -71,7 +71,7 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
         const selected = (this.props.selected || []).slice(0);
         const filteredOpts = this._filteredOptions();
 
-        return <div className="options">
+        return <div className="options wrap-text-dots">
             <TextField value={this.state.filter}
                 autoFocus
                 placeholder={"Filter values"}
@@ -104,8 +104,6 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
                     }}
                     onChange={() => this._toggleOption(o)}
                     label={o}
-                    // style={{ whiteSpace: "nowwarp",overflow:"hidden",textOverflow: "ellipsis"}} 
-                    className = "test"
                 />)}
             </FocusZone>
         </div>;
