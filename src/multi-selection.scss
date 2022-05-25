@@ -55,9 +55,6 @@
             }
             .checkboxes {
                 padding: 3px;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
             }
             input {
                 @include color(--palette-neutral-100, 0, 0, 0);
