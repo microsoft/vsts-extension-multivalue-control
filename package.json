@@ -2,7 +2,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "clean": "rimraf dist *.vsix vss-extension-release.json src/*js libs",
-    "dev": "webpack-dev-server --hot --progress --color --https --port 8888 --static-public-path ./src",
+    "dev": "webpack-dev-server --hot --progress --color --https --port 8888 --static ./src --static-public-path ./src",
     "dev:http": "webpack-dev-server --hot --progress --color --no-https --port 8888 --static-public-path ./src",
     "package:dev": "node ./scripts/packageDev",
     "package:dev:http": "node ./scripts/packageDevHttp",
