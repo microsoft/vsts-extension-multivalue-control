@@ -24,9 +24,11 @@ interface IMultiValueControlProps {
 interface IMultiValueControlState {
     focused: boolean;
     filter: string;
+    multiline: boolean;
 }
 
 export class MultiValueControl extends React.Component<IMultiValueControlProps, IMultiValueControlState> {
+   
     private readonly _unfocusedTimeout = BrowserCheckUtils.isSafari() ? 2000 : 1;
     private readonly _allowCustom: boolean = VSS.getConfiguration().witInputs.AllowCustom;
     private _setUnfocused = new DelayedFunction(null, this._unfocusedTimeout, "", () => {
@@ -34,7 +36,7 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
     });
     constructor(props, context) {
         super(props, context);
-        this.state = { focused: false, filter: "" };
+        this.state = { focused: false, filter: "", multiline: false };
     }
     public render() {
         const {focused} = this.state;
@@ -61,6 +63,9 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
             this.props.onResize();
         }
     }
+
+ 
+
     private _getOptions() {
         const options = this.props.options;
         const selected = (this.props.selected || []).slice(0);
@@ -74,6 +79,7 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
                 onBlur={this._onBlur}
                 onFocus={this._onFocus}
                 onChange={this._onInputChange}
+                multiline={this.state.multiline}
             />
             <FocusZone
                 direction={FocusZoneDirection.vertical}
@@ -97,10 +103,14 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
                         onFocus: this._onFocus,
                     }}
                     onChange={() => this._toggleOption(o)}
-                    label={o}
+                    label={this._wrapText(o)}
                 />)}
             </FocusZone>
         </div>;
+    }
+
+    private _wrapText(text: string){
+        return text.length > 15 ? `${text.slice(0,35)}...` : text;
     }
     private _onInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.altKey || e.shiftKey || e.ctrlKey) {
@@ -152,7 +162,14 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
         return filtered.length === 0 && this._allowCustom ? [filter] : filtered;
     }
     private _onInputChange = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
-        this.setState({filter: newValue || ""});
+        let isMultiline = this.state.multiline;
+        if(newValue != undefined ){
+        const newMultiline = newValue.length > 50;
+            if (newMultiline !== this.state.multiline) {
+                isMultiline = newMultiline
+            }
+        }
+        this.setState({filter: newValue || "", multiline: isMultiline});
     }
     private _onBlur = () => {
         this._setUnfocused.reset();

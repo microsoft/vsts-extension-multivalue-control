@@ -65,7 +65,9 @@
             @include color(--palette-accent1, 218, 10, 0);
         }
     }
+    
 }
 .ms-Fabric--isFocusVisible .ms-TagItem:focus:after {
     @include border-color(--palette-neutral-100, 0, 0, 0);
 }
+
