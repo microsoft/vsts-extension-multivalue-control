@@ -110,7 +110,7 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
     }
 
     private _wrapText(text: string){
-        return text.length > 15 ? `${text.slice(0,35)}...` : text;
+        return text.length > 35 ? `${text.slice(0,35)}...` : text;
     }
     private _onInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.altKey || e.shiftKey || e.ctrlKey) {
