@@ -57,7 +57,7 @@ export class MultiValueEvents {
         if (typeof value !== "string") {
             return [];
         }
-        return value.split(";").filter((v) => !!v);
+        return value.split(";").filter((v) => !!v).map(s => s.trim());
     }
     private _setSelected = async (values: string[]): Promise<void> => {
         this.refresh(values);
