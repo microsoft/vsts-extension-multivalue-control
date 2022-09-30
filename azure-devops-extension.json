@@ -104,6 +104,14 @@
                             "dataType": "Boolean",
                             "isRequired": false
                         }
+                    },
+                    {
+                        "id":"LabelDisplayLength",
+                        "name": "Set the maximum display length for each option's label. Defaults to 35 if not set.",
+                        "validation": {
+                            "dataType": "Number",
+                            "isRequired": false
+                        }
                     }
 				]
             }
