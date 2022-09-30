@@ -31,6 +31,7 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
    
     private readonly _unfocusedTimeout = BrowserCheckUtils.isSafari() ? 2000 : 1;
     private readonly _allowCustom: boolean = VSS.getConfiguration().witInputs.AllowCustom;
+    private readonly _labelDisplayLength: number = VSS.getConfiguration().witInputs.LabelDisplayLength ? VSS.getConfiguration().witInputs.LabelDisplayLength : 35;
     private _setUnfocused = new DelayedFunction(null, this._unfocusedTimeout, "", () => {
         this.setState({focused: false, filter: ""});
     });
@@ -104,13 +105,14 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
                     }}
                     onChange={() => this._toggleOption(o)}
                     label={this._wrapText(o)}
+                    title={o}
                 />)}
             </FocusZone>
         </div>;
     }
 
     private _wrapText(text: string){
-        return text.length > 35 ? `${text.slice(0,35)}...` : text;
+        return text.length > this._labelDisplayLength ? `${text.slice(0,this._labelDisplayLength)}...` : text;
     }
     private _onInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.altKey || e.shiftKey || e.ctrlKey) {

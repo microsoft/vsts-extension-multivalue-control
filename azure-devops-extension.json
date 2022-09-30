@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1.0,
     "id": "vsts-extensions-multivalue-control",
-    "version": "0.6",
+    "version": "0.17",
     "name": "Multivalue control",
     "description": "A work item form control which allows selection of multiple values.",
     "publisher": "JoshuaBarclay",
@@ -102,6 +102,14 @@
                         "inputMode": "CheckBox",
                         "validation": {
                             "dataType": "Boolean",
+                            "isRequired": false
+                        }
+                    },
+                    {
+                        "id":"LabelDisplayLength",
+                        "name": "Set the maximum display length for each option's label. Defaults to 35 if not set.",
+                        "validation": {
+                            "dataType": "Number",
                             "isRequired": false
                         }
                     }

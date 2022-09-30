@@ -33,6 +33,11 @@ Extension:
 			Data Type: String
 			IsRequired: false
 
+            Id: LabelDisplayLength
+            Description: Set the maximum display length for each option's label. Defaults to 35 if not set.
+            Data Type: Number
+            IsRequired: false
+
 
 Note: For more information on work item extensions use the following topic:
 http://go.microsoft.com/fwlink/?LinkId=816513
@@ -104,6 +109,11 @@ You can find the contribution ID and input information within the commented blob
 			Description: Values can be user provided or from suggested values of the backing field
 			Data Type: String
 			IsRequired: false
+
+            Id: LabelDisplayLength
+            Description: Display length of the label. Defaults to 35 if not set.
+            Data Type: Number
+            IsRequired: false
 ```
 
 For the input tag, the content of the `Id` attribute can be either `FieldName` or `Values`.
