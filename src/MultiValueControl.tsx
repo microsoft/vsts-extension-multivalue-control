@@ -153,11 +153,11 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
         this._ifSafariCloseDropdown();
     }
     private _filteredOptions = (): string[] => {
-        const filter = this.state.filter.toLocaleLowerCase();
+        const filter = this.state.filter;
         const opts = this._mergeStrArrays([this.props.options, this.props.selected || []]);
         const filtered =  [
-            ...opts.filter((o) => o.toLocaleLowerCase().indexOf(filter) === 0),
-            ...opts.filter((o) => o.toLocaleLowerCase().indexOf(filter) > 0),
+            ...opts.filter((o) => o.indexOf(filter) === 0),
+            ...opts.filter((o) => o.indexOf(filter) > 0),
         ];
         return this._allowCustom ? [this.state.filter, ...filtered] : filtered;
     }
