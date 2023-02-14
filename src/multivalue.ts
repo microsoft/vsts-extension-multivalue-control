@@ -24,6 +24,9 @@ const provider = () => {
         control.refresh();
     };
 
+
+    
+
     return {
         onLoaded: (args: WitExtensionContracts.IWorkItemLoadedArgs) => {
             ensureControl();

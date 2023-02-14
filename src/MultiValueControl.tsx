@@ -73,6 +73,8 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
         const filteredOpts = this._filteredOptions();
 
         return <div className="options">
+
+           <div> titi</div> 
             <TextField value={this.state.filter}
                 autoFocus
                 placeholder={"Filter values"}
@@ -121,9 +123,7 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
 
         if (e.keyCode === 13 /* enter */) {
             const filtered = this._filteredOptions();
-            if (filtered.length !== 1) {
-                return;
-            }
+        
             e.preventDefault();
             e.stopPropagation();
             this._toggleOption(filtered[0]);
@@ -157,12 +157,15 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
     private _filteredOptions = (): string[] => {
         const filter = this.state.filter.toLocaleLowerCase();
         const opts = this._mergeStrArrays([this.props.options, this.props.selected || []]);
-        const filtered =  [
+         const filtered =  [
             ...opts.filter((o) => o.toLocaleLowerCase().indexOf(filter) === 0),
             ...opts.filter((o) => o.toLocaleLowerCase().indexOf(filter) > 0),
         ];
-        return filtered.length === 0 && this._allowCustom ? [this.state.filter] : filtered;
+
+        
+        return this._allowCustom ? [this.state.filter, ...filtered] : filtered;
     }
+
     private _onInputChange = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
         let isMultiline = this.state.multiline;
         if(newValue != undefined ){
@@ -196,6 +199,7 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
                 }
             }
         }
+        
         return merged;
     }
     private _toggleOption = (option: string): boolean => {
@@ -206,6 +210,8 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
         const change = option in selectedMap || this.props.options.indexOf(option) >= 0;
         selectedMap[option] = !selectedMap[option];
         const selected = this._mergeStrArrays([this.props.options, this.props.selected || [], [option]]).filter((o) => selectedMap[o]);
+  
+        
         this._setSelected(selected);
         this._ifSafariCloseDropdown();
         return change;
