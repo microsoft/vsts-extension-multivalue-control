@@ -121,9 +121,7 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
 
         if (e.keyCode === 13 /* enter */) {
             const filtered = this._filteredOptions();
-            if (filtered.length !== 1) {
-                return;
-            }
+           
             e.preventDefault();
             e.stopPropagation();
             this._toggleOption(filtered[0]);
