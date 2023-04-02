@@ -156,9 +156,10 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
         const filter = this.state.filter.toLocaleLowerCase();
         const opts = this._mergeStrArrays([this.props.options, this.props.selected || []]);
         const filtered =  [
-            ...opts.filter((o) => o.indexOf(filter) === 0),
-            ...opts.filter((o) => o.indexOf(filter) > 0),
+            ...opts.filter((o) => o.toLocaleLowerCase().indexOf(filter) === 0),
+            ...opts.filter((o) => o.toLocaleLowerCase().indexOf(filter) > 0),
         ];
+
         return this._allowCustom ? [this.state.filter, ...filtered] : filtered;
     }
     private _onInputChange = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
