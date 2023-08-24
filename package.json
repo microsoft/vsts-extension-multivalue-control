@@ -31,7 +31,7 @@
     "rimraf": "^2.6.1",
     "sass": "^1.23.3",
     "style-loader": "^0.16.1",
-    "tfx-cli": "^0.11.0",
+    "tfx-cli": "^0.16.0",
     "ts-loader": "^9.2.6",
     "typescript": "^3.9.10",
     "vss-web-extension-sdk": "^5.141.0",
