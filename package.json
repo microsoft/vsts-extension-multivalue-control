@@ -42,9 +42,8 @@
   },
   "dependencies": {
     "es6-promise": "^4.2.8",
-    "vss-web-extension-sdk": "^5.141.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "vss-web-extension-sdk": "^5.141.0"
+  
   },
   "name": "multivalue-control-extension",
   "license": "MIT",
