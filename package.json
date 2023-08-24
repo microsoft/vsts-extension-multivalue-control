@@ -31,18 +31,19 @@
     "rimraf": "^2.6.1",
     "sass": "^1.23.3",
     "style-loader": "^0.16.1",
-    "tfx-cli": "^0.11.0",
     "ts-loader": "^9.2.6",
     "typescript": "^3.9.10",
     "vss-web-extension-sdk": "^5.141.0",
     "webpack": "^5.76.0",
     "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.9.1",
-    "webpack-dev-server": "^4.8.1"
+    "webpack-dev-server": "^4.8.1",
+    "tfx-cli": "^0.11.0"
   },
   "dependencies": {
     "es6-promise": "^4.2.8",
     "vss-web-extension-sdk": "^5.141.0"
+   
   },
   "name": "multivalue-control-extension",
   "license": "MIT",
