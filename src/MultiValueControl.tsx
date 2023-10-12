@@ -156,7 +156,7 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
     }
     private _filteredOptions = (): string[] => {
         const filter = this.state.filter.toLocaleLowerCase();
-        const opts = this._mergeStrArrays([this.props.options, this.props.selected || ["aminm"]]);
+        const opts = this._mergeStrArrays([this.props.options, this.props.selected || []]);
       
         const filtered =  [
             ...opts.filter((o) => o.toLocaleLowerCase().indexOf(filter) === 0),
