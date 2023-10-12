@@ -65,6 +65,8 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
         }
     }
 
+
+
  
 
     private _getOptions() {
@@ -154,13 +156,16 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
     }
     private _filteredOptions = (): string[] => {
         const filter = this.state.filter.toLocaleLowerCase();
-        const opts = this._mergeStrArrays([this.props.options, this.props.selected || []]);
+        const opts = this._mergeStrArrays([this.props.options, this.props.selected || ["aminm"]]);
+      
         const filtered =  [
             ...opts.filter((o) => o.toLocaleLowerCase().indexOf(filter) === 0),
             ...opts.filter((o) => o.toLocaleLowerCase().indexOf(filter) > 0),
         ];
 
-        return this._allowCustom ? [this.state.filter, ...filtered] : filtered;
+       const filterEmptyElement = this._allowCustom ? [this.state.filter, ...filtered] : filtered;
+
+        return filterEmptyElement.filter(el => el !== "")
     }
     private _onInputChange = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
         let isMultiline = this.state.multiline;
