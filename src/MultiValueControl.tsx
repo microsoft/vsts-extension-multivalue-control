@@ -84,7 +84,7 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
             />
             <FocusZone
                 direction={FocusZoneDirection.vertical}
-                className="checkboxes"
+              
             >
                 {this.state.filter ? null :
                 <Checkbox
