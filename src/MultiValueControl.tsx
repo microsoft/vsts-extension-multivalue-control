@@ -104,7 +104,7 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
                         onFocus: this._onFocus,
                     }}
                     onChange={() => this._toggleOption(o)}
-                    label={this._wrapText(o)}
+                    label={this._wrapText(o.length > 30 ? `${o.slice(0, 30)}...` : o)}
                     title={o}
                 />)}
             </FocusZone>
