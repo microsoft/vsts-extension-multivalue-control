@@ -1,10 +1,10 @@
 # Multi-value-control
 
-The Multi-Value Control Azure DevOps Extension enhances work item forms by enabling the selection of multiple values within a single field. This functionality is ideal for scenarios requiring categorization under multiple tags.
+The Azure DevOps Extension Multi-Value Control enhances work item forms by enabling the selection of multiple values within a single field. This functionality is ideal for scenarios requiring categorization under multiple tags.
 
 # Documentation
 
-For detailed instructions on using the Multi-value-control Azure DevOps extension, please refer to the official documentation. You can access the comprehensive guide by clicking [Market place](https://marketplace.visualstudio.com/items?itemName=ms-devlabs.vsts-extensions-multivalue-control). This resource provides step-by-step information to help you effectively utilize the Multi-value-control features within your Azure DevOps environment.
+For detailed instructions on using the Multi-value-control Azure DevOps extension, please refer to the official documentation. You can access the comprehensive guide by clicking [Marketplace](https://marketplace.visualstudio.com/items?itemName=ms-devlabs.vsts-extensions-multivalue-control). This resource provides step-by-step information to help you effectively utilize the Multi-value-control features within your Azure DevOps environment.
 
 # Support
 
@@ -36,7 +36,7 @@ npm install
 npm run dev
 
 # Build the extension
-npm run build
+npm run build:release
 ```
 
 ## About Microsoft DevLabs
