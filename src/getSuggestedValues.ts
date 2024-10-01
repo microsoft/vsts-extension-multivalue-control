@@ -8,5 +8,10 @@ export async function getSuggestedValues(): Promise<string[]> {
     }
     // if the values input were not specified as an input, get the suggested values for the field.
     const service = await WorkItemFormService.getService();
-    return await service.getAllowedFieldValues(VSS.getConfiguration().witInputs.FieldName) as string[];
+    const allowedValues = await service.getAllowedFieldValues(VSS.getConfiguration().witInputs.FieldName) as string[];
+
+    // The getAllowedFieldValues API now returns both predefined and user-saved values,
+    // which are stored as a semicolon-separated list.
+    // Filter out values containing semicolons to prevent duplicates.
+    return allowedValues.filter((value) => value.indexOf(";") === -1);
 }
