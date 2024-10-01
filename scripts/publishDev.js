@@ -1,6 +1,6 @@
 var exec = require("child_process").exec;
 
-var manifest = require("../vss-extension.json");
+var manifest = require("../azure-devops-extension.json");
 var extensionId = manifest.id;
 var extensionPublisher = manifest.publisher;
 var extensionVersion = manifest.version;

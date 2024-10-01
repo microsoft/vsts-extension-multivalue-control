@@ -5,3 +5,5 @@ extension-*.json
 settings.vset.json
 *.vsix
 typings
+.vs
+.vscode

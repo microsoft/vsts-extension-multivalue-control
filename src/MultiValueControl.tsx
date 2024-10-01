@@ -24,17 +24,20 @@ interface IMultiValueControlProps {
 interface IMultiValueControlState {
     focused: boolean;
     filter: string;
+    multiline: boolean;
 }
 
 export class MultiValueControl extends React.Component<IMultiValueControlProps, IMultiValueControlState> {
+   
     private readonly _unfocusedTimeout = BrowserCheckUtils.isSafari() ? 2000 : 1;
     private readonly _allowCustom: boolean = VSS.getConfiguration().witInputs.AllowCustom;
+    private readonly _labelDisplayLength: number = VSS.getConfiguration().witInputs.LabelDisplayLength ? VSS.getConfiguration().witInputs.LabelDisplayLength : 35;
     private _setUnfocused = new DelayedFunction(null, this._unfocusedTimeout, "", () => {
         this.setState({focused: false, filter: ""});
     });
     constructor(props, context) {
         super(props, context);
-        this.state = { focused: false, filter: "" };
+        this.state = { focused: false, filter: "", multiline: false };
     }
     public render() {
         const {focused} = this.state;
@@ -61,6 +64,11 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
             this.props.onResize();
         }
     }
+
+
+
+ 
+
     private _getOptions() {
         const options = this.props.options;
         const selected = (this.props.selected || []).slice(0);
@@ -74,10 +82,11 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
                 onBlur={this._onBlur}
                 onFocus={this._onFocus}
                 onChange={this._onInputChange}
+                multiline={this.state.multiline}
             />
             <FocusZone
                 direction={FocusZoneDirection.vertical}
-                className="checkboxes"
+              
             >
                 {this.state.filter ? null :
                 <Checkbox
@@ -97,10 +106,15 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
                         onFocus: this._onFocus,
                     }}
                     onChange={() => this._toggleOption(o)}
-                    label={o}
+                    label={this._wrapText(o)}
+                    title={o}
                 />)}
             </FocusZone>
         </div>;
+    }
+
+    private _wrapText(text: string){
+        return text.length > this._labelDisplayLength ? `${text.slice(0,this._labelDisplayLength)}...` : text;
     }
     private _onInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.altKey || e.shiftKey || e.ctrlKey) {
@@ -109,9 +123,7 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
 
         if (e.keyCode === 13 /* enter */) {
             const filtered = this._filteredOptions();
-            if (filtered.length !== 1) {
-                return;
-            }
+           
             e.preventDefault();
             e.stopPropagation();
             this._toggleOption(filtered[0]);
@@ -145,14 +157,25 @@ export class MultiValueControl extends React.Component<IMultiValueControlProps, 
     private _filteredOptions = (): string[] => {
         const filter = this.state.filter.toLocaleLowerCase();
         const opts = this._mergeStrArrays([this.props.options, this.props.selected || []]);
+      
         const filtered =  [
             ...opts.filter((o) => o.toLocaleLowerCase().indexOf(filter) === 0),
             ...opts.filter((o) => o.toLocaleLowerCase().indexOf(filter) > 0),
         ];
-        return filtered.length === 0 && this._allowCustom ? [filter] : filtered;
+
+       const filterEmptyElement = this._allowCustom ? [this.state.filter, ...filtered] : filtered;
+
+        return filterEmptyElement.filter(el => el !== "")
     }
     private _onInputChange = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
-        this.setState({filter: newValue || ""});
+        let isMultiline = this.state.multiline;
+        if(newValue != undefined ){
+        const newMultiline = newValue.length > 50;
+            if (newMultiline !== this.state.multiline) {
+                isMultiline = newMultiline
+            }
+        }
+        this.setState({filter: newValue || "", multiline: isMultiline});
     }
     private _onBlur = () => {
         this._setUnfocused.reset();
