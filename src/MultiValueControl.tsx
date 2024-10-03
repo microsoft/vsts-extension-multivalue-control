@@ -68,7 +68,7 @@ export class MultiValueControl extends React.Component<
             flexDirection: "row",
             flexWrap: "wrap",
             width: "100%",
-            margin: 2,
+            margin: 3,
           }}
         >
           {data?.map((t, index) => {
