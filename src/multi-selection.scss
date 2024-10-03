@@ -11,7 +11,34 @@
     color: rgb($defaultR, $defaultG, $defaultB);
     color: rgb(var($varName, $defaultR, $defaultG, $defaultB));
 }
+.close-icon{
+    position: absolute; 
+    top: 0; 
+    right: 0; 
+    cursor: pointer; 
+    padding: 1px;
+    font-size:8px ;
+    font-weight: bold;
+ 
+}
+.container{
+    position: relative; 
+    display: inline-block;
+    padding: 8px 10px;
+    background-color: rgba(0, 0, 0, .06); 
+    color: black;
+    border-radius: 3px;
+    margin: 2px;
+    border: 1px solid transparent;
+    border-top-left-radius: 26px;
+    border-bottom-left-radius: 26px; 
+ 
 
+}
+
+.tag-picker{
+    visibility: hidden;
+}
 #container {
     padding-bottom: 3px;
     padding-right: 3px;
