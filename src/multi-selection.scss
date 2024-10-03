@@ -12,26 +12,29 @@
     color: rgb(var($varName, $defaultR, $defaultG, $defaultB));
 }
 .close-icon{
-    position: absolute; 
-    top: 0; 
-    right: 0; 
     cursor: pointer; 
-    padding: 1px;
-    font-size:8px ;
-    font-weight: bold;
+   
+    font-size:12px ;
+    padding: 0px 5px;
+    margin-left: auto;
+    display: flex;
+    justify-content: flex-end;
+
  
 }
 .container{
-    position: relative; 
-    display: inline-block;
-    padding: 8px 10px;
-    background-color: rgba(0, 0, 0, .06); 
-    color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 3px 5px;
+
+
+    background-color: var(--palette-black-alpha-6, rgba(0, 0, 0, .06)); 
+    color: rgba(32, 31, 30);
     border-radius: 3px;
-    margin: 2px;
+  
     border: 1px solid transparent;
-    border-top-left-radius: 26px;
-    border-bottom-left-radius: 26px; 
+    border-radius: 20px;
  
 
 }
