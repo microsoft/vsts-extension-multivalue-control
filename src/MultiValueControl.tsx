@@ -6,8 +6,10 @@ import {
   FocusZoneDirection,
 } from "office-ui-fabric-react/lib/FocusZone";
 import * as React from "react";
+
 import { DelayedFunction } from "VSS/Utils/Core";
 import { BrowserCheckUtils } from "VSS/Utils/UI";
+import { initializeTheme } from "./theme"
 
 interface IMultiValueControlProps {
   selected?: string[];
@@ -34,6 +36,7 @@ export class MultiValueControl extends React.Component<
   IMultiValueControlProps,
   IMultiValueControlState
 > {
+  
   private readonly _unfocusedTimeout = BrowserCheckUtils.isSafari() ? 2000 : 1;
   private readonly _allowCustom: boolean =
     VSS?.getConfiguration()?.witInputs?.AllowCustom || false;
@@ -54,11 +57,18 @@ export class MultiValueControl extends React.Component<
   public render() {
     const { focused } = this.state;
 
+    
+
+   
+
+  
+
     const data = (this.props.selected || []).map((text) => {
       return text.length > Number(this._labelDisplayLength)
         ? `${text.slice(0, Number(this._labelDisplayLength))}...`
         : text;
     });
+
 
     return (
       <div>
@@ -99,6 +109,10 @@ export class MultiValueControl extends React.Component<
     }
   }
 
+  componentDidMount() {
+    initializeTheme()
+  }
+
   private _getOptions() {
     const options = this.props.options;
     const selected = (this.props.selected || []).slice(0);
@@ -107,6 +121,7 @@ export class MultiValueControl extends React.Component<
     return (
       <div className="options">
         <TextField
+         className="text"
           value={this.state.filter}
           autoFocus
           placeholder={"Filter values"}
@@ -119,6 +134,7 @@ export class MultiValueControl extends React.Component<
         <FocusZone direction={FocusZoneDirection.vertical}>
           {this.state.filter ? null : (
             <Checkbox
+             className="text"
               label="Select All"
               checked={selected.join(";") === options.join(";")}
               onChange={this._toggleSelectAll}
@@ -130,6 +146,7 @@ export class MultiValueControl extends React.Component<
           )}
           {filteredOpts.map((o) => (
             <Checkbox
+            className="text"
               checked={selected.indexOf(o) >= 0}
               inputProps={{
                 onBlur: this._onBlur,

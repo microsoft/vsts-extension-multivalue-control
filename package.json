@@ -41,6 +41,7 @@
     "webpack-dev-server": "^4.8.1"
   },
   "dependencies": {
+    "azure-devops-extension-sdk": "^4.0.2",
     "es6-promise": "^4.2.8"
   },
   "name": "multivalue-control-extension",

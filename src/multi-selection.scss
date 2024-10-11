@@ -22,22 +22,20 @@
 
  
 }
-.container{
+.container {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     padding: 3px 5px;
-
-
-    background-color: var(--palette-black-alpha-6, rgba(0, 0, 0, .06)); 
-    color: rgba(32, 31, 30);
-    border-radius: 3px;
   
-    border: 1px solid transparent;
-    border-radius: 20px;
- 
+    background-color:#e1e1e1; 
+    color: black;
+    border: 1px solid var(--border-color);
+    border-radius: 20px; // Consolidated to one line to avoid redundancy
+    margin: 2px;
+  }
 
-}
+  
 
 .tag-picker{
     visibility: hidden;
