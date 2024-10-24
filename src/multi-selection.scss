@@ -11,7 +11,35 @@
     color: rgb($defaultR, $defaultG, $defaultB);
     color: rgb(var($varName, $defaultR, $defaultG, $defaultB));
 }
+.close-icon{
+    cursor: pointer; 
+   
+    font-size:12px ;
+    padding: 0px 5px;
+    margin-left: auto;
+    display: flex;
+    justify-content: flex-end;
 
+ 
+}
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 3px 5px;
+  
+    background-color:#e1e1e1; 
+    color: black;
+    border: 1px solid var(--border-color);
+    border-radius: 20px; // Consolidated to one line to avoid redundancy
+    margin: 2px;
+  }
+
+  
+
+.tag-picker{
+    visibility: hidden;
+}
 #container {
     padding-bottom: 3px;
     padding-right: 3px;
