@@ -9,7 +9,7 @@ export const initializeTheme = () => {
         themeService.getTheme().then((theme) => {
           // Apply your theme logic here
           // This is a hypothetical example; actual implementation may vary
-          console.log(theme); // Inspect the theme object
+          
         });
       });
     });
