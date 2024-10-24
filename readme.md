@@ -1,50 +1,46 @@
-> Currently only available on TFS 2017 or later and Visual Studio Team Services. 
+# Multi-value-control
 
-![Work Item Form](img/form.png)
+The Azure DevOps Extension Multi-Value Control enhances work item forms by enabling the selection of multiple values within a single field. This functionality is ideal for scenarios requiring categorization under multiple tags.
 
-# Select multiple values for your fields
-![Control](img/operatingSystem.png)
+# Documentation
 
-# Expand the control only when needed
-![Control Collapsed](img/operatingSystemCollapsed.png)
+For detailed instructions on using the Multi-value-control Azure DevOps extension, please refer to the official documentation. You can access the comprehensive guide by clicking [Marketplace](https://marketplace.visualstudio.com/items?itemName=ms-devlabs.vsts-extensions-multivalue-control). This resource provides step-by-step information to help you effectively utilize the Multi-value-control features within your Azure DevOps environment.
 
-![Control Expanded](img/operatingSystemExpanded.png)
+# Support
 
-# How to get started
-## Azure DevOps Services
+## How to file issues and get help
 
-Navigate to your work item form customization page and add a multivalue control.
+This project uses [GitHub Issues](https://github.com/Microsoft/vsts-extension-multivalue-control/issues) to track bugs and feature requests. Please search the existing issues before filing new issues to avoid duplicates. For new issues, file your bug or feature request as a new Issue.
 
-![Layout Customization](img/layoutCustomization.png)
+## Microsoft Support Policy
 
-Edit the control so it can use the right field to store your selection and the right set of values to be displayed.
+Support for this project is limited to the resources listed above.
 
-![Options](img/options.png)
+# Contributing
 
-Be sure to allow user inputed values if a picklisk (string) field is used to back the extension.
+We welcome contributions to improve the extension. If you would like to contribute, please fork the repository and create a pull request with your changes. Your
+contributions help enhance the functionality and usability of the extension for the entire community.
 
-![check the box to allow users to enter their own values](img/allowedValues.png)
+**Note:** do not publish the extension as a public extension under a different publisher as this will create a clone of the extension and it will be unclear to the
+community which one to use. If you feel you don't want to contribute to this repository then publish a private version for your use-case.
 
-## Azure DevOps Server
-We recommend TFS 2017 RC2 or later when running this extension.
+Check out https://learn.microsoft.com/en-us/azure/devops/extend/get-started to learn how to develop Azure DevOps extensions
 
-[Learn more](https://github.com/Microsoft/vsts-extension-multivalue-control/blob/master/xmldetails.md) about how to customize the multivalue control directly on XML.
+### Developing and Testing
 
-# How to query
+```bash
+# Install node dependencies
+npm install
 
-The selected values are stored in a semicolon separated format.  To search for items that have a specific value use the "Contains Words" operator.  If searching for multiple values, use multipe "Contains Words" clauses for that field.
+# Compile the source code
+npm run dev
 
-# Source code 
+# Build the extension
+npm run build:release
+```
 
-The [source](https://github.com/Microsoft/vsts-extension-multivalue-control) for this extension can be found on Github - feel free to take, fork and extend. 
+## About Microsoft DevLabs
 
-You can also learn how to build your own custom control extension for the work item form [here](https://www.visualstudio.com/en-us/docs/integrate/extensions/develop/custom-control). 
-
-# Feedback 
-
-We appreciate your feedback! Here are some ways to connect with us:
-
-* Add a review.
-* Report issues in [GitHub](https://github.com/Microsoft/vsts-extension-multivalue-control/issues).
-
-> Microsoft DevLabs is an outlet for experiments from Microsoft, experiments that represent some of the latest ideas around developer tools. Solutions in this category are designed for broad usage, and you are encouraged to use and provide feedback on them; however, these extensions are not supported nor are any commitments made as to their longevity.
+Microsoft DevLabs is an outlet for experiments from Microsoft, experiments that represent some of the latest ideas around developer tools. Solutions in this
+category are designed for broad usage, and you are encouraged to use and provide feedback on them; however, these extensions are not supported nor are any
+commitments made as to their longevity.
