@@ -16,13 +16,13 @@ Be sure to allow user inputed values if a picklisk (string) field is used to bac
 - (WorkItem)[marketplace/img/workItemType.png]
 
 - Select customization page and add a multivalue control.
-  ![Add Custom Control](marketplace/img/addcustomControl.png)
+  ![Add Custom Control](img/addcustomControl.png)
 
 - Select Multivalue-Control
-  ![MultiValue](marketplace/img/MultiValue.png)
+  ![MultiValue](img/MultiValue.png)
 
 - Select the field for the control and choose the appropriate values for the control.
-  ![Custom Control](marketplace/img/customControl.png)
+  ![Custom Control](img/customControl.png)
 
 ## XML process template
 
