@@ -10,6 +10,7 @@ import * as React from "react";
 import { DelayedFunction } from "VSS/Utils/Core";
 import { BrowserCheckUtils } from "VSS/Utils/UI";
 import { initializeTheme } from "./theme"
+import { Icon } from "office-ui-fabric-react";
 
 interface IMultiValueControlProps {
   selected?: string[];
@@ -30,6 +31,7 @@ interface IMultiValueControlState {
   focused: boolean;
   filter: string;
   multiline: boolean;
+  isToggled: boolean;
 }
 
 export class MultiValueControl extends React.Component<
@@ -52,14 +54,18 @@ export class MultiValueControl extends React.Component<
   );
   constructor(props, context) {
     super(props, context);
-    this.state = { focused: false, filter: "", multiline: false };
+    this.state = { focused: false, filter: "", multiline: false , isToggled: false,};
   }
+  toggleIcon = () => {
+    this.setState((prevState) => ({
+      isToggled: !prevState.isToggled,
+    }));
+  };
   public render() {
-    const { focused } = this.state;
+    const { focused, isToggled } = this.state;
 
     
 
-   
 
   
 
@@ -69,9 +75,17 @@ export class MultiValueControl extends React.Component<
         : text;
     });
 
+ 
 
     return (
-      <div>
+      <div style={{width: "100%"  }}>
+           <div className="header">
+           <span className="text" >{data.length ? null : "No selection made" } </span> 
+           <div className="iconWrapper">
+           <Icon iconName={isToggled ? "ChevronUp" : "ChevronDown"} className="chevronIcon" onClick={this.toggleIcon} />
+           </div>
+           </div>
+         
         <div
           style={{
             display: "flex",
@@ -95,14 +109,16 @@ export class MultiValueControl extends React.Component<
             );
           })}
         </div>
+     
         <div className={`multi-value-control ${focused ? "focused" : ""}`}>
-          {this._getOptions()}
+          {this.state.isToggled ? this._getOptions() : null}
           <div className="error">{this.props.error}</div>
         </div>
-        ;
+       
       </div>
     );
   }
+
   public componentDidUpdate() {
     if (this.props.onResize) {
       this.props.onResize();

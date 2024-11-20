@@ -98,4 +98,37 @@
 .ms-Fabric--isFocusVisible .ms-TagItem:focus:after {
     @include border-color(--palette-neutral-100, 0, 0, 0);
 }
+.options{
+    width: 100%;
+}
 
+.chevronIcon {
+
+
+
+  font-size: 24px;
+  height: 24px;
+  width: 24px;
+
+}
+  .header{
+    display: flex;
+  
+    flex-direction: row;
+   justify-content: space-between;
+    width: 100%;
+
+
+  }
+  .text {
+    font-size: 14px; 
+    color: #333; 
+    font-weight: bold; 
+    width: 100%;
+    display: inline-block; 
+ 
+  }
+  .iconWrapper{
+    display: flex;
+    align-items: center;
+  }
