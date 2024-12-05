@@ -77,7 +77,7 @@ export class MultiValueControl extends React.Component<
         : text;
     });
 
- 
+ //test
 
     return (
       <div style={{width: "100%"  }}>
