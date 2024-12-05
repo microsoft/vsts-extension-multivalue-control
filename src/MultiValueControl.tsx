@@ -10,7 +10,10 @@ import * as React from "react";
 import { DelayedFunction } from "VSS/Utils/Core";
 import { BrowserCheckUtils } from "VSS/Utils/UI";
 import { initializeTheme } from "./theme"
-import { Icon } from "office-ui-fabric-react";
+
+
+import { Button } from "office-ui-fabric-react";
+
 
 interface IMultiValueControlProps {
   selected?: string[];
@@ -62,7 +65,7 @@ export class MultiValueControl extends React.Component<
     }));
   };
   public render() {
-    const { focused, isToggled } = this.state;
+    const { focused } = this.state;
 
     
 
@@ -75,16 +78,10 @@ export class MultiValueControl extends React.Component<
         : text;
     });
 
- 
+
 
     return (
       <div style={{width: "100%"  }}>
-           <div className="header">
-           <span className="text" >{data.length ? null : "No selection made" } </span> 
-           <div className="iconWrapper">
-           <Icon iconName={isToggled ? "ChevronUp" : "ChevronDown"} className="chevronIcon" onClick={this.toggleIcon} />
-           </div>
-           </div>
          
         <div
           style={{
@@ -108,6 +105,17 @@ export class MultiValueControl extends React.Component<
               </div>
             );
           })}
+
+         <Button
+        primary={false}
+        iconProps={{ iconName: data.length ? "" : undefined  }}
+        ariaLabel="ADD"
+     
+        onClick={this.toggleIcon}
+        text={data.length ? undefined : "Add"}
+        style={{ margin: 5}}
+
+      />       
         </div>
      
         <div className={`multi-value-control ${focused ? "focused" : ""}`}>

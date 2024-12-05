@@ -26,7 +26,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    padding: 3px 5px;
+    align-items: center;
+    padding: 5px;
   
     background-color:#e1e1e1; 
     color: black;
@@ -102,7 +103,11 @@
     width: 100%;
 }
 
+<<<<<<< HEAD
+.addIcon {
+=======
 .chevronIcon {
+>>>>>>> master
 
 
 
