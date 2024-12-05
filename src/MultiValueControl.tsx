@@ -11,6 +11,7 @@ import { DelayedFunction } from "VSS/Utils/Core";
 import { BrowserCheckUtils } from "VSS/Utils/UI";
 import { initializeTheme } from "./theme"
 
+
 import { Button } from "office-ui-fabric-react";
 
 
@@ -77,7 +78,7 @@ export class MultiValueControl extends React.Component<
         : text;
     });
 
- //test
+
 
     return (
       <div style={{width: "100%"  }}>
@@ -116,6 +117,7 @@ export class MultiValueControl extends React.Component<
 
       />       
         </div>
+     
         <div className={`multi-value-control ${focused ? "focused" : ""}`}>
           {this.state.isToggled ? this._getOptions() : null}
           <div className="error">{this.props.error}</div>
