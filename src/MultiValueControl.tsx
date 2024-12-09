@@ -12,7 +12,7 @@ import { BrowserCheckUtils } from "VSS/Utils/UI";
 import { initializeTheme } from "./theme"
 
 
-import { Button } from "office-ui-fabric-react";
+import { Button, Icon } from "office-ui-fabric-react";
 
 
 interface IMultiValueControlProps {
@@ -106,16 +106,29 @@ export class MultiValueControl extends React.Component<
             );
           })}
 
-         <Button
-        primary={false}
-        iconProps={{ iconName: data.length ? "" : undefined  }}
-        ariaLabel="ADD"
-     
-        onClick={this.toggleIcon}
-        text={data.length ? undefined : "Add"}
-        style={{ margin: 5}}
+{ !data.length ?
+  <Button
+  primary={false}
+  iconProps={{ iconName: "Add"  }}
+  ariaLabel="ADD"
 
-      />       
+  onClick={this.toggleIcon}
+  text={"Add"}
+  style={{ margin: 5}}
+
+/> :
+
+
+  <Icon iconName="Add"
+   onClick={this.toggleIcon}
+  style={{ margin: 5,background:"#e1e1e1" , padding
+  : 5 , borderRadius: 5
+  }}
+  />
+}
+
+
+             
         </div>
      
         <div className={`multi-value-control ${focused ? "focused" : ""}`}>
