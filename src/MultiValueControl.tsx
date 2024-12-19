@@ -9,11 +9,9 @@ import * as React from "react";
 
 import { DelayedFunction } from "VSS/Utils/Core";
 import { BrowserCheckUtils } from "VSS/Utils/UI";
-import { initializeTheme } from "./theme"
+import { initializeTheme } from "./theme";
 
-
-import { Button, Icon } from "office-ui-fabric-react";
-
+import { Icon } from "office-ui-fabric-react";
 
 interface IMultiValueControlProps {
   selected?: string[];
@@ -41,7 +39,6 @@ export class MultiValueControl extends React.Component<
   IMultiValueControlProps,
   IMultiValueControlState
 > {
-  
   private readonly _unfocusedTimeout = BrowserCheckUtils.isSafari() ? 2000 : 1;
   private readonly _allowCustom: boolean =
     VSS?.getConfiguration()?.witInputs?.AllowCustom || false;
@@ -57,7 +54,12 @@ export class MultiValueControl extends React.Component<
   );
   constructor(props, context) {
     super(props, context);
-    this.state = { focused: false, filter: "", multiline: false , isToggled: false,};
+    this.state = {
+      focused: false,
+      filter: "",
+      multiline: false,
+      isToggled: false,
+    };
   }
   toggleIcon = () => {
     this.setState((prevState) => ({
@@ -67,22 +69,14 @@ export class MultiValueControl extends React.Component<
   public render() {
     const { focused } = this.state;
 
-    
-
-
-  
-
     const data = (this.props.selected || []).map((text) => {
       return text.length > Number(this._labelDisplayLength)
         ? `${text.slice(0, Number(this._labelDisplayLength))}...`
         : text;
     });
 
-
-
     return (
-      <div style={{width: "100%"  }}>
-         
+      <div style={{ width: "100%" }}>
         <div
           style={{
             display: "flex",
@@ -106,36 +100,26 @@ export class MultiValueControl extends React.Component<
             );
           })}
 
-{ !data.length ?
-  <Button
-  primary={false}
-  iconProps={{ iconName: "Add"  }}
-  ariaLabel="ADD"
-
-  onClick={this.toggleIcon}
-  text={"Add"}
-  style={{ margin: 5}}
-
-/> :
-
-
-  <Icon iconName="Add"
-   onClick={this.toggleIcon}
-  style={{ margin: 5,background:"#e1e1e1" , padding
-  : 5 , borderRadius: 5
-  }}
-  />
-}
-
-
-             
+          {!data.length ? (
+            <span onClick={this.toggleIcon}> No selection made </span>
+          ) : (
+            <Icon
+              iconName="Add"
+              onClick={this.toggleIcon}
+              style={{
+                margin: 5,
+                background: "#e1e1e1",
+                padding: 5,
+                borderRadius: 5,
+              }}
+            />
+          )}
         </div>
-     
+
         <div className={`multi-value-control ${focused ? "focused" : ""}`}>
           {this.state.isToggled ? this._getOptions() : null}
           <div className="error">{this.props.error}</div>
         </div>
-       
       </div>
     );
   }
@@ -147,7 +131,7 @@ export class MultiValueControl extends React.Component<
   }
 
   componentDidMount() {
-    initializeTheme()
+    initializeTheme();
   }
 
   private _getOptions() {
@@ -158,7 +142,7 @@ export class MultiValueControl extends React.Component<
     return (
       <div className="options">
         <TextField
-         className="text"
+          className="text"
           value={this.state.filter}
           autoFocus
           placeholder={"Filter values"}
@@ -171,7 +155,7 @@ export class MultiValueControl extends React.Component<
         <FocusZone direction={FocusZoneDirection.vertical}>
           {this.state.filter ? null : (
             <Checkbox
-             className="text"
+              className="text"
               label="Select All"
               checked={selected.join(";") === options.join(";")}
               onChange={this._toggleSelectAll}
@@ -183,7 +167,7 @@ export class MultiValueControl extends React.Component<
           )}
           {filteredOpts.map((o) => (
             <Checkbox
-            className="text"
+              className="text"
               checked={selected.indexOf(o) >= 0}
               inputProps={{
                 onBlur: this._onBlur,
