@@ -11,7 +11,7 @@ import { DelayedFunction } from "VSS/Utils/Core";
 import { BrowserCheckUtils } from "VSS/Utils/UI";
 import { initializeTheme } from "./theme";
 
-import { Icon } from "office-ui-fabric-react";
+
 
 interface IMultiValueControlProps {
   selected?: string[];
@@ -100,19 +100,13 @@ export class MultiValueControl extends React.Component<
             );
           })}
 
-          {!data.length ? (
-            <span onClick={this.toggleIcon}> No selection made </span>
+
+
+
+        {!data.length ? (
+            <span onClick={this.toggleIcon} className="placeHolder"> {"No selection made"} </span>
           ) : (
-            <Icon
-              iconName="Add"
-              onClick={this.toggleIcon}
-              style={{
-                margin: 5,
-                background: "#e1e1e1",
-                padding: 5,
-                borderRadius: 5,
-              }}
-            />
+            <span onClick={this.toggleIcon} className="clickToAdd"> {"Click to add"} </span>
           )}
         </div>
 

@@ -121,3 +121,21 @@
   display: flex;
   align-items: center;
 }
+.placeHolder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(225, 223, 221);
+  padding: 0px 3px;
+  border-radius: 5px;
+}
+
+
+.clickToAdd{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgba(161, 159, 157);
+  padding: 0px 3px;
+  border-radius: 5px;
+}
