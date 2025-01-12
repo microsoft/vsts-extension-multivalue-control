@@ -35,9 +35,14 @@ interface IMultiValueControlState {
   isToggled: boolean;
 }
 
+interface WrapperRef {
+  wrapperRef: any;
+}
+
 export class MultiValueControl extends React.Component<
   IMultiValueControlProps,
-  IMultiValueControlState
+  IMultiValueControlState,
+  WrapperRef
 > {
   private readonly _unfocusedTimeout = BrowserCheckUtils.isSafari() ? 2000 : 1;
   private readonly _allowCustom: boolean =
@@ -52,6 +57,9 @@ export class MultiValueControl extends React.Component<
       this.setState({ focused: false, filter: "" });
     }
   );
+  wrapperRef: React.RefObject<HTMLDivElement>;
+  
+
   constructor(props, context) {
     super(props, context);
     this.state = {
@@ -60,12 +68,43 @@ export class MultiValueControl extends React.Component<
       multiline: false,
       isToggled: false,
     };
+    this.wrapperRef = React.createRef();
   }
+
+  componentDidMount() {
+    initializeTheme();
+    document.addEventListener('mousedown', this.handleClickOutside);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClickOutside);
+  }
+
+  
+  handleClickOutside = (event) => {
+    if (this.wrapperRef.current && !this.wrapperRef.current.contains(event.target)) {
+      this._onBlur(event);
+    }
+  };
+
+  private _onBlur = (event) => {
+    if (this.wrapperRef.current && !this.wrapperRef.current.contains(event.relatedTarget)) {
+      this._setUnfocused.reset();
+      this.setState({ isToggled: false });
+    }
+  };
+
+  private _onFocus = () => {
+    this._setUnfocused.cancel();
+    this.setState({ focused: true });
+  };
+
   toggleIcon = () => {
     this.setState((prevState) => ({
       isToggled: !prevState.isToggled,
     }));
   };
+  
   public render() {
     const { focused } = this.state;
 
@@ -76,7 +115,13 @@ export class MultiValueControl extends React.Component<
     });
 
     return (
-      <div style={{ width: "100%" }}>
+      <div ref={this.wrapperRef} style={{ width: "100%" }}>
+          <input
+          type="text"
+          style={{ position: 'absolute', opacity: 0, width: 0, height: 0 }}
+          onFocus={this._onFocus}
+          onBlur={this._onBlur}
+        />
         <div
           style={{
             display: "flex",
@@ -124,9 +169,6 @@ export class MultiValueControl extends React.Component<
     }
   }
 
-  componentDidMount() {
-    initializeTheme();
-  }
 
   private _getOptions() {
     const options = this.props.options;
@@ -256,12 +298,12 @@ export class MultiValueControl extends React.Component<
     }
     this.setState({ filter: newValue || "", multiline: isMultiline });
   };
-  private _onBlur = () => {
-    this._setUnfocused.reset();
-  };
-  private _onFocus = () => {
-    this._setUnfocused.cancel();
-  };
+  // private _onBlur = () => {
+  //   this._setUnfocused.reset();
+  // };
+  // private _onFocus = () => {
+  //   this._setUnfocused.cancel();
+  // };
   private _setSelected = async (selected: string[]): Promise<void> => {
     if (!this.props.onSelectionChanged) {
       return;
