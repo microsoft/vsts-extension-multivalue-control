@@ -82,10 +82,10 @@ export class MultiValueControl extends React.Component<
 
   
   handleClickOutside = (event) => {
-    if (this.wrapperRef.current && !this.wrapperRef.current.contains(event.target)) {
+if (this.wrapperRef.current && !this.wrapperRef.current.contains(event.target)) {
       this._onBlur(event);
     }
-  };
+};
 
   private _onBlur = (event) => {
     if (this.wrapperRef.current && !this.wrapperRef.current.contains(event.relatedTarget)) {
