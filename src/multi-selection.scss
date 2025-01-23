@@ -32,6 +32,18 @@
   border: 1px solid var(--border-color);
   border-radius: 20px; // Consolidated to one line to avoid redundancy
   margin: 2px;
+
+}
+
+.container {
+  width: auto; // Allow the width to adjust based on content
+  height: auto; // Allow the height to adjust based on content
+  max-width: 100%; // Optional: Set a maximum width
+  max-height: 100%; // Optional: Set a maximum height
+  overflow: auto; // Handle overflow if content exceeds container size
+  padding: 10px; // Optional: Add padding if needed
+  border: 1px solid #ccc; // Optional: Add a border if needed
+  background-color: #fff; // Optional: Set a background color
 }
 
 .tag-picker {

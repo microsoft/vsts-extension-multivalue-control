@@ -7,9 +7,11 @@ import {
 } from "office-ui-fabric-react/lib/FocusZone";
 import * as React from "react";
 
-import { DelayedFunction } from "VSS/Utils/Core";
+// import { DelayedFunction } from "VSS/Utils/Core";
 import { BrowserCheckUtils } from "VSS/Utils/UI";
 import { initializeTheme } from "./theme";
+// import { DelayedFunction } from "VSS/Utils/Core";
+
 
 
 
@@ -39,25 +41,31 @@ interface WrapperRef {
   wrapperRef: any;
 }
 
+
+
 export class MultiValueControl extends React.Component<
   IMultiValueControlProps,
   IMultiValueControlState,
   WrapperRef
+
+ 
 > {
-  private readonly _unfocusedTimeout = BrowserCheckUtils.isSafari() ? 2000 : 1;
+    // private readonly _unfocusedTimeout = BrowserCheckUtils.isSafari() ? 2000 : 1;
   private readonly _allowCustom: boolean =
     VSS?.getConfiguration()?.witInputs?.AllowCustom || false;
   private readonly _labelDisplayLength: number =
     VSS?.getConfiguration()?.witInputs?.LabelDisplayLength || 35;
-  private _setUnfocused = new DelayedFunction(
-    null,
-    this._unfocusedTimeout,
-    "",
-    () => {
-      this.setState({ focused: false, filter: "" });
-    }
-  );
+  // private _setUnfocused = new DelayedFunction(
+  //   null,
+  //   this._unfocusedTimeout,
+  //   "",
+  //   () => {
+  //     this.setState({ focused: false, filter: "" });
+  //   }
+  // );
   wrapperRef: React.RefObject<HTMLDivElement>;
+  container: HTMLDivElement | null;
+  onResize: any;
   
 
   constructor(props, context) {
@@ -69,123 +77,77 @@ export class MultiValueControl extends React.Component<
       isToggled: false,
     };
     this.wrapperRef = React.createRef();
+    this.toggleDropdown = this.toggleDropdown.bind(this);
+    this.handleClickOutside = this.handleClickOutside.bind(this)
+    if (this.props.onResize) {
+      this.onResize = this.props.onResize.bind(this);
+    }
+    this.container = null; 
+   
   }
 
   componentDidMount() {
     initializeTheme();
-    document.addEventListener('mousedown', this.handleClickOutside);
+    document.addEventListener("mousedown", this.handleClickOutside);
   }
 
+ 
   componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleClickOutside);
+    document.removeEventListener("mousedown", this.handleClickOutside);
   }
 
-  
-  handleClickOutside = (event) => {
-if (this.wrapperRef.current && !this.wrapperRef.current.contains(event.target)) {
-      this._onBlur(event);
-
-    }
-  
-};
-
-  private _onBlur = (event) => {
-    if (this.wrapperRef.current && !this.wrapperRef.current.contains(event.relatedTarget)) {
-      this._setUnfocused.reset();
+  handleClickOutside(event) {
+    if (this.wrapperRef.current && !this.wrapperRef.current.contains(event.target)) {
       this.setState({ isToggled: false });
     }
+  }
+
+  toggleDropdown = () => {
+    this.setState(
+      (prevState) => ({
+        isToggled: !prevState.isToggled,
+      }),
+      () => {
+        // This callback runs after the state has been updated
+        if (this.state.isToggled && this.props.onResize) {
+          this.props.onResize();
+        }
+      }
+    );
+  };
+ 
+ 
+  private _onBlur = (event) => {
+   
+     
+      
+      
+ console.log("hej")
   };
 
   private _onFocus = () => {
-    this._setUnfocused.cancel();
-    this.setState({ focused: true });
+
+   
+ console.log("hello")
   };
 
-  toggleIcon = () => {
-    this.setState((prevState) => ({
-      isToggled: !prevState.isToggled,
-    }));
-  };
-  
-  public render() {
-    const { focused } = this.state;
 
-    const data = (this.props.selected || []).map((text) => {
-      return text.length > Number(this._labelDisplayLength)
-        ? `${text.slice(0, Number(this._labelDisplayLength))}...`
-        : text;
-    });
-
-    return (
-      <div ref={this.wrapperRef} style={{ width: "100%" }}>
-          <input
-          type="text"
-          style={{ position: 'absolute', opacity: 0, width: 0, height: 0 }}
-          onFocus={this._onFocus}
-          onBlur={this._onBlur}
-        />
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            flexWrap: "wrap",
-            width: "100%",
-            margin: 3,
-          }}
-        >
-          {data?.map((t, index) => {
-            return (
-              <div className="container">
-                <div>{t.match(/.{1,50}/g)?.join("\n")}</div>
-                <div
-                  className="close-icon"
-                  onClick={() => this.deleteTags(t, data)}
-                >
-                  X
-                </div>
-              </div>
-            );
-          })}
-
-
-
-
-        {!data.length ? (
-            <span onClick={this.toggleIcon} className="placeHolder"> {"No selection made"} </span>
-          ) : (
-            <span onClick={this.toggleIcon} className="clickToAdd"> {"Click to add"} </span>
-          )}
-        </div>
-
-        <div className={`multi-value-control ${focused ? "focused" : ""}`}>
-          {this.state.isToggled ? this._getOptions() : null}
-          <div className="error">{this.props.error}</div>
-        </div>
-      </div>
-    );
-  }
-
-  public componentDidUpdate() {
-    if (this.props.onResize) {
-      this.props.onResize();
-    }
-  }
-
-
-  private _getOptions() {
+   _getOptions() {
     const options = this.props.options;
     const selected = (this.props.selected || []).slice(0);
     const filteredOpts = this._filteredOptions();
 
     return (
-      <div className="options">
+
+  
+     <div className="options" >
         <TextField
           className="text"
           value={this.state.filter}
           autoFocus
           placeholder={"Filter values"}
-          onKeyDown={this._onInputKeyDown}
-          onBlur={this._onBlur}
+           onKeyDown={this._onInputKeyDown}
+           onBlur={this._onBlur}
           onFocus={this._onFocus}
           onChange={this._onInputChange}
           multiline={this.state.multiline}
@@ -218,7 +180,7 @@ if (this.wrapperRef.current && !this.wrapperRef.current.contains(event.target)) 
           ))}
         </FocusZone>
       </div>
-    );
+    )
   }
 
   private _wrapText(text: string) {
@@ -259,6 +221,12 @@ if (this.wrapperRef.current && !this.wrapperRef.current.contains(event.target)) 
       e.stopPropagation();
     }
   };
+
+
+ 
+  
+
+
   private _toggleSelectAll = () => {
     const options = this.props.options;
     const selected = this.props.selected || [];
@@ -300,6 +268,16 @@ if (this.wrapperRef.current && !this.wrapperRef.current.contains(event.target)) 
     }
     this.setState({ filter: newValue || "", multiline: isMultiline });
   };
+
+
+
+  
+
+
+
+
+  
+
   // private _onBlur = () => {
   //   this._setUnfocused.reset();
   // };
@@ -345,6 +323,7 @@ if (this.wrapperRef.current && !this.wrapperRef.current.contains(event.target)) 
   private _ifSafariCloseDropdown() {
     if (BrowserCheckUtils.isSafari()) {
       this.setState({ filter: "", focused: false });
+     
     }
   }
 
@@ -354,4 +333,72 @@ if (this.wrapperRef.current && !this.wrapperRef.current.contains(event.target)) 
       this.props.onSelectionChanged(updatedTags);
     }
   };
+
+
+  
+  public render() {
+    // const { focused } = this.state;
+
+    const data = (this.props.selected || []).map((text) => {
+      return text.length > Number(this._labelDisplayLength)
+        ? `${text.slice(0, Number(this._labelDisplayLength))}...`
+        : text;
+    });
+
+    return (
+      <div  style={{ width: "100%" }} ref={this.wrapperRef}>
+          <input
+          type="text"
+          style={{ position: 'absolute', opacity: 0, width: 0, height: 0 }}
+          // onBlur={this._onBlur}
+          // onFocus={this._onFocus}
+        />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            width: "100%",
+            margin: 3,
+          }}
+        >
+          {data?.map((t, index) => {
+            return (
+              <div className={ "container"} >
+                <div>{t.match(/.{1,50}/g)?.join("\n")}</div>
+                <div
+                  className="close-icon"
+                  onClick={() => this.deleteTags(t, data)}
+                >
+                  X
+                </div>
+              </div>
+            );
+          })}
+
+
+
+
+        {!data.length ? (
+            <span onClick={this.toggleDropdown} className="placeHolder"> {"No selection made"} </span>
+          ) : (
+            <span onClick={this.toggleDropdown} className="clickToAdd"> {"Click to add"} </span>
+          )}
+        </div>
+
+        <div className={`multi-value-control ${this.state.focused ? "focused" : ""}`}>
+        {this.state.isToggled && this._getOptions()}
+          <div className="error">{this.props.error}</div>
+        </div>
+      </div>
+    );
+  }
+
+ 
+
+  
+
+ 
+ 
+  
 }
