@@ -21,18 +21,30 @@
   justify-content: flex-end;
 }
 .container {
+  width: auto;  
+  height: auto;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
   padding: 5px;
 
-  background-color: #e1e1e1;
-  color: black;
-  border: 1px solid var(--border-color);
+ 
   border-radius: 20px; // Consolidated to one line to avoid redundancy
   margin: 2px;
+
 }
+
+.container {
+  width: auto; // Allow the width to adjust based on content
+  height: auto; // Allow the height to adjust based on content
+  max-width: 100%; // Optional: Set a maximum width
+  max-height: 100%; // Optional: Set a maximum height
+  overflow: auto; // Handle overflow if content exceeds container size
+  padding: 10px; // Optional: Add padding if needed
+  color: black;
+  border: 1px solid var(--border-color);
+  background-color: #e1e1e1;}
 
 .tag-picker {
   visibility: hidden;
@@ -126,8 +138,10 @@
   justify-content: center;
   align-items: center;
   background-color: rgba(225, 223, 221);
-  padding: 0px 3px;
+  padding: 3px 5px;
   border-radius: 5px;
+  cursor: pointer;
+  margin: 2px;
 }
 
 
@@ -138,4 +152,5 @@
   color: rgba(161, 159, 157);
   padding: 0px 3px;
   border-radius: 5px;
+  cursor: pointer;
 }

@@ -9,9 +9,9 @@ import * as React from "react";
 
 import { DelayedFunction } from "VSS/Utils/Core";
 import { BrowserCheckUtils } from "VSS/Utils/UI";
-import { initializeTheme } from "./theme";
+import { Button } from "office-ui-fabric-react";
 
-
+// import { initializeTheme } from "./theme";
 
 interface IMultiValueControlProps {
   selected?: string[];
@@ -46,9 +46,11 @@ export class MultiValueControl extends React.Component<
 > {
   private readonly _unfocusedTimeout = BrowserCheckUtils.isSafari() ? 2000 : 1;
   private readonly _allowCustom: boolean =
-    VSS?.getConfiguration()?.witInputs?.AllowCustom || false;
-  private readonly _labelDisplayLength: number =
-    VSS?.getConfiguration()?.witInputs?.LabelDisplayLength || 35;
+    VSS.getConfiguration().witInputs.AllowCustom;
+  private readonly _labelDisplayLength: number = VSS.getConfiguration()
+    .witInputs.LabelDisplayLength
+    ? VSS.getConfiguration().witInputs.LabelDisplayLength
+    : 35;
   private _setUnfocused = new DelayedFunction(
     null,
     this._unfocusedTimeout,
@@ -57,8 +59,10 @@ export class MultiValueControl extends React.Component<
       this.setState({ focused: false, filter: "" });
     }
   );
+
   wrapperRef: React.RefObject<HTMLDivElement>;
-  
+  container: HTMLDivElement | null;
+  onResize: any;
 
   constructor(props, context) {
     super(props, context);
@@ -69,108 +73,28 @@ export class MultiValueControl extends React.Component<
       isToggled: false,
     };
     this.wrapperRef = React.createRef();
-  }
-
-  componentDidMount() {
-    initializeTheme();
-    document.addEventListener('mousedown', this.handleClickOutside);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleClickOutside);
-  }
-
-  
-  handleClickOutside = (event) => {
-    if (this.wrapperRef.current && !this.wrapperRef.current.contains(event.target)) {
-      this._onBlur(event);
+    this.toggleDropdown = this.toggleDropdown.bind(this);
+    // this.handleClickOutside = this.handleClickOutside.bind(this)
+    if (this.props.onResize) {
+      this.onResize = this.props.onResize.bind(this);
     }
-  };
-
-  private _onBlur = (event) => {
-    if (this.wrapperRef.current && !this.wrapperRef.current.contains(event.relatedTarget)) {
-      this._setUnfocused.reset();
-      this.setState({ isToggled: false });
-    }
-  };
-
-  private _onFocus = () => {
-    this._setUnfocused.cancel();
-    this.setState({ focused: true });
-  };
-
-  toggleIcon = () => {
-    this.setState((prevState) => ({
-      isToggled: !prevState.isToggled,
-    }));
-  };
-  
-  public render() {
-    const { focused } = this.state;
-
-    const data = (this.props.selected || []).map((text) => {
-      return text.length > Number(this._labelDisplayLength)
-        ? `${text.slice(0, Number(this._labelDisplayLength))}...`
-        : text;
-    });
-
-    return (
-      <div ref={this.wrapperRef} style={{ width: "100%" }}>
-          <input
-          type="text"
-          style={{ position: 'absolute', opacity: 0, width: 0, height: 0 }}
-          onFocus={this._onFocus}
-          onBlur={this._onBlur}
-        />
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            flexWrap: "wrap",
-            width: "100%",
-            margin: 3,
-          }}
-        >
-          {data?.map((t, index) => {
-            return (
-              <div className="container">
-                <div>{t.match(/.{1,50}/g)?.join("\n")}</div>
-                <div
-                  className="close-icon"
-                  onClick={() => this.deleteTags(t, data)}
-                >
-                  X
-                </div>
-              </div>
-            );
-          })}
-
-
-
-
-        {!data.length ? (
-            <span onClick={this.toggleIcon} className="placeHolder"> {"No selection made"} </span>
-          ) : (
-            <span onClick={this.toggleIcon} className="clickToAdd"> {"Click to add"} </span>
-          )}
-        </div>
-
-        <div className={`multi-value-control ${focused ? "focused" : ""}`}>
-          {this.state.isToggled ? this._getOptions() : null}
-          <div className="error">{this.props.error}</div>
-        </div>
-      </div>
-    );
+    this.container = null;
   }
 
-  public componentDidUpdate() {
+  componentDidUpdate() {
     if (this.props.onResize) {
       this.props.onResize();
     }
   }
 
+  toggleDropdown = () => {
+    this.setState((prevState) => ({
+      isToggled: !prevState.isToggled,
+      focused: !prevState.focused,
+    }));
+  };
 
-  private _getOptions() {
+  _getOptions() {
     const options = this.props.options;
     const selected = (this.props.selected || []).slice(0);
     const filteredOpts = this._filteredOptions();
@@ -257,6 +181,7 @@ export class MultiValueControl extends React.Component<
       e.stopPropagation();
     }
   };
+
   private _toggleSelectAll = () => {
     const options = this.props.options;
     const selected = this.props.selected || [];
@@ -298,12 +223,13 @@ export class MultiValueControl extends React.Component<
     }
     this.setState({ filter: newValue || "", multiline: isMultiline });
   };
-  // private _onBlur = () => {
-  //   this._setUnfocused.reset();
-  // };
-  // private _onFocus = () => {
-  //   this._setUnfocused.cancel();
-  // };
+
+  private _onBlur = () => {
+    this._setUnfocused.reset();
+  };
+  private _onFocus = () => {
+    this._setUnfocused.cancel();
+  };
   private _setSelected = async (selected: string[]): Promise<void> => {
     if (!this.props.onSelectionChanged) {
       return;
@@ -352,4 +278,71 @@ export class MultiValueControl extends React.Component<
       this.props.onSelectionChanged(updatedTags);
     }
   };
+
+  public render() {
+    const data = (this.props.selected || []).map((text) => {
+      return text.length > Number(this._labelDisplayLength)
+        ? `${text.slice(0, Number(this._labelDisplayLength))}...`
+        : text;
+    });
+
+    return (
+      <div
+        className={`multi-value-control ${this.state.focused ? "focused" : ""}`}
+        style={{ width: "100%" }}
+      >
+        <input
+          type="text"
+          style={{ position: "absolute", opacity: 0, width: 0, height: 0 }}
+          onFocus={this._onFocus}
+          onBlur={this._onBlur}
+        />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            width: "100%",
+            margin: 3,
+          }}
+        >
+          {data?.map((t, index) => {
+            return (
+              <div className={"container"}>
+                <div>{t.match(/.{1,50}/g)?.join("\n")}</div>
+                <div
+                  className="close-icon"
+                  onClick={() => this.deleteTags(t, data)}
+                  onFocus={() => this.setState({ focused: true })}
+                >
+                  X
+                </div>
+              </div>
+            );
+          })}
+
+          <Button
+            onClick={this.toggleDropdown}
+            onBlur={this._onBlur}
+            onFocus={this._onFocus}
+            className="placeHolder"
+            text={this.props.placeholder}
+            style={{
+             textAlign: "left",
+              backgroundColor: " #e1e1e1",
+              border: "1px solid #c8c8c8",
+              borderRadius: 10,
+              padding: 5,
+              margin:4
+
+            }}
+         />
+  
+      ´
+        </div>
+        {this.state.focused ? this._getOptions() : null}
+        <div className="error">{this.props.error}</div>
+      </div>
+    );
+  }
 }
