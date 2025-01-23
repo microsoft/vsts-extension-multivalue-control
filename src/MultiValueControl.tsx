@@ -9,6 +9,7 @@ import * as React from "react";
 
 import { DelayedFunction } from "VSS/Utils/Core";
 import { BrowserCheckUtils } from "VSS/Utils/UI";
+import { Button } from "office-ui-fabric-react";
 
 // import { initializeTheme } from "./theme";
 
@@ -44,11 +45,20 @@ export class MultiValueControl extends React.Component<
   WrapperRef
 > {
   private readonly _unfocusedTimeout = BrowserCheckUtils.isSafari() ? 2000 : 1;
-  private readonly _allowCustom: boolean = VSS.getConfiguration().witInputs.AllowCustom;
-  private readonly _labelDisplayLength: number = VSS.getConfiguration().witInputs.LabelDisplayLength ? VSS.getConfiguration().witInputs.LabelDisplayLength : 35;
-  private _setUnfocused = new DelayedFunction(null, this._unfocusedTimeout, "", () => {
-      this.setState({focused: false, filter: ""});
-  });
+  private readonly _allowCustom: boolean =
+    VSS.getConfiguration().witInputs.AllowCustom;
+  private readonly _labelDisplayLength: number = VSS.getConfiguration()
+    .witInputs.LabelDisplayLength
+    ? VSS.getConfiguration().witInputs.LabelDisplayLength
+    : 35;
+  private _setUnfocused = new DelayedFunction(
+    null,
+    this._unfocusedTimeout,
+    "",
+    () => {
+      this.setState({ focused: false, filter: "" });
+    }
+  );
 
   wrapperRef: React.RefObject<HTMLDivElement>;
   container: HTMLDivElement | null;
@@ -71,23 +81,17 @@ export class MultiValueControl extends React.Component<
     this.container = null;
   }
 
-
-
-  componentDidUpdate(){
-    if (  this.props.onResize) {
+  componentDidUpdate() {
+    if (this.props.onResize) {
       this.props.onResize();
     }
-
   }
 
   toggleDropdown = () => {
-    this.setState(
-      (prevState) => ({
-        focused: !prevState.focused,
-      }),
-     
-    );
-   
+    this.setState((prevState) => ({
+      isToggled: !prevState.isToggled,
+      focused: !prevState.focused,
+    }));
   };
 
   _getOptions() {
@@ -275,8 +279,6 @@ export class MultiValueControl extends React.Component<
     }
   };
 
-
-
   public render() {
     const data = (this.props.selected || []).map((text) => {
       return text.length > Number(this._labelDisplayLength)
@@ -289,6 +291,12 @@ export class MultiValueControl extends React.Component<
         className={`multi-value-control ${this.state.focused ? "focused" : ""}`}
         style={{ width: "100%" }}
       >
+        <input
+          type="text"
+          style={{ position: "absolute", opacity: 0, width: 0, height: 0 }}
+          onFocus={this._onFocus}
+          onBlur={this._onBlur}
+        />
         <div
           style={{
             display: "flex",
@@ -313,16 +321,24 @@ export class MultiValueControl extends React.Component<
             );
           })}
 
-          <input
-          type="button"
+          <Button
+            onClick={this.toggleDropdown}
             onBlur={this._onBlur}
             onFocus={this._onFocus}
-            placeholder={this.props.placeholder}
             className="placeHolder"
-          />
-      
-            
-         
+            text={this.props.placeholder}
+            style={{
+             textAlign: "left",
+              backgroundColor: " #e1e1e1",
+              border: "1px solid #c8c8c8",
+              borderRadius: 10,
+              padding: 5,
+              margin:4
+
+            }}
+         />
+  
+      ´
         </div>
         {this.state.focused ? this._getOptions() : null}
         <div className="error">{this.props.error}</div>

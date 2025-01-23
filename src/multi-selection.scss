@@ -21,15 +21,15 @@
   justify-content: flex-end;
 }
 .container {
+  width: auto;  
+  height: auto;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
   padding: 5px;
 
-  background-color: #e1e1e1;
-  color: black;
-  border: 1px solid var(--border-color);
+ 
   border-radius: 20px; // Consolidated to one line to avoid redundancy
   margin: 2px;
 
@@ -42,9 +42,9 @@
   max-height: 100%; // Optional: Set a maximum height
   overflow: auto; // Handle overflow if content exceeds container size
   padding: 10px; // Optional: Add padding if needed
-  border: 1px solid #ccc; // Optional: Add a border if needed
-  background-color: #fff; // Optional: Set a background color
-}
+  color: black;
+  border: 1px solid var(--border-color);
+  background-color: #e1e1e1;}
 
 .tag-picker {
   visibility: hidden;
