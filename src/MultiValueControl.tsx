@@ -9,6 +9,7 @@ import * as React from "react";
 
 import { DelayedFunction } from "VSS/Utils/Core";
 import { BrowserCheckUtils } from "VSS/Utils/UI";
+
 // import { initializeTheme } from "./theme";
 
 interface IMultiValueControlProps {
@@ -43,18 +44,12 @@ export class MultiValueControl extends React.Component<
   WrapperRef
 > {
   private readonly _unfocusedTimeout = BrowserCheckUtils.isSafari() ? 2000 : 1;
-  private readonly _allowCustom: boolean =
-    VSS?.getConfiguration()?.witInputs?.AllowCustom || false;
-  private readonly _labelDisplayLength: number =
-    VSS?.getConfiguration()?.witInputs?.LabelDisplayLength || 35;
-  private _setUnfocused = new DelayedFunction(
-    null,
-    this._unfocusedTimeout,
-    "",
-    () => {
-      this.setState({ focused: false, filter: "" });
-    }
-  );
+  private readonly _allowCustom: boolean = VSS.getConfiguration().witInputs.AllowCustom;
+  private readonly _labelDisplayLength: number = VSS.getConfiguration().witInputs.LabelDisplayLength ? VSS.getConfiguration().witInputs.LabelDisplayLength : 35;
+  private _setUnfocused = new DelayedFunction(null, this._unfocusedTimeout, "", () => {
+      this.setState({focused: false, filter: ""});
+  });
+
   wrapperRef: React.RefObject<HTMLDivElement>;
   container: HTMLDivElement | null;
   onResize: any;
@@ -280,6 +275,8 @@ export class MultiValueControl extends React.Component<
     }
   };
 
+
+
   public render() {
     const data = (this.props.selected || []).map((text) => {
       return text.length > Number(this._labelDisplayLength)
@@ -316,15 +313,16 @@ export class MultiValueControl extends React.Component<
             );
           })}
 
-          <span
-            // onBlur={()=>this.setState({focused:false})}
-            // onFocus={()=>this.setState({focused:false})}
-      
+          <input
+          type="button"
+            onBlur={this._onBlur}
+            onFocus={this._onFocus}
+            placeholder={this.props.placeholder}
             className="placeHolder"
-          >
-            {" "}
-            {this.props.placeholder}{" "}
-          </span>
+          />
+      
+            
+         
         </div>
         {this.state.focused ? this._getOptions() : null}
         <div className="error">{this.props.error}</div>
