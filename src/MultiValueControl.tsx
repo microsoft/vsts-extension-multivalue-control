@@ -297,7 +297,7 @@ export class MultiValueControl extends React.Component<
           onFocus={this._onFocus}
           onBlur={this._onBlur}
         />
-        <div className= "hoverEffect"
+        <div className="hoverEffect"
           style={{
             display: "flex",
             flexDirection: "row",
