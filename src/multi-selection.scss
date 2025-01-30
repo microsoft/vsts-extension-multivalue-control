@@ -24,6 +24,10 @@
   max-width: 100%;
   margin: 3px;
 }
+.addButton{
+  background: #e1e1e1;
+  color: black;
+}
 
 .customTagPicker .tag-text {
   font-size: 12px;
@@ -35,15 +39,14 @@
 .customTagPicker .close-icon {
   cursor: pointer;
   font-size: 12px;
-  color: #666;
+  
   transition: color 0.2s ease-in-out;
 }
 
-.customTagPicker .close-icon:hover {
-  color: red;
-}
+
 .hoverEffect:hover{
-  border: 2px solid #cccccc;;
+  border: 1px solid #cccccc;;
+  padding:3px 5px;
 }
 
 

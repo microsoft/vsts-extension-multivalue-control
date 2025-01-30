@@ -1,3 +1,4 @@
+import { CommandBarButton, IconButton } from "office-ui-fabric-react";
 import { Checkbox } from "office-ui-fabric-react/lib/components/Checkbox";
 
 import { TextField } from "office-ui-fabric-react/lib/components/TextField";
@@ -306,6 +307,7 @@ export class MultiValueControl extends React.Component<
             margin: 3,
           }}
         >
+
           {data?.map((t, index) => {
             return (
               <div className="customTagPicker">
@@ -315,15 +317,29 @@ export class MultiValueControl extends React.Component<
             );
           })}
 
-          <div
+          {
+            !data.length ? <CommandBarButton
+            iconProps={{ iconName: "ChevronDown" }}
             onClick={this.toggleDropdown}
             onBlur={this._onBlur}
             onFocus={this._onFocus}
-            className="customTagPicker"
-       
-         >
-  {this.props.placeholder}
-      </div>
+            className={"AddBtn customTagPicker"}
+            text={"No selection made"}
+            
+          /> : <IconButton
+          iconProps={{ iconName: "Add" }}
+          onClick={this.toggleDropdown}
+          onBlur={this._onBlur}
+          onFocus={this._onFocus}
+          className={"AddBtn customTagPicker"}
+         
+          
+        />
+          }
+
+
+
+   
         </div>
         {this.state.focused ? this._getOptions() : null}
         <div className="error">{this.props.error}</div>
