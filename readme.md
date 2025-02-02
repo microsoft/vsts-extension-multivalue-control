@@ -24,7 +24,7 @@ contributions help enhance the functionality and usability of the extension for 
 **Note:** do not publish the extension as a public extension under a different publisher as this will create a clone of the extension and it will be unclear to the
 community which one to use. If you feel you don't want to contribute to this repository then publish a private version for your use-case.
 
-Check out https://learn.microsoft.com/en-us/azure/devops/extend/get-started to learn how to develop Azure DevOps extensions
+Check out https://learn.microsoft.com/en-us/azure/devops/extend/overview?view=azure-devops to learn how to develop Azure DevOps extensions
 
 ### Developing and Testing
 
