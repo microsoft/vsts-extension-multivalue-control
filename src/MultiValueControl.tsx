@@ -1,4 +1,4 @@
-import { CommandBarButton, IconButton } from "office-ui-fabric-react";
+import { Button, IconButton } from "office-ui-fabric-react";
 import { Checkbox } from "office-ui-fabric-react/lib/components/Checkbox";
 
 import { TextField } from "office-ui-fabric-react/lib/components/TextField";
@@ -299,12 +299,16 @@ export class MultiValueControl extends React.Component<
           onBlur={this._onBlur}
         />
         <div className="hoverEffect"
+
           style={{
             display: "flex",
             flexDirection: "row",
             flexWrap: "wrap",
             width: "100%",
-            margin: 3,
+            padding: "3px 5px",
+       
+         
+          
           }}
         >
 
@@ -318,8 +322,8 @@ export class MultiValueControl extends React.Component<
           })}
 
           {
-            !data.length ? <CommandBarButton
-            iconProps={{ iconName: "ChevronDown" }}
+            !data.length ? 
+            <Button
             onClick={this.toggleDropdown}
             onBlur={this._onBlur}
             onFocus={this._onFocus}
