@@ -1,3 +1,4 @@
+import { Button, IconButton } from "office-ui-fabric-react";
 import { Checkbox } from "office-ui-fabric-react/lib/components/Checkbox";
 
 import { TextField } from "office-ui-fabric-react/lib/components/TextField";
@@ -9,7 +10,7 @@ import * as React from "react";
 
 import { DelayedFunction } from "VSS/Utils/Core";
 import { BrowserCheckUtils } from "VSS/Utils/UI";
-import { Button } from "office-ui-fabric-react";
+
 
 // import { initializeTheme } from "./theme";
 
@@ -297,48 +298,52 @@ export class MultiValueControl extends React.Component<
           onFocus={this._onFocus}
           onBlur={this._onBlur}
         />
-        <div
+        <div className="hoverEffect"
+
           style={{
             display: "flex",
             flexDirection: "row",
             flexWrap: "wrap",
             width: "100%",
-            margin: 3,
+            padding: "3px 5px",
+       
+         
+          
           }}
         >
+
           {data?.map((t, index) => {
             return (
-              <div className={"container"}>
-                <div>{t.match(/.{1,50}/g)?.join("\n")}</div>
-                <div
-                  className="close-icon"
-                  onClick={() => this.deleteTags(t, data)}
-                  onFocus={() => this.setState({ focused: true })}
-                >
-                  X
-                </div>
-              </div>
+              <div className="customTagPicker">
+              <div className="tag-text">{t.match(/.{1,50}/g)?.join("\n")}</div>
+              <div className="close-icon" onClick={() => this.deleteTags(t, data)}>✖</div>
+            </div>
             );
           })}
 
-          <Button
+          {
+            !data.length ? 
+            <Button
             onClick={this.toggleDropdown}
             onBlur={this._onBlur}
             onFocus={this._onFocus}
-            className="placeHolder"
-            text={this.props.placeholder}
-            style={{
-             textAlign: "left",
-              backgroundColor: " #e1e1e1",
-              border: "1px solid #c8c8c8",
-              borderRadius: 10,
-              padding: 5,
-              margin:4
+            className={"AddBtn customTagPicker"}
+            text={"No selection made"}
+            
+          /> : <IconButton
+          iconProps={{ iconName: "Add" }}
+          onClick={this.toggleDropdown}
+          onBlur={this._onBlur}
+          onFocus={this._onFocus}
+          className={"AddBtn customTagPicker"}
+         
+          
+        />
+          }
 
-            }}
-         />
-  
-      ´
+
+
+   
         </div>
         {this.state.focused ? this._getOptions() : null}
         <div className="error">{this.props.error}</div>
