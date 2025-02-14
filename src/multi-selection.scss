@@ -1,4 +1,35 @@
-// ie does not support variables, use mixins as workaround
+:root {
+  --background-color-light: #ccc; /* Grey for light mode */
+  --background-color-dark: #666; /* Light grey for dark mode */
+  --text-color-light: #000;
+  --text-color-dark: #fff;
+  --border-color-light: #979494;
+  --border-color-dark: #666;
+  --hover-background-color-light: #bbb;
+  --hover-background-color-dark: #444;
+  --placeholder-background-color-light: rgba(225, 223, 221, 1);
+  --placeholder-background-color-dark: rgba(50, 50, 50, 1);
+  --close-icon-color-light: #000; /* Close icon color for light mode */
+  --close-icon-color-dark: #fff;  /* Close icon color for dark mode */
+}
+
+[data-theme="light"] {
+  --background-color: var(--background-color-light);
+  --text-color: var(--text-color-light);
+  --border-color: var(--border-color-light);
+  --hover-background-color: var(--hover-background-color-light);
+  --placeholder-background-color: var(--placeholder-background-color-light);
+  --close-icon-color: var(--close-icon-color-light);
+}
+
+[data-theme="dark"] {
+  --background-color: var(--background-color-dark);
+  --text-color: var(--text-color-dark);
+  --border-color: var(--border-color-dark);
+  --hover-background-color: var(--hover-background-color-dark);
+  --placeholder-background-color: var(--placeholder-background-color-dark);
+  --close-icon-color: var(--close-icon-color-dark);
+}
 @mixin border-color($varName, $defaultR, $defaultG, $defaultB) {
   border-color: rgb($defaultR, $defaultG, $defaultB);
   border-color: rgb(var($varName, $defaultR, $defaultG, $defaultB));
@@ -11,26 +42,28 @@
   color: rgb($defaultR, $defaultG, $defaultB);
   color: rgb(var($varName, $defaultR, $defaultG, $defaultB));
 }
+
 .customTagPicker {
   display: flex;
   align-items: center;
-  background-color: #e1e1e1;
-  color: black;
-  border: 1px solid var(--border-color, #ccc);
+  background-color: var(--background-color); /* Use the CSS variable for the background color */
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 2px 8px;
   font-size: 12px;
   white-space: nowrap;
   max-width: 100%;
   margin: 3px;
+  height: 25px;
 }
-.addButton{
-  background: #e1e1e1;
-  color: black;
+.addButton {
+  background: var(--background-color);
+  color: var(--text-color);
 }
 
 .customTagPicker .tag-text {
-  font-size: 12px;
+  font-size: 11px;
   line-height: 1.2;
   word-break: break-word;
   margin-right: 10px; /* Adds space between text and close button */
@@ -39,14 +72,8 @@
 .customTagPicker .close-icon {
   cursor: pointer;
   font-size: 12px;
-  
+  color: var(--close-icon-color); /* Use the CSS variable for the close icon color */
   transition: color 0.2s ease-in-out;
-}
-
-
-.hoverEffect:hover{
-  border: 1px solid #cccccc;;
-  padding:3px 5px;
 }
 
 
@@ -54,7 +81,11 @@
 .tag-picker {
   visibility: hidden;
 }
+
 #container {
+  .hoverEffect:hover {
+  border: 1px solid border-color(--palette-neutral-8, 234, 234, 234);
+  }
   padding-bottom: 3px;
   padding-right: 3px;
   .multi-value-control {
@@ -108,9 +139,11 @@
     }
   }
 }
+
 .ms-Fabric--isFocusVisible .ms-TagItem:focus:after {
   @include border-color(--palette-neutral-100, 0, 0, 0);
 }
+
 .options {
   width: 100%;
 }
@@ -120,43 +153,26 @@
   height: 24px;
   width: 24px;
 }
+
 .header {
   display: flex;
-
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
 }
-.text {
-  font-size: 14px;
-  color: #333;
-  font-weight: bold;
-  width: 100%;
-  display: inline-block;
-}
+
 .iconWrapper {
   display: flex;
   align-items: center;
 }
+
 .placeHolder {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(225, 223, 221);
+  background-color: var(--placeholder-background-color);
   padding: 3px 5px;
   border-radius: 5px;
   cursor: pointer;
   margin: 2px;
-
-}
-
-
-.clickToAdd{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: rgba(161, 159, 157);
-  padding: 0px 3px;
-  border-radius: 5px;
-  cursor: pointer;
 }
