@@ -1,7 +1,7 @@
 
 
 
-@import "../node_modules/azure-devops-ui/Core/Core.scss";
+@import "~azure-devops-ui/Core/Core.scss";
 
 @mixin border-color($varName, $defaultR, $defaultG, $defaultB) {
   border-color: rgb($defaultR, $defaultG, $defaultB);
