@@ -309,11 +309,7 @@ export class MultiValueControl extends React.Component<
             padding: "5px",
           }}
         >
-          {(this.props.selected || []).map((text) => {
-      return text.length > Number(this._labelDisplayLength)
-        ? `${text.slice(0, Number(this._labelDisplayLength))}...`
-        : text;
-    })?.map((t, index) => {
+          {data?.map((t, index) => {
             return (
               <div className="customTagPicker">
                 <div className="tag-text">
