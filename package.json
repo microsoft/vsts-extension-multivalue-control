@@ -43,7 +43,9 @@
     "webpack-dev-server": "^4.8.1"
   },
   "dependencies": {
-    "es6-promise": "^4.2.8"
+    "es6-promise": "^4.2.8",
+"sass": "^1.23.3",
+    "sass-loader": "^11.1.1"
   },
   "name": "multivalue-control-extension",
   "license": "MIT",

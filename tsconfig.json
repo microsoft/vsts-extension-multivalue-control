@@ -2,8 +2,10 @@
     "compilerOptions": {
         "module": "amd",
         "moduleResolution": "node",
+        "esModuleInterop": true,
         "sourceMap": true,
         "target": "es5",
+  
         "strictNullChecks": true,
         "noUnusedLocals": true,
         "jsx": "react",
@@ -20,4 +22,5 @@
             "es5"
         ]
     }
+  
 }
