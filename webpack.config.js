@@ -12,6 +12,7 @@ module.exports = {
         filename: "src/[name].js",
         libraryTarget: "amd"
     },
+   
     externals: [
         {
         },
@@ -24,7 +25,8 @@ module.exports = {
         rules: [
             {
                 test: /\.tsx?$/,
-                use: "ts-loader"
+                use: "ts-loader",
+                 exclude: /node_modules/
             },
             {
                 test: /\.s?css$/,
