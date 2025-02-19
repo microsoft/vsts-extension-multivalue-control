@@ -92,6 +92,7 @@ export class MultiValueControl extends React.Component<
       isToggled: !prevState.isToggled,
       focused: !prevState.focused,
     }));
+    this._onTagsChanged
   };
 
   _getOptions() {
@@ -211,6 +212,13 @@ export class MultiValueControl extends React.Component<
 
     return filterEmptyElement.filter((el) => el !== "");
   };
+
+  private _onTagsChanged = (tags: any[]) => {
+    const values = tags.map(({name}) => name);
+    if (this.props.onSelectionChanged) {
+        this.props.onSelectionChanged(values);
+    }
+}
   private _onInputChange = (
     event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>,
     newValue?: string

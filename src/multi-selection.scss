@@ -34,7 +34,10 @@
       @include background-color(--palette-neutral-4, 244, 244, 244);
     @include color(--palette-neutral-100, 0, 0, 0);
     font-size: 11px;
-    border-radius: 10px}
+    border-radius: 12px;
+    height: 25px;
+    padding: 2px 8px;
+  margin: 3px}
     .tag-picker .ms-TagItem {
       @include background-color(--palette-neutral-4, 244, 244, 244);
       &:hover {
@@ -85,7 +88,7 @@
   color: $primary-text;
   border: none;
   border-radius: 4px;
-  padding: 10px 20px;
+  padding: 3px 5px;
   font-size: 14px;
   cursor: pointer;
   text-align: center;
@@ -126,6 +129,7 @@ option{
   max-width: 100%;
   margin: 3px;
   height: 25px;
+ 
 }
 .AddBtn {
   background: $neutral-6;
