@@ -9,7 +9,7 @@
     "package:release": "node ./scripts/packageRelease",
     "package:beta": "node ./scripts/packageBeta",
     "publish:dev": "npm run package:dev && node ./scripts/publishDev",
-    "build:styles": "node ./node_modules/sass/sass.js .node_modules/azure-devops-ui/ ./src/multi-selection.scss ./dist/multi-selection.css",
+    "build:styles": "node ./node_modules/sass/sass.js ./src/multi-selection.scss ./dist/multi-selection.css",
     "build:dev": "npm run clean && mkdir dist && npm run build:styles && webpack --progress --color --output-path ./dist",
     "build:release": "npm run clean && mkdir dist && npm run build:styles && webpack --progress --color --output-path ./dist --mode production",
     "publish:release": "npm run build:release && node ./scripts/publishRelease",
