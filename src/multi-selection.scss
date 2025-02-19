@@ -3,8 +3,6 @@
 
 @import "../node_modules/azure-devops-ui/Core/Core.scss";
 
-
-// ie does not support variables, use mixins as workaround
 @mixin border-color($varName, $defaultR, $defaultG, $defaultB) {
   border-color: rgb($defaultR, $defaultG, $defaultB);
   border-color: rgb(var($varName, $defaultR, $defaultG, $defaultB));
