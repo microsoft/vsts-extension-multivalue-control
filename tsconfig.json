@@ -2,8 +2,11 @@
     "compilerOptions": {
         "module": "amd",
         "moduleResolution": "node",
+        "esModuleInterop": true,
         "sourceMap": true,
         "target": "es5",
+        "outDir": "./dist",
+    "rootDir": "./src",
         "strictNullChecks": true,
         "noUnusedLocals": true,
         "jsx": "react",
@@ -19,5 +22,6 @@
             "dom",
             "es5"
         ]
-    }
+    },
+    "include": ["src/**/*"]
 }
