@@ -1,4 +1,4 @@
-import { Button, IconButton } from "office-ui-fabric-react";
+import { IconButton } from "office-ui-fabric-react";
 import { Checkbox } from "office-ui-fabric-react/lib/components/Checkbox";
 
 import { TextField } from "office-ui-fabric-react/lib/components/TextField";
@@ -8,11 +8,9 @@ import {
 } from "office-ui-fabric-react/lib/FocusZone";
 import * as React from "react";
 
+
 import { DelayedFunction } from "VSS/Utils/Core";
 import { BrowserCheckUtils } from "VSS/Utils/UI";
-
-
-// import { initializeTheme } from "./theme";
 
 interface IMultiValueControlProps {
   selected?: string[];
@@ -64,6 +62,7 @@ export class MultiValueControl extends React.Component<
   wrapperRef: React.RefObject<HTMLDivElement>;
   container: HTMLDivElement | null;
   onResize: any;
+  selected: string[];
 
   constructor(props, context) {
     super(props, context);
@@ -93,6 +92,7 @@ export class MultiValueControl extends React.Component<
       isToggled: !prevState.isToggled,
       focused: !prevState.focused,
     }));
+    this._onTagsChanged
   };
 
   _getOptions() {
@@ -103,7 +103,7 @@ export class MultiValueControl extends React.Component<
     return (
       <div className="options">
         <TextField
-          className="text"
+          className="text "
           value={this.state.filter}
           autoFocus
           placeholder={"Filter values"}
@@ -186,6 +186,7 @@ export class MultiValueControl extends React.Component<
   private _toggleSelectAll = () => {
     const options = this.props.options;
     const selected = this.props.selected || [];
+    console.log(selected.join(";"), options.join(";"));
     if (selected.join(";") === options.join(";")) {
       this._setSelected([]);
     } else {
@@ -211,6 +212,13 @@ export class MultiValueControl extends React.Component<
 
     return filterEmptyElement.filter((el) => el !== "");
   };
+
+  private _onTagsChanged = (tags: any[]) => {
+    const values = tags.map(({name}) => name);
+    if (this.props.onSelectionChanged) {
+        this.props.onSelectionChanged(values);
+    }
+}
   private _onInputChange = (
     event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>,
     newValue?: string
@@ -287,6 +295,7 @@ export class MultiValueControl extends React.Component<
         : text;
     });
 
+ 
     return (
       <div
         className={`multi-value-control ${this.state.focused ? "focused" : ""}`}
@@ -298,52 +307,47 @@ export class MultiValueControl extends React.Component<
           onFocus={this._onFocus}
           onBlur={this._onBlur}
         />
-        <div className="hoverEffect"
-
+        <div
+          className="hoverEffect"
           style={{
             display: "flex",
             flexDirection: "row",
             flexWrap: "wrap",
             width: "100%",
-            padding: "3px 5px",
-       
-         
-          
+            padding: "5px",
           }}
         >
-
           {data?.map((t, index) => {
             return (
               <div className="customTagPicker">
-              <div className="tag-text">{t.match(/.{1,50}/g)?.join("\n")}</div>
-              <div className="close-icon" onClick={() => this.deleteTags(t, data)}>✖</div>
-            </div>
+                <div className="tag-text">
+                  {t.match(/.{1,50}/g)?.join("\n")}
+                </div>
+                <div
+                  className="closeIconcustom"
+                  onClick={() => this.deleteTags(t, data)}
+                >
+                  x
+                </div>
+              </div>
             );
           })}
 
-          {
-            !data.length ? 
-            <Button
-            onClick={this.toggleDropdown}
-            onBlur={this._onBlur}
-            onFocus={this._onFocus}
-            className={"AddBtn customTagPicker"}
-            text={"No selection made"}
-            
-          /> : <IconButton
-          iconProps={{ iconName: "Add" }}
-          onClick={this.toggleDropdown}
-          onBlur={this._onBlur}
-          onFocus={this._onFocus}
-          className={"AddBtn customTagPicker"}
+          {!data.length ? (
+            <div className="NoSlectionBtn"  onClick={this.toggleDropdown}   onBlur={this._onBlur} onFocus={this._onFocus}>
+        
+            No selection made
          
-          
-        />
-          }
-
-
-
-   
+           </div>
+          ) : (
+            <IconButton
+              iconProps={{ iconName: "Add" }}
+              onClick={this.toggleDropdown}
+              onBlur={this._onBlur}
+              onFocus={this._onFocus}
+              className={"AddBtn"}
+            />
+          )}
         </div>
         {this.state.focused ? this._getOptions() : null}
         <div className="error">{this.props.error}</div>

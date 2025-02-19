@@ -1,3 +1,9 @@
+
+
+
+@import "../node_modules/azure-devops-ui/Core/Core.scss";
+
+
 // ie does not support variables, use mixins as workaround
 @mixin border-color($varName, $defaultR, $defaultG, $defaultB) {
   border-color: rgb($defaultR, $defaultG, $defaultB);
@@ -11,49 +17,7 @@
   color: rgb($defaultR, $defaultG, $defaultB);
   color: rgb(var($varName, $defaultR, $defaultG, $defaultB));
 }
-.customTagPicker {
-  display: flex;
-  align-items: center;
-  background-color: #e1e1e1;
-  color: black;
-  border: 1px solid var(--border-color, #ccc);
-  border-radius: 12px;
-  padding: 2px 8px;
-  font-size: 12px;
-  white-space: nowrap;
-  max-width: 100%;
-  margin: 3px;
-}
-.addButton{
-  background: #e1e1e1;
-  color: black;
-}
 
-.customTagPicker .tag-text {
-  font-size: 12px;
-  line-height: 1.2;
-  word-break: break-word;
-  margin-right: 10px; /* Adds space between text and close button */
-}
-
-.customTagPicker .close-icon {
-  cursor: pointer;
-  font-size: 12px;
-  
-  transition: color 0.2s ease-in-out;
-}
-
-
-.hoverEffect:hover{
-  border: 1px solid #cccccc;;
-  padding:3px 5px;
-}
-
-
-
-.tag-picker {
-  visibility: hidden;
-}
 #container {
   padding-bottom: 3px;
   padding-right: 3px;
@@ -66,7 +30,14 @@
       &:not(:hover) {
         border-color: transparent;
       }
-    }
+    }.AddBtn{
+      @include background-color(--palette-neutral-4, 244, 244, 244);
+    @include color(--palette-neutral-100, 0, 0, 0);
+    font-size: 11px;
+    border-radius: 12px;
+    height: 25px;
+    padding: 2px 8px;
+  margin: 3px}
     .tag-picker .ms-TagItem {
       @include background-color(--palette-neutral-4, 244, 244, 244);
       &:hover {
@@ -111,52 +82,85 @@
 .ms-Fabric--isFocusVisible .ms-TagItem:focus:after {
   @include border-color(--palette-neutral-100, 0, 0, 0);
 }
+
+.NoSlectionBtn {
+  background: $neutral-6;
+  color: $primary-text;
+  border: none;
+  border-radius: 4px;
+  padding: 3px 5px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+  display: inline-block;
+ 
+
+ 
+}
+.hoverEffect:hover{
+ border: 1px solid $neutral-70;
+
+}
+
+.closeIconcustom {
+  color: $primary-text;
+ 
+
+}
+option{
+  color: $primary-text;
+}
+
+.text{
+  background: $text-on-communication-background;
+  color: $primary-text;
+}
+
+
+.customTagPicker {
+  display: flex;
+  align-items: center;
+  background: $neutral-6;
+  color: $primary-text;
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-size: 12px;
+  white-space: nowrap;
+  max-width: 100%;
+  margin: 3px;
+  height: 25px;
+ 
+}
+.AddBtn {
+  background: $neutral-6;
+  color:  $primary-text;
+}
+
+.customTagPicker .tag-text {
+  font-size: 11px;
+  line-height: 1.2;
+  word-break: break-word;
+  margin-right: 10px; /* Adds space between text and close button */
+}
+
+
+.tag-picker {
+  visibility: hidden;
+}
+
+
+
+
+
+
 .options {
   width: 100%;
 }
 
-.addIcon {
-  font-size: 24px;
-  height: 24px;
-  width: 24px;
-}
+
 .header {
   display: flex;
-
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-}
-.text {
-  font-size: 14px;
-  color: #333;
-  font-weight: bold;
-  width: 100%;
-  display: inline-block;
-}
-.iconWrapper {
-  display: flex;
-  align-items: center;
-}
-.placeHolder {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(225, 223, 221);
-  padding: 3px 5px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin: 2px;
-
-}
-
-
-.clickToAdd{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: rgba(161, 159, 157);
-  padding: 0px 3px;
-  border-radius: 5px;
-  cursor: pointer;
 }
