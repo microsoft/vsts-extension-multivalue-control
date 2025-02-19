@@ -15,7 +15,7 @@ module.exports = {
     externals: [
         {
         },
-        /^VSS\/.*/, /^TFS\/.*/, /^q$/
+             /^VSS\/.*/, /^TFS\/.*/, /^q$/, /^azure-devops-ui$/
     ],
     resolve: {
         extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
