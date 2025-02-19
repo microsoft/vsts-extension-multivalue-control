@@ -26,7 +26,7 @@ module.exports = {
             {
                 test: /\.tsx?$/,
                 use: "ts-loader",
-                 exclude: /node_modules/,
+           
             },
             {
                 test: /\.s?css$/,
@@ -44,6 +44,7 @@ module.exports = {
         }),
         new CopyWebpackPlugin({
                 patterns: [
+                   { from: "./node_modules/azure-devops-ui/Core/Core.scss", to: "./multi-selection.scss" },
                     { from: "./node_modules/es6-promise/dist/es6-promise.min.js", to: "libs/es6-promise.min.js" },
                     { from: "./node_modules/vss-web-extension-sdk/lib/VSS.SDK.min.js", to: "libs/VSS.SDK.min.js" },
                     { from: "./src/multivalue.html", to: "./" },
