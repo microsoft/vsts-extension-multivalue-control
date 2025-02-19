@@ -22,7 +22,6 @@
     "@types/react": "^16.4.8",
     "@types/react-dom": "^16.0.7",
     "azure-devops-extension-sdk": "^4.0.2",
-    "azure-devops-ui": "^2.251.0",
     "copy-webpack-plugin": "^9.0.1",
     "css-loader": "^6.7.1",
     "jsonpath": "^1.1.1",
@@ -43,6 +42,7 @@
     "webpack-dev-server": "^4.8.1"
   },
   "dependencies": {
+    "azure-devops-ui": "^2.251.0",
     "es6-promise": "^4.2.8"
   },
   "name": "multivalue-control-extension",
