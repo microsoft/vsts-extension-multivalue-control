@@ -10,11 +10,10 @@ module.exports = {
     },
     output: {
         filename: "src/[name].js",
-        libraryTarget: "amd"
+        libraryTarget: "amd",
+        path: path.resolve(__dirname, "dist")
     },
     externals: [
-        {
-        },
         /^VSS\/.*/, /^TFS\/.*/, /^q$/
     ],
     resolve: {
@@ -25,7 +24,7 @@ module.exports = {
             {
                 test: /\.tsx?$/,
                 use: "ts-loader",
-       
+                exclude: /node_modules/
             },
             {
                 test: /\.s?css$/,
@@ -34,21 +33,22 @@ module.exports = {
         ]
     },
     devtool: 'inline-source-map',
-    mode: "development",
+    mode: "production",
     plugins: [
         new BundleAnalyzerPlugin({
-          openAnalyzer: false,
-          reportFilename: "bundle-analysis.html",
-          analyzerMode: "static"
+            openAnalyzer: false,
+            reportFilename: "bundle-analysis.html",
+            analyzerMode: "static"
         }),
         new CopyWebpackPlugin({
-                patterns: [
-                    { from: "./node_modules/es6-promise/dist/es6-promise.min.js", to: "libs/es6-promise.min.js" },
-                    { from: "./node_modules/vss-web-extension-sdk/lib/VSS.SDK.min.js", to: "libs/VSS.SDK.min.js" },
-                    { from: "./node_modules/azure-devops-ui/Core/Core.scss", to: "libs/az/Core.scss" },
-                    { from: "./src/multivalue.html", to: "./" },
-                    { from: "./img", to: "img" },
-                    { from: "./readme.md", to: "readme.md" }
-        ]})
+            patterns: [
+                { from: "./node_modules/es6-promise/dist/es6-promise.min.js", to: "libs/es6-promise.min.js" },
+                { from: "./node_modules/vss-web-extension-sdk/lib/VSS.SDK.min.js", to: "libs/VSS.SDK.min.js" },
+                { from: "./node_modules/azure-devops-ui/Core/Core.scss", to: "libs/az/Core.scss" },
+                { from: "./src/multivalue.html", to: "./" },
+                { from: "./img", to: "img" },
+                { from: "./readme.md", to: "readme.md" }
+            ]
+        })
     ]
-}
+};
