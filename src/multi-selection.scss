@@ -1,7 +1,6 @@
 
 
 
-@import "../node_modules/azure-devops-ui/Core/Core.scss";
 
 @mixin border-color($varName, $defaultR, $defaultG, $defaultB) {
   border-color: rgb($defaultR, $defaultG, $defaultB);
@@ -76,50 +75,45 @@
       @include color(--palette-accent1, 218, 10, 0);
     }
   }
-}
-.ms-Fabric--isFocusVisible .ms-TagItem:focus:after {
-  @include border-color(--palette-neutral-100, 0, 0, 0);
-}
+  .NoSlectionBtn {
 
-.NoSlectionBtn {
-  background: $neutral-6;
-  color: $primary-text;
-  border: none;
-  border-radius: 4px;
-  padding: 3px 5px;
-  font-size: 14px;
-  cursor: pointer;
-  text-align: center;
-  display: inline-block;
- 
-
- 
+    @include background-color(--palette-neutral-8, 234, 234, 234);
+    @include color(--palette-neutral-100, 0, 0, 0);
+   
+    border: none;
+    border-radius: 4px;
+    padding: 3px 5px;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+   
+  
+   
+  }
+  .closeIconcustom {
+    @include color(--palette-neutral-100, 0, 0, 0);
+   
+  
+  }
+  option{
+    @include color(--palette-neutral-100, 0, 0, 0);
+  }
+  .hoverEffect:hover{
+    @include  border-color(--palette-neutral-100, 0, 0, 0);
+    border: 1px solid;
+   
+   }
 }
-.hoverEffect:hover{
- border: 1px solid $neutral-70;
-
-}
-
-.closeIconcustom {
-  color: $primary-text;
- 
-
-}
-option{
-  color: $primary-text;
-}
-
 .text{
-  background: $text-on-communication-background;
-  color: $primary-text;
+
+  @include color(--palette-neutral-100, 0, 0, 0);
 }
-
-
 .customTagPicker {
   display: flex;
   align-items: center;
-  background: $neutral-6;
-  color: $primary-text;
+  @include background-color(--palette-neutral-8, 234, 234, 234);
+  @include color(--palette-neutral-100, 0, 0, 0);
   border-radius: 12px;
   padding: 2px 8px;
   font-size: 12px;
@@ -129,10 +123,20 @@ option{
   height: 25px;
  
 }
-.AddBtn {
-  background: $neutral-6;
-  color:  $primary-text;
+
+.ms-Fabric--isFocusVisible .ms-TagItem:focus:after {
+  @include border-color(--palette-neutral-100, 0, 0, 0);
 }
+
+
+
+
+
+
+
+
+
+
 
 .customTagPicker .tag-text {
   font-size: 11px;
