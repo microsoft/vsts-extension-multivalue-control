@@ -31,12 +31,6 @@
         "uri": "https://github.com/Microsoft/vsts-extension-multivalue-control"
     },
     "links": {
-        "home": {
-            "uri": "https://github.com/Microsoft/vsts-extension-multivalue-control"
-        },
-        "learn": {
-            "uri": "https://github.com/Microsoft/vsts-extension-multivalue-control"
-        },
         "repository": {
             "uri": "https://github.com/Microsoft/vsts-extension-multivalue-control"
         },
@@ -57,13 +51,16 @@
     "content": {
         "details": {
             "path": "marketplace/overview.md"
+        },
+        "license": {
+            "path": "LICENSE"
         }
     },
     "scopes": [
         "vso.work"
     ],
     "contributions": [
-		{
+        {
             "id": "multivalue-form-control",
             "type": "ms.vss-work-web.work-item-form-control",
             "description": "A work item form control which allows selection of multiple values.",
@@ -74,13 +71,17 @@
                 "name": "Multivalue control",
                 "uri": "dist/multivalue.html",
                 "height": 50,
-				"inputs": [
-				    {
-                        "id":"FieldName",
+                "inputs": [
+                    {
+                        "id": "FieldName",
                         "name": "Select the field for this control. This is the only input needed if the field is a picklist field with suggested values.",
                         "type": "WorkItemField",
                         "properties": {
-                            "workItemFieldTypes": ["String", "PlainText", "HTML"]
+                            "workItemFieldTypes": [
+                                "String",
+                                "PlainText",
+                                "HTML"
+                            ]
                         },
                         "validation": {
                             "dataType": "String",
@@ -88,7 +89,7 @@
                         }
                     },
                     {
-                        "id":"Values",
+                        "id": "Values",
                         "name": "Choose values for the control. This is only required if you're not using a picklist field. Example: Windows; IOS; Linux",
                         "description": "Values can be user provided or from suggested values of the backing field",
                         "validation": {
@@ -97,7 +98,7 @@
                         }
                     },
                     {
-                        "id":"AllowCustom",
+                        "id": "AllowCustom",
                         "name": "Allow users to enter custom values",
                         "inputMode": "CheckBox",
                         "validation": {
@@ -106,14 +107,14 @@
                         }
                     },
                     {
-                        "id":"LabelDisplayLength",
+                        "id": "LabelDisplayLength",
                         "name": "Set the maximum display length for each option's label. Defaults to 35 if not set.",
                         "validation": {
                             "dataType": "Number",
                             "isRequired": false
                         }
                     }
-				]
+                ]
             }
         }
     ]
