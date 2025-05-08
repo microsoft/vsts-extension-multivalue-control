@@ -60,10 +60,16 @@ export class MultiValueEvents {
         return value.split(";").filter((v) => !!v).map(s => s.trim());
     }
     private _setSelected = async (values: string[]): Promise<void> => {
+        const formService = await WorkItemFormService.getService();
+        const fields = await formService.getFields();
+
+        const isReadOnly = fields.filter((f) => f.referenceName === this.fieldName)[0].readOnly;
+        if (isReadOnly) {
+            console.warn("Field is read only, cannot set value.");
+            return;
+        }
         this.refresh(values);
         this._fired++;
-        const formService = await WorkItemFormService.getService();
-
         await formService.setFieldValue(this.fieldName, values.join(";"));
 
         return new Promise<void>((resolve) => {
