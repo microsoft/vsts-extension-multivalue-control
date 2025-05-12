@@ -7,22 +7,49 @@ The Multi-Value Control Azure DevOps Extension enhances work item forms by enabl
 > Currently only available on TFS 2017 or later and Azure DevOps.
 
 ## How to get started
+To use the Multivalue control you need a work item field to store the data used by the control and then add the Multivalue control to the form, linking it to the underlying field.
 
-Navigate to your work item form customization page and add a multivalue control.
-Edit the control so it can use the right field to store your selection and the right set of values to be displayed.
-Be sure to allow user inputed values if a picklisk (string) field is used to back the extension.
+### Create a work item field
+You can setup the control to either use a picklist or a semi-colon separate list of values as the domain values for the control.
 
-- Navigate to Project Settings and select Process. From there, choose the work item type to which you would like to add a custom field
-- (WorkItem)[marketplace/img/workItemType.png]
+> Note: the string field in Azure DevOps can maximum store 255 characters. If you have a large number of items in your list then use an HTML field (Text (multiple lines)) instead.
 
-- Select customization page and add a multivalue control.
-  ![Add Custom Control](img/addcustomControl.png)
+#### Adding a picklist field
 
-- Select Multivalue-Control
-  ![MultiValue](img/MultiValue.png)
+* Add a picklist(string) field and add the picklist items in the field definition.
 
-- Select the field for the control and choose the appropriate values for the control.
-  ![Custom Control](img/customControl.png)
+  ![picklistField](img/picklistField.png)
+
+* In the option section, select "Allow users to enter their own value"
+
+  ![fieldOptions](img/picklistFieldOptions.png)
+
+#### Adding a string field
+
+* Add a Text field (use multi line if you need more that 255 characters to store the selected items)
+
+  ![stringField](img/stringField.png)
+
+### Add a Multi Value control to the work item form
+When you have created the work item field to store the value for the Multivalue control you can add the control to the form and link it to the underlying field.
+
+* Navigate to Project Settings and select Process. From there, choose the work item type to which you would like to add a custom field
+
+  ![workItemType](img/workItemType.png)
+
+* Select the customization page and add a multivalue control to the form.
+
+  ![addControl](img/addControl.png)
+
+* Select the field for the control and choose the appropriate values for the control.
+
+  If you use a picklist field:
+
+  ![addControlOptionsPicklist](img/addControlOptionsPicklist.png)
+
+  If you use a string field then also configure the values for the control as a semi-colon separated list in the control definition.
+
+  ![addControlOptionsString](img/addControlOptionsString.png)
 
 ## XML process template
 
