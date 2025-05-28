@@ -63,8 +63,14 @@ export class MultiValueEvents {
         const formService = await WorkItemFormService.getService();
         const fields = await formService.getFields();
 
-        const isReadOnly = fields.filter((f) => f.referenceName === this.fieldName)[0].readOnly;
-        if (isReadOnly) {
+        const currentField = fields.filter((f) => f.referenceName === this.fieldName)[0];
+
+        if (!currentField) {
+            console.warn(`Field ${this.fieldName} not found.`);
+            return;
+        }
+
+        if (currentField.readOnly) {
             console.warn("Field is read only, cannot set value.");
             return;
         }
