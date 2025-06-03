@@ -8,5 +8,6 @@ export async function getSuggestedValues(): Promise<string[]> {
     }
     // if the values input were not specified as an input, get the suggested values for the field.
     const service = await WorkItemFormService.getService();
-    return await service.getAllowedFieldValues(VSS.getConfiguration().witInputs.FieldName) as string[];
+    const allowedValues = await service.getAllowedFieldValues(VSS.getConfiguration().witInputs.FieldName) as string[];
+    return allowedValues.filter((value) => value.indexOf(";") === -1);
 }
