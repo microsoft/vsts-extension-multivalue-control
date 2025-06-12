@@ -38,7 +38,7 @@ stages:
 
     - task: NodeTool@0
       inputs:
-        versionSpec: '15.x'
+        versionSpec: '16.x'
     - template: build.yml@pipeline-templates
     - template: package.yml@pipeline-templates
       parameters:
