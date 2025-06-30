@@ -32,6 +32,14 @@ module.exports = {
             }
         ]
     },
+    devServer: {
+        static: {
+            directory: path.join(__dirname, './'),
+        },
+        port: 8888,
+        hot: true,
+        server: 'https',
+    },
     devtool: 'inline-source-map',
     mode: "development",
     plugins: [
