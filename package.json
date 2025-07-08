@@ -27,7 +27,7 @@
     "css-loader": "^6.7.1",
     "jsonpath": "^1.1.1",
     "lodash": "^4.17.21",
-    "office-ui-fabric-react": "^6.47.1",
+    "office-ui-fabric-react": "^7.204.1",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "rimraf": "^2.6.1",
