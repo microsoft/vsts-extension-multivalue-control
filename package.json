@@ -18,7 +18,7 @@
   "devDependencies": {
     "@types/applicationinsights-js": "^1.0.5",
     "@types/jquery": "^2.0.41",
-    "@types/jsonpath": "^0.2.0",
+    "@types/jsonpath": "^0.2.4",
     "@types/react": "^16.4.8",
     "@types/react-dom": "^16.0.7",
     "azure-devops-extension-sdk": "^4.0.2",
