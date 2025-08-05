@@ -1,7 +1,7 @@
 {
   "main": "webpack.config.js",
   "scripts": {
-    "clean": "rimraf dist && rimraf *.vsix && rimraf vss-extension-release.json && rimraf src/*.js && rimraf libs",
+    "clean": "rimraf dist *.vsix vss-extension-release.json src/*.js libs",
     "dev": "npm run build:dev && webpack serve --hot --progress --color --port 8888 --static ./",
     "dev:http": "npm run build:dev && webpack serve --hot --progress --color --port 8888 --static ./",
     "package:dev": "node ./scripts/packageDev",
