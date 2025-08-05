@@ -3,7 +3,7 @@
         "module": "amd",
         "moduleResolution": "node",
         "sourceMap": true,
-        "target": "es5",
+        "target": "es2015",
         "strictNullChecks": true,
         "noUnusedLocals": true,
         "jsx": "react",
@@ -15,9 +15,20 @@
             "react-dom"
         ],
         "lib": [
-            "es2015.promise",
+            "es2015",
             "dom",
-            "es5"
-        ]
-    }
+            "dom.iterable"
+        ],
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist"
+    ]
 }
