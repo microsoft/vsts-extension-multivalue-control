@@ -43,7 +43,7 @@ export class MultiValueControl extends React.Component<
   IMultiValueControlState,
   WrapperRef
 > {
-  private readonly _unfocusedTimeout = BrowserCheckUtils.isSafari() ? 2000 : 1;
+  private readonly _unfocusedTimeout = BrowserCheckUtils.isSafari() ? 2000 : 150;
   private readonly _allowCustom: boolean =
     VSS.getConfiguration().witInputs.AllowCustom;
   private readonly _labelDisplayLength: number = VSS.getConfiguration()
@@ -120,6 +120,7 @@ export class MultiValueControl extends React.Component<
               label="Select All"
               checked={selected.join(";") === options.join(";")}
               onChange={this._toggleSelectAll}
+              onMouseDown={this._onFocus}
               inputProps={{
                 onBlur: this._onBlur,
                 onFocus: this._onFocus,
@@ -128,6 +129,7 @@ export class MultiValueControl extends React.Component<
           )}
           {filteredOpts.map((o) => (
             <Checkbox
+              key={o}
               className="text"
               checked={selected.indexOf(o) >= 0}
               inputProps={{
@@ -135,6 +137,7 @@ export class MultiValueControl extends React.Component<
                 onFocus: this._onFocus,
               }}
               onChange={() => this._toggleOption(o)}
+              onMouseDown={this._onFocus}
               label={this._wrapText(o)}
               title={o}
             />
@@ -234,7 +237,7 @@ export class MultiValueControl extends React.Component<
   };
 
   private _onBlur = () => {
-    this._setUnfocused.reset();
+    this._setUnfocused.start();
   };
   private _onFocus = () => {
     this._setUnfocused.cancel();
