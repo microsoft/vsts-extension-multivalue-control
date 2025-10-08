@@ -22,7 +22,7 @@
     "@types/react": "^16.14.57",
     "@types/react-dom": "^16.9.25",
     "azure-devops-extension-sdk": "^4.0.2",
-    "azure-devops-ui": "^2.251.0",
+    "azure-devops-ui": "^2.263.0",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.11.0",
     "jsonpath": "^1.1.1",
