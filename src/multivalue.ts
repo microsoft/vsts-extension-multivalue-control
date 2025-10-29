@@ -5,9 +5,9 @@ import { WorkItemFormService } from "TFS/WorkItemTracking/Services";
 import { MultiValueEvents } from "./MultiValueEvents";
 
 // save on ctr + s
-$(window).bind("keydown", (event: JQueryEventObject) => {
+$(window).bind("keydown", (event: JQuery.KeyDownEvent) => {
     if (event.ctrlKey || event.metaKey) {
-        if (String.fromCharCode(event.which) === "S") {
+        if (event.which && String.fromCharCode(event.which) === "S") {
             event.preventDefault();
             WorkItemFormService.getService().then((service) => service.beginSaveWorkItem($.noop, $.noop));
         }
