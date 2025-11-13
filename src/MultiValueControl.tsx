@@ -237,7 +237,7 @@ export class MultiValueControl extends React.Component<
   };
 
   private _onBlur = () => {
-    this._setUnfocused.start();
+    this._setUnfocused.reset();
   };
   private _onFocus = () => {
     this._setUnfocused.cancel();
