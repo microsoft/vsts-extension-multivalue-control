@@ -33,6 +33,7 @@
   }
   .text {
     @include color(--palette-neutral-100, 0, 0, 0);
+    color: var(--text-primary-color, inherit) !important;
   }
   .customTagPicker {
     display: flex;
@@ -90,11 +91,19 @@
   .options {
     button {
       width: 100%;
+      color: var(--text-primary-color, inherit) !important;
       &:hover {
         @include background-color(--palette-primary-tint-40, 239, 246, 252);
       }
       .ms-Checkbox-text {
         @include color(--palette-neutral-100, 0, 0, 0);
+        color: var(--text-primary-color, inherit) !important;
+      }
+      label {
+        color: var(--text-primary-color, inherit) !important;
+      }
+      span {
+        color: var(--text-primary-color, inherit) !important;
       }
     }
     .checkboxes {
@@ -103,6 +112,10 @@
     input {
       @include color(--palette-neutral-100, 0, 0, 0);
       @include background-color(--palette-neutral-0, 255, 255, 255);
+    }
+    // Add general text color override for all children
+    * {
+      color: var(--text-primary-color, inherit) !important;
     }
   }
   .error {
