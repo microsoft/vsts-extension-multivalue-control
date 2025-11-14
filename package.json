@@ -24,7 +24,7 @@
     "azure-devops-extension-sdk": "^4.0.2",
     "azure-devops-ui": "^2.251.0",
     "copy-webpack-plugin": "^11.0.0",
-    "css-loader": "^6.11.0",
+    "css-loader": "^7.1.2",
     "jsonpath": "^1.1.1",
     "lodash": "^4.17.21",
     "office-ui-fabric-react": "^6.214.0",
