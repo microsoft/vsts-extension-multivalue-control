@@ -16,6 +16,12 @@ export class MultiValueEvents {
     private _onRefreshed: () => void;
     /** Counter to avoid consuming own changed field events. */
     private _fired: number = 0;
+    // Catches late reflows (e.g. web font swap) that occur after React's render/update callbacks fire.
+    private _resizeObserver = new ResizeObserver(() => this._resize());
+
+    constructor() {
+        this._resizeObserver.observe(this._container);
+    }
 
     public async refresh(selected?: string[]): Promise<void> {
         let error = <></>;
