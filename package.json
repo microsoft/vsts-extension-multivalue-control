@@ -11,8 +11,9 @@
     "publish:dev": "npm run package:dev && node ./scripts/publishDev",
     "build:styles": " node ./node_modules/sass/sass.js ./src/multi-selection.scss ./dist/multi-selection.css",
     "build:dev": "npm run clean && mkdir dist && npm run build:styles && webpack --progress --color --output-path ./dist",
-    "build:release": "npm run clean && mkdir dist && npm run build:styles && webpack --progress --color --output-path ./dist --mode production",
+    "build:release": "npm run clean && mkdir dist && npm run build:styles && webpack --progress --color --output-path ./dist --mode production && npm run test:packaged-html",
     "publish:release": "npm run build:release && node ./scripts/publishRelease",
+    "test:packaged-html": "node ./scripts/verifyPackagedHtml.js",
     "test": "karma start --single-run"
   },
   "devDependencies": {
