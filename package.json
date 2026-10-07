@@ -3,6 +3,7 @@
   "scripts": {
     "clean": "rimraf dist *.vsix vss-extension-release.json src/*.js libs",
     "dev": "npm run build:dev && webpack serve --hot --progress --color --port 8888 --static ./",
+    "dev:release-build": "npm run build:release && webpack serve --mode production --output-path ./dist --output-public-path /dist/ --no-hot --no-live-reload --no-client --progress --color --port 8888 --static ./",
     "dev:http": "npm run build:dev && webpack serve --hot --progress --color --port 8888 --static ./",
     "package:dev": "node ./scripts/packageDev",
     "package:dev:http": "node ./scripts/packageDevHttp",
@@ -13,7 +14,8 @@
     "build:dev": "npm run clean && mkdir dist && npm run build:styles && webpack --progress --color --output-path ./dist",
     "build:release": "npm run clean && mkdir dist && npm run build:styles && webpack --progress --color --output-path ./dist --mode production",
     "publish:release": "npm run build:release && node ./scripts/publishRelease",
-    "test": "karma start --single-run"
+    "test": "karma start --single-run",
+    "test:loading": "npm run build:release && node ./scripts/testLoading"
   },
   "devDependencies": {
     "@types/applicationinsights-js": "^1.0.9",
@@ -28,6 +30,7 @@
     "jsonpath": "^1.1.1",
     "lodash": "^4.17.21",
     "office-ui-fabric-react": "^6.214.0",
+    "playwright": "^1.63.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "rimraf": "^3.0.2",
