@@ -52,7 +52,7 @@ module.exports = {
                 patterns: [
                     { from: "./node_modules/es6-promise/dist/es6-promise.min.js", to: "libs/es6-promise.min.js" },
                     { from: "./node_modules/vss-web-extension-sdk/lib/VSS.SDK.min.js", to: "libs/VSS.SDK.min.js" },
-                    { from: "./src/multivalue.html", to: "./" },
+                    { from: "./src/multivalue.html", to: "./", info: { minimized: true } },
                     { from: "./img", to: "img" },
                     { from: "./readme.md", to: "readme.md" }
         ]})
