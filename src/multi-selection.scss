@@ -11,6 +11,12 @@
   color: rgb(var($varName, $defaultR, $defaultG, $defaultB));
 }
 
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
 #container {
   padding-bottom: 3px;
   padding-right: 3px;
