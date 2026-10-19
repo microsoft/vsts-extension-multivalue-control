@@ -24,6 +24,8 @@ You can setup the control to either use a picklist or a semi-colon separate list
 
   ![fieldOptions](img/picklistFieldOptions.png)
 
+> Tip: To make sure users can only select items from the picklist, while still storing multiple selected values in the picklist field, select "Allow users to enter their own value" for the picklist field, and clear "Allow users to enter their own values" in the options of the Multivalue control (see below).
+
 #### Adding a string field
 
 * Add a Text field (use multi line if you need more that 255 characters to store the selected items)
