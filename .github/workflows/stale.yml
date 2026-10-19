@@ -1,0 +1,37 @@
+name: Close inactive needs-info issues
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Run daily at midnight UTC
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Process stale needs-info issues
+        uses: actions/stale@v9
+        with:
+          # Label requirements
+          only-labels: 'needs-info'
+          stale-issue-label: 'stale'
+          
+          # Time thresholds
+          days-before-issue-stale: 30
+          days-before-issue-close: 14
+          
+          # Custom messages
+          stale-issue-message: >
+            Thank you for your report. We need further information to move this issue forward, 
+            and there has been no activity for 30 days. This issue is now marked as stale and 
+            will be closed in 14 days if no update is provided.
+          close-issue-message: >
+            We are closing this issue because there has been no update on the issue during the 
+            14-day stale period. Feel free to leave a comment with additional details to reopen 
+            or continue the discussion.
+
+          # Scope limits
+          enable-pr-stale: false
