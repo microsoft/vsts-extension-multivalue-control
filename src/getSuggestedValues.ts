@@ -1,10 +1,11 @@
 import { WorkItemFormService } from "TFS/WorkItemTracking/Services";
+import { parseMultiValueFieldValue } from "./valueCodec";
 
 export async function getSuggestedValues(): Promise<string[]> {
     const inputs: IDictionaryStringTo<string> = VSS.getConfiguration().witInputs;
     const valuesString: string = inputs.Values;
     if (valuesString) {
-        return valuesString.split(";").filter((v) => !!v).map(s => s.trim());
+        return parseMultiValueFieldValue(valuesString);
     }
     // if the values input were not specified as an input, get the suggested values for the field.
     const service = await WorkItemFormService.getService();
