@@ -13,9 +13,11 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 20
-      # .npmrc and the lockfile's resolved URLs point at an internal feed that public
-      # runners can't reach; rewrite every resolved host to the public registry.
-      - run: npm ci --registry=https://registry.npmjs.org/ --replace-registry-host=always
+      # The lockfile has entries resolved from an internal feed that GitHub runners cannot reach.
+      - name: Point lockfile at the public npm registry
+        run: sed -i 's#https://packagefeedproxy.microsoft.io/npm/#https://registry.npmjs.org/#g' package-lock.json
+      - name: Install dependencies
+        run: npm ci --registry=https://registry.npmjs.org/
       - run: npx playwright install --with-deps chromium
       - run: npm run test:ui
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
