@@ -3,7 +3,7 @@ var webpack = require("webpack");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 
-module.exports = {
+module.exports = (env, argv = {}) => ({
     target: "web",
     entry: {
         multivalue: "./src/multivalue.ts"
@@ -40,8 +40,8 @@ module.exports = {
         hot: true,
         server: 'https',
     },
-    devtool: 'inline-source-map',
-    mode: "development",
+    devtool: argv.mode === "production" ? false : 'inline-source-map',
+    mode: argv.mode || "development",
     plugins: [
         new BundleAnalyzerPlugin({
           openAnalyzer: false,
@@ -52,9 +52,9 @@ module.exports = {
                 patterns: [
                     { from: "./node_modules/es6-promise/dist/es6-promise.min.js", to: "libs/es6-promise.min.js" },
                     { from: "./node_modules/vss-web-extension-sdk/lib/VSS.SDK.min.js", to: "libs/VSS.SDK.min.js" },
-                    { from: "./src/multivalue.html", to: "./" },
+                    { from: "./src/multivalue.html", to: "./", info: { minimized: true } },
                     { from: "./img", to: "img" },
                     { from: "./readme.md", to: "readme.md" }
         ]})
     ]
-}
+});

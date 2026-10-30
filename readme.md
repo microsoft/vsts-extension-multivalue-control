@@ -39,6 +39,25 @@ npm run dev
 npm run build:release
 ```
 
+Run `npm run dev:release-build` to serve production assets at
+`https://localhost:8888` without hot reload, live reload, or a webpack browser
+client. The development extension must already be installed in Azure DevOps with
+its localhost base URI. Production bundles omit source maps; normal development
+builds retain inline maps.
+
+Run `npm run test:loading` to compare the production bundle with an otherwise
+identical inline-source-map baseline in Chrome. Chrome must be installed; set
+`PLAYWRIGHT_CHANNEL` to select another installed Chromium-based browser channel.
+The test uses the real extension HTML, SDK, and React bundle in an iframe, with
+mocked host handshake, AMD platform modules, and work item services. It checks
+bundle sizes, readiness under network throttling, selection, removal, and saving.
+The external icon font is blocked to keep the test independent of its CDN.
+Screenshots are written to a temporary directory printed by the test.
+
+These checks do not reproduce Azure DevOps' host timeout or CDN behavior. Validate
+the change with the localhost-backed development extension, then a private
+packaged extension in a test organization before publishing.
+
 ## About Microsoft DevLabs
 
 Microsoft DevLabs is an outlet for experiments from Microsoft, experiments that represent some of the latest ideas around developer tools. Solutions in this
