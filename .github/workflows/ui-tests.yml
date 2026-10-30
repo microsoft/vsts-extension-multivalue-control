@@ -6,7 +6,7 @@ on:
     branches: [master]
 
 jobs:
-  e2e:
+  ui:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
@@ -17,7 +17,7 @@ jobs:
       # runners can't reach; rewrite every resolved host to the public registry.
       - run: npm ci --registry=https://registry.npmjs.org/ --replace-registry-host=always
       - run: npx playwright install --with-deps chromium
-      - run: npm run test:e2e
+      - run: npm run test:ui
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: failure()
         with:
