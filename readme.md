@@ -37,7 +37,12 @@ npm run dev
 
 # Build the extension
 npm run build:release
+
+# Run the Playwright UI tests (builds first; one-time: npx playwright install chromium)
+npm run test:ui
 ```
+
+The UI tests in `tests/` run the built control in a local harness (`tests/harness`) that mocks the Azure DevOps host (VSS SDK and work item form service).
 
 ## About Microsoft DevLabs
 

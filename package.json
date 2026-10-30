@@ -13,12 +13,16 @@
     "build:dev": "npm run clean && mkdir dist && npm run build:styles && webpack --progress --color --output-path ./dist",
     "build:release": "npm run clean && mkdir dist && npm run build:styles && webpack --progress --color --output-path ./dist --mode production",
     "publish:release": "npm run build:release && node ./scripts/publishRelease",
-    "test": "karma start --single-run"
+    "test": "karma start --single-run",
+    "test:ui": "npm run build:dev && playwright test",
+    "test:ui:only": "playwright test"
   },
   "devDependencies": {
+    "@playwright/test": "^1.64.1",
     "@types/applicationinsights-js": "^1.0.9",
     "@types/jquery": "^2.0.48",
     "@types/jsonpath": "^0.2.4",
+    "@types/node": "^26.6.5",
     "@types/react": "^16.14.57",
     "@types/react-dom": "^16.9.25",
     "azure-devops-extension-sdk": "^4.0.2",
