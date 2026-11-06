@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "target": "es2019",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "types": ["node"],
+        "lib": ["es2019", "dom"]
+    },
+    "include": ["./**/*.ts", "../playwright.config.ts"]
+}
