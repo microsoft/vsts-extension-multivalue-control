@@ -1,6 +1,6 @@
 import { defineConfig, devices } from "@playwright/test";
 
-const baseURL = "http://127.0.0.1:8889";
+const baseURL = `http://127.0.0.1:${process.env.UI_TEST_PORT || 8889}`;
 
 export default defineConfig({
   testDir: "./tests",

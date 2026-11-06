@@ -68,11 +68,14 @@ test.describe("allow custom values", () => {
     const control = await MultiValuePage.open(page, { Values: "a;b", AllowCustom: false });
     await control.openDropdown();
 
+    const pageErrors: string[] = [];
+    page.on("pageerror", (error) => pageErrors.push(error.message));
     await control.filterInput.fill("new");
     await control.filterInput.press("Enter");
 
     await expect(control.tags).toHaveCount(0);
     await expect(control.noSelection).toBeVisible();
+    expect(pageErrors).toEqual([]);
     // The control currently still writes "" to the field here (toggles filtered[0] === undefined); not asserted.
   });
 });
