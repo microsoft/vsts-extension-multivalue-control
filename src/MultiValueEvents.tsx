@@ -6,6 +6,7 @@ import { WorkItemFormService } from "TFS/WorkItemTracking/Services";
 
 import { getSuggestedValues } from "./getSuggestedValues";
 import { MultiValueControl } from "./MultiValueControl";
+import { parseMultiValueFieldValue, serializeMultiValueFieldValue } from "./valueCodec";
 
 initializeIcons();
 const HELP_URL = "https://github.com/Microsoft/vsts-extension-multivalue-control#azure-devops-services";
@@ -54,10 +55,7 @@ export class MultiValueEvents {
     private async _getSelected(): Promise<string[]> {
         const formService = await WorkItemFormService.getService();
         const value = await formService.getFieldValue(this.fieldName);
-        if (typeof value !== "string") {
-            return [];
-        }
-        return value.split(";").filter((v) => !!v).map(s => s.trim());
+        return parseMultiValueFieldValue(value);
     }
     private _setSelected = async (values: string[]): Promise<void> => {
         const formService = await WorkItemFormService.getService();
@@ -76,7 +74,7 @@ export class MultiValueEvents {
         }
         this.refresh(values);
         this._fired++;
-        await formService.setFieldValue(this.fieldName, values.join(";"));
+        await formService.setFieldValue(this.fieldName, serializeMultiValueFieldValue(values));
 
         return new Promise<void>((resolve) => {
             this._onRefreshed = resolve;
