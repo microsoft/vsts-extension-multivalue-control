@@ -64,21 +64,31 @@ test.describe("allow custom values", () => {
     expect(await control.optionLabels()).toEqual([]);
   });
 
-  // Known bug: Enter with no match calls _toggleOption(undefined), so render() throws
-  // "Cannot read properties of undefined (reading 'length')" and unmounts the control.
-  // Re-enable once the control is fixed (see the guard in MultiValueControl._onInputKeyDown).
-  test.fixme("AllowCustom=false: Enter with no match adds nothing", async ({ page }) => {
+  test("AllowCustom=false: Enter with no match adds nothing and keeps the control usable", async ({ page }) => {
     const control = await MultiValuePage.open(page, { Values: "a;b", AllowCustom: false });
     await control.openDropdown();
 
     const pageErrors: string[] = [];
     page.on("pageerror", (error) => pageErrors.push(error.message));
-    await control.filterInput.fill("new");
+    for (let attempt = 0; attempt < 3; attempt++) {
+      await control.filterInput.fill("new");
+      await expect(control.options.locator(".ms-Checkbox")).toHaveCount(0);
+      await control.filterInput.press("Enter");
+
+      await expect(control.filterInput).toHaveValue("");
+      await expect(page.locator(".multi-value-control")).toBeVisible();
+      await expect(control.tags).toHaveCount(0);
+      await expect(control.noSelection).toBeVisible();
+      expect(await control.fieldValue()).toBe("");
+      expect(await control.setFieldValueCalls()).toEqual([]);
+    }
+
+    await control.filterInput.fill("b");
     await control.filterInput.press("Enter");
 
-    await expect(control.tags).toHaveCount(0);
-    await expect(control.noSelection).toBeVisible();
+    await expect(control.tags).toHaveCount(1);
+    expect(await control.tagTexts()).toEqual(["b"]);
+    await expect.poll(() => control.fieldValue()).toBe("b");
     expect(pageErrors).toEqual([]);
-    // The control currently still writes "" to the field here (toggles filtered[0] === undefined); not asserted.
   });
 });
