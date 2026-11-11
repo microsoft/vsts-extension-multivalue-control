@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Process stale needs-info issues
-        uses: actions/stale@5bef64f19d7facfb25b37b414482c7164d639639
+        uses: actions/stale@4391f3da665fdf50b6810c1a66712fb9ba21aa93
         with:
           # Label requirements
           only-labels: 'needs-info'
