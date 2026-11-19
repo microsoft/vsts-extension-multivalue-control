@@ -162,7 +162,9 @@ export class MultiValueControl extends React.Component<
 
       e.preventDefault();
       e.stopPropagation();
-      this._toggleOption(filtered[0]);
+      if (filtered.length > 0) {
+        this._toggleOption(filtered[0]);
+      }
       this.setState({ filter: "" });
     }
     if (e.keyCode === 37 /* left arrow */) {
