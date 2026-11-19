@@ -3,7 +3,7 @@ var webpack = require("webpack");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 
-module.exports = {
+module.exports = (env, argv = {}) => ({
     target: "web",
     entry: {
         multivalue: "./src/multivalue.ts"
@@ -40,8 +40,8 @@ module.exports = {
         hot: true,
         server: 'https',
     },
-    devtool: 'inline-source-map',
-    mode: "development",
+    devtool: argv.mode === "production" ? false : 'inline-source-map',
+    mode: argv.mode || "development",
     plugins: [
         new BundleAnalyzerPlugin({
           openAnalyzer: false,
@@ -57,4 +57,4 @@ module.exports = {
                     { from: "./readme.md", to: "readme.md" }
         ]})
     ]
-}
+});

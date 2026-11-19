@@ -42,8 +42,6 @@ npm run build:release
 npm run test:ui
 ```
 
-The UI tests in `tests/` run the built control in a local harness (`tests/harness`) that mocks the Azure DevOps host (VSS SDK and work item form service).
-
 ## About Microsoft DevLabs
 
 Microsoft DevLabs is an outlet for experiments from Microsoft, experiments that represent some of the latest ideas around developer tools. Solutions in this
